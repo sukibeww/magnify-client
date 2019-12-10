@@ -2,6 +2,10 @@ import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import DesktopNavbar from './components/Navbar/DesktopNavbar'
 import DrawerNavbar from './components/Navbar/DrawerNavbar'
+import SurveyA from './components/SurveyA/SurveyA'
+import SurveyB from './components/SurveyB/SurveyB'
+import SurveyC from './components/SurveyC/SurveyC'
+import SurveyD from './components/SurveyD/SurveyD'
 import { orange } from '@material-ui/core/colors';
 import { useMediaQuery } from '@material-ui/core'
 
@@ -10,7 +14,7 @@ function App() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: '#651fff',
+        main: '#651fff',  
       },
       secondary: orange,
       viewPort: 'small'
@@ -21,8 +25,12 @@ function App() {
     <ThemeProvider theme={theme}>
       { large && <DesktopNavbar /> } 
       { !large && <DrawerNavbar /> }
+      <SurveyA />
+      <SurveyB />
+      <SurveyC />
+      <SurveyD />
     </ThemeProvider>
-  );
+  )
 }
 
 export default App;
