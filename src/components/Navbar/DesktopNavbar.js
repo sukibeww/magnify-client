@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, Button, IconButton, Badge, useMediaQuery} from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, IconButton, Badge } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -24,7 +24,6 @@ const DesktopNavbar = () => {
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
   const theme = useTheme();
-  const large = useMediaQuery(theme.breakpoints.up('lg'));
   const handleLogin = () => {
     setAuth(()=> true)
   }
@@ -35,9 +34,6 @@ const DesktopNavbar = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>

@@ -6,7 +6,6 @@ import SurveyA from './components/SurveyA/SurveyA'
 import SurveyB from './components/SurveyB/SurveyB'
 import SurveyC from './components/SurveyC/SurveyC'
 import SurveyD from './components/SurveyD/SurveyD'
-import { orange } from '@material-ui/core/colors';
 import { useMediaQuery } from '@material-ui/core'
 
 
@@ -14,9 +13,11 @@ function App() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: '#651fff',  
+        main: '#283593',  
       },
-      secondary: orange,
+      secondary: {
+        main: "#ffa726",  
+      },
       viewPort: 'small'
     },
   });
@@ -26,9 +27,9 @@ function App() {
       { large && <DesktopNavbar /> } 
       { !large && <DrawerNavbar /> }
       <SurveyA />
-      <SurveyB />
+      {/* <SurveyB />
       <SurveyC />
-      <SurveyD />
+      <SurveyD /> */}
     </ThemeProvider>
   )
 }
