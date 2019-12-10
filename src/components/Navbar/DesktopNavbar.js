@@ -22,9 +22,8 @@ const useStyles = makeStyles(theme => ({
 
 const DesktopNavbar = () => {
   const classes = useStyles();
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const theme = useTheme();
-  const large = useMediaQuery(theme.breakpoints.up('lg'));
   const handleLogin = () => {
     setAuth(()=> true)
   }
@@ -35,15 +34,14 @@ const DesktopNavbar = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          {!large &&
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>}
+          </IconButton>
           <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>
           {!auth && <Button onClick={handleLogin} color="inherit">Login</Button> }
-          {auth && large && (
+          {auth && (
             <div>
               <Badge variant="dot" color="secondary" className={classes.navButton}>
                 <Button color="inherit">
