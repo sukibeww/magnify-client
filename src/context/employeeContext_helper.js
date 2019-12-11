@@ -2,7 +2,7 @@ const linkedin_login = () => {
   window.open('http://localhost:3000/auth/linkedin', '_self')
 }
 
-const linkedin_logout = async () => {
+const linkedin_logout = async setAuth => {
   const user = await fetch('http://localhost:3000/logout', {
     credentials: 'include',
     headers: {
@@ -10,6 +10,8 @@ const linkedin_logout = async () => {
       'Access-Control-Allow-Credentials': true
     }
   }).then(resp => resp.json())
+  console.log(user)
+  setAuth(false)
 }
 
 const getProfile = async () => {

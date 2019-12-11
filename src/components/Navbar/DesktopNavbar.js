@@ -11,7 +11,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import NotificationsIcon from '@material-ui/icons/Notifications'
-import { UserContext } from '../../context/user'
+import { EmployeeContext } from '../../context/employeeContext'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,18 +29,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DesktopNavbar = () => {
+  const employeeContext = useContext(EmployeeContext)
+  const { user, handleLogin, handleLogout } = employeeContext
+
   const classes = useStyles()
-  const userContext = useContext(UserContext)
-  // const { user } = userContext
-  console.log(userContext)
-  const [auth, setAuth] = useState(false)
   const theme = useTheme()
-  const handleLogin = () => {
-    setAuth(() => true)
-  }
-  const handleLogout = () => {
-    setAuth(() => false)
-  }
+
   return (
     <>
       <AppBar position="static">
@@ -48,12 +42,12 @@ const DesktopNavbar = () => {
           <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>
-          {!auth && (
+          {!user.email && (
             <Button onClick={handleLogin} color="inherit">
               Login
             </Button>
           )}
-          {auth && (
+          {user.email && (
             <div>
               <Badge
                 variant="dot"

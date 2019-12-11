@@ -7,7 +7,7 @@ import SurveyB from './components/SurveyB/SurveyB'
 import SurveyC from './components/SurveyC/SurveyC'
 import SurveyD from './components/SurveyD/SurveyD'
 import { useMediaQuery } from '@material-ui/core'
-import UserContextProvider from './context/user'
+import EmployeeContextProvider from './context/employeeContext'
 
 function App() {
   const theme = createMuiTheme({
@@ -24,14 +24,14 @@ function App() {
   const large = useMediaQuery(theme.breakpoints.up('lg'))
   return (
     <ThemeProvider theme={theme}>
-      <UserContextProvider>
+      <EmployeeContextProvider>
         {large && <DesktopNavbar />}
         {!large && <DrawerNavbar />}
         <SurveyA />
         {/* <SurveyB />
       <SurveyC />
       <SurveyD /> */}
-      </UserContextProvider>
+      </EmployeeContextProvider>
     </ThemeProvider>
   )
 }

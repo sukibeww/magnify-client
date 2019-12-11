@@ -20,7 +20,7 @@ import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import People from '@material-ui/icons/People'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
-import { UserContext } from '../../context/user'
+import { EmployeeContext } from '../../context/employeeContext'
 
 const useStyles = makeStyles({
   title: {
@@ -45,20 +45,13 @@ const useStyles = makeStyles({
 })
 
 const DrawerNavbar = () => {
+  const employeeContext = useContext(EmployeeContext)
+  const { user, handleLogin, handleLogout } = employeeContext
+
   const classes = useStyles()
   const [drawer, setdrawer] = useState({
     left: false
   })
-  const userContext = useContext(UserContext)
-  const { user, setUser, linkedin_login, linkedin_logout } = userContext
-  const [auth, setAuth] = useState(user.email)
-  const handleLogin = () => {
-    linkedin_login()
-  }
-  const handleLogout = () => {
-    linkedin_logout()
-  }
-
   const toggleDrawer = (side, open) => event => {
     if (
       event.type === 'keydown' &&
@@ -126,7 +119,7 @@ const DrawerNavbar = () => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          {auth && (
+          {user.email && (
             <IconButton
               edge="start"
               onClick={toggleDrawer('left', true)}
@@ -140,7 +133,7 @@ const DrawerNavbar = () => {
           <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>
-          {!auth && (
+          {!user.email && (
             <Button color="inherit" onClick={handleLogin}>
               Login
             </Button>
