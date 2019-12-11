@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Typography,
@@ -20,6 +20,7 @@ import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import People from '@material-ui/icons/People'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
+import { UserContext } from '../../context/user'
 
 const useStyles = makeStyles({
   title: {
@@ -48,12 +49,14 @@ const DrawerNavbar = () => {
   const [drawer, setdrawer] = useState({
     left: false
   })
-  const [auth, setAuth] = useState(true)
+  const userContext = useContext(UserContext)
+  const { user, setUser, linkedin_login, linkedin_logout } = userContext
+  const [auth, setAuth] = useState(user.email)
   const handleLogin = () => {
-    setAuth(() => true)
+    linkedin_login()
   }
   const handleLogout = () => {
-    setAuth(() => false)
+    linkedin_logout()
   }
 
   const toggleDrawer = (side, open) => event => {

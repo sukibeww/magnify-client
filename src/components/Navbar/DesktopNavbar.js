@@ -1,66 +1,92 @@
-import React, {useState} from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton, Badge } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import React, { useState, useContext } from 'react'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Badge
+} from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import { UserContext } from '../../context/user'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
-  navButton : {
+  navButton: {
     marginRight: theme.spacing(8)
   }
-}));
+}))
 
 const DesktopNavbar = () => {
-  const classes = useStyles();
-  const [auth, setAuth] = useState(false);
-  const theme = useTheme();
+  const classes = useStyles()
+  const userContext = useContext(UserContext)
+  // const { user } = userContext
+  console.log(userContext)
+  const [auth, setAuth] = useState(false)
+  const theme = useTheme()
   const handleLogin = () => {
-    setAuth(()=> true)
+    setAuth(() => true)
   }
   const handleLogout = () => {
-    setAuth(()=> false)
+    setAuth(() => false)
   }
-  return(
+  return (
     <>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>
-          {!auth && <Button onClick={handleLogin} color="inherit">Login</Button> }
+          {!auth && (
+            <Button onClick={handleLogin} color="inherit">
+              Login
+            </Button>
+          )}
           {auth && (
             <div>
-              <Badge variant="dot" color="secondary" className={classes.navButton}>
-                <Button color="inherit">
-                  Survey
-                </Button>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Button color="inherit">Survey</Button>
               </Badge>
-              <Badge variant="dot" color="secondary" className={classes.navButton}>
-                <Button color="inherit">
-                  Result
-                </Button>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Button color="inherit">Result</Button>
               </Badge>
-              <Badge variant="dot" color="secondary" className={classes.navButton}>
-                <Button color="inherit">
-                  Interview
-                </Button>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Button color="inherit">Interview</Button>
               </Badge>
-              <Badge variant="dot" color="secondary" className={classes.navButton}>
-                <Button color="inherit">
-                  Vacancy
-                </Button>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Button color="inherit">Vacancy</Button>
               </Badge>
-              <IconButton aria-label="show 17 new notifications" color="inherit">
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
                 <Badge variant="dot" color="secondary">
                   <NotificationsIcon />
                 </Badge>
@@ -73,7 +99,9 @@ const DesktopNavbar = () => {
               >
                 <AccountCircle />
               </IconButton>
-              <Button onClick={handleLogout} color="inherit">Log out</Button>
+              <Button onClick={handleLogout} color="inherit">
+                Log out
+              </Button>
             </div>
           )}
         </Toolbar>
@@ -82,4 +110,4 @@ const DesktopNavbar = () => {
   )
 }
 
-export default DesktopNavbar;
+export default DesktopNavbar

@@ -23,16 +23,16 @@ function App() {
   })
   const large = useMediaQuery(theme.breakpoints.up('lg'))
   return (
-    <UserContextProvider>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <UserContextProvider>
         {large && <DesktopNavbar />}
         {!large && <DrawerNavbar />}
         <SurveyA />
         {/* <SurveyB />
       <SurveyC />
       <SurveyD /> */}
-      </ThemeProvider>
-    </UserContextProvider>
+      </UserContextProvider>
+    </ThemeProvider>
   )
 }
 
