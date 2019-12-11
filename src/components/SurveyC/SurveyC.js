@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/styles";
 import {
@@ -17,10 +17,13 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10vh 20vw;
+  margin: 5vh auto;
   border-radius: 10px;
-  height: 50vh;
-  padding: 10vh;
+  height: auto;
+  width: 70%;
+  min-width: 320px;
+  max-width: max-content;
+  padding: 5vh 3vw;
 `;
 
 const StyledQuestion = styled.p`
@@ -28,6 +31,21 @@ const StyledQuestion = styled.p`
   font-size: 1.3em;
   text-align: center;
 `;
+
+const StyledOption = styled.p`
+  color: #283593;
+  font-size: 1em;
+  text-align: left;
+
+`;
+
+const OptionWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
 
 const StyledHeader = styled.h1`
   color: #283593;
@@ -58,7 +76,8 @@ const StyledIndex = styled.p`
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    minWidth: "120px",
   },
   radioControl: {
     display: "flex",
@@ -67,12 +86,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SelectOptions = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const inputLabel = useRef(null);
+  const [labelWidth, setLabelWidth] = useState(0);
+  useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+  }, []);
+  const [selectedOption, setSelectedOption] = useState();
   return (
-    <div>
-      <InputLabel id='demo-controlled-open-select-label'>Select</InputLabel>
-
+    <>
+      <InputLabel id='select-label' ref={inputLabel}>Select</InputLabel>
       <Select
+        labelId='select-label'
+        id="select-outlined"
         variant='outlined'
         value={selectedOption}
         onChange={e => {
@@ -80,15 +105,14 @@ const SelectOptions = () => {
             return e.target.value;
           });
         }}
-        autoWidth={true}
-        defaultValue=''
+        labelWidth={labelWidth}
       >
         <MenuItem value='1'>1</MenuItem>
         <MenuItem value='2'>2</MenuItem>
         <MenuItem value='3'>3</MenuItem>
         <MenuItem value='4'>4</MenuItem>
       </Select>
-    </div>
+    </>
   );
 };
 
@@ -97,10 +121,6 @@ const SurveyC = () => {
   const [selectedValues, setSelectedValues] = useState([]);
   const currentQuestion = survey[0]["C"]["questions"][0];
   // const description = survey[0]["B"]["description"];
-  const handleChange = event => {
-    setSelectedValues(event.target.value);
-  };
-
   return (
     <>
       <StyledWrapper>
@@ -109,32 +129,30 @@ const SurveyC = () => {
           <StyledSubheader>Question 1</StyledSubheader>
         </HeaderWrapper>
         <StyledQuestion>{currentQuestion["question"]}</StyledQuestion>
-        <FormControl component='fieldset' className={classes.formControl}>
-          {/* ----------------------------------------------------------------------------- */}
-
-          <StyledQuestion>{currentQuestion["options"][0]}</StyledQuestion>
-          <SelectOptions />
-        </FormControl>
-
-        {/* ------------------------------------------------------------------------------ */}
-        <FormControl component='fieldset' className={classes.formControl}>
-          <StyledQuestion>{currentQuestion["options"][1]}</StyledQuestion>
-          <SelectOptions />
-        </FormControl>
-
-        {/* ----------------------------------------------------------------------------- */}
-        <FormControl component='fieldset' className={classes.formControl}>
-          <StyledQuestion>{currentQuestion["options"][2]}</StyledQuestion>
-          <SelectOptions />
-        </FormControl>
-
-        {/* ----------------------------------------------------------------------------- */}
-        <FormControl component='fieldset' className={classes.formControl}>
-          <StyledQuestion>{currentQuestion["options"][3]}</StyledQuestion>
-          <SelectOptions />
-        </FormControl>
-
-        {/* --------------------------------------------------------------------------- */}
+        <OptionWrapper>
+          <StyledOption>{currentQuestion["options"][0]}</StyledOption>
+          <FormControl className={classes.formControl} variant='outlined'>
+            <SelectOptions />
+          </FormControl>
+        </OptionWrapper>
+        <OptionWrapper>
+          <StyledOption>{currentQuestion["options"][1]}</StyledOption>
+          <FormControl className={classes.formControl} variant='outlined'>
+            <SelectOptions />
+          </FormControl>
+        </OptionWrapper>
+        <OptionWrapper>
+          <StyledOption>{currentQuestion["options"][2]}</StyledOption>
+          <FormControl className={classes.formControl} variant='outlined'>
+            <SelectOptions />
+          </FormControl>
+        </OptionWrapper>
+        <OptionWrapper>
+          <StyledOption>{currentQuestion["options"][3]}</StyledOption>
+          <FormControl className={classes.formControl} variant='outlined'>
+            <SelectOptions />
+          </FormControl>
+        </OptionWrapper>
         <Button
           variant='contained'
           color='primary'
