@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, IconButton, Toolbar, AppBar, Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExitToApp from '@material-ui/icons/ExitToApp';
-import Assignment from '@material-ui/icons/Assignment';
-import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn';
-import People from '@material-ui/icons/People';
-import MeetingRoom from '@material-ui/icons/MeetingRoom';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import {
+  Typography,
+  IconButton,
+  Toolbar,
+  AppBar,
+  Drawer,
+  Button,
+  List,
+  Divider,
+  ListItem,
+  ListItemIcon,
+  ListItemText
+} from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import ExitToApp from '@material-ui/icons/ExitToApp'
+import Assignment from '@material-ui/icons/Assignment'
+import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
+import People from '@material-ui/icons/People'
+import MeetingRoom from '@material-ui/icons/MeetingRoom'
 
 const useStyles = makeStyles({
   title: {
     flexGrow: 1
   },
   list: {
-    width: "50vw",
-    height: "100vh"
+    width: '50vw',
+    height: '100vh'
   },
   banner: {
     height: '20vh',
@@ -23,34 +35,37 @@ const useStyles = makeStyles({
   },
   navigation: {
     height: '65vh',
-    display: "flex",
+    display: 'flex',
     flexDirection: 'column',
-    justifycontent: "flex-end",
-    flexdirection: "column",
+    justifycontent: 'flex-end',
+    flexdirection: 'column',
     flex: 1
   }
-});
+})
 
 const DrawerNavbar = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   const [drawer, setdrawer] = useState({
     left: false
-  });
-  const [auth, setAuth] = useState(true);
+  })
+  const [auth, setAuth] = useState(true)
   const handleLogin = () => {
-    setAuth(()=> true)
+    setAuth(() => true)
   }
   const handleLogout = () => {
-    setAuth(()=> false)
+    setAuth(() => false)
   }
 
   const toggleDrawer = (side, open) => event => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return
     }
 
-    setdrawer({ ...drawer, [side]: open });
-  };
+    setdrawer({ ...drawer, [side]: open })
+  }
 
   const sideList = side => (
     <div
@@ -59,9 +74,7 @@ const DrawerNavbar = () => {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <div className={classes.banner}>
-        
-      </div>
+      <div className={classes.banner}></div>
       <List className={classes.navigation}>
         <ListItem button key="Survey">
           <ListItemIcon>
@@ -104,29 +117,42 @@ const DrawerNavbar = () => {
         </ListItem>
       </List>
     </div>
-  );
+  )
 
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          {auth && 
-          <IconButton edge="start" onClick={toggleDrawer('left', true)} className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> 
-          }
+          {auth && (
+            <IconButton
+              edge="start"
+              onClick={toggleDrawer('left', true)}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
           <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>
-          {!auth && <Button color="inherit" onClick={handleLogin}>Login</Button> }
+          {!auth && (
+            <Button color="inherit" onClick={handleLogin}>
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
-      <Drawer open={drawer.left} onClose={toggleDrawer('left', false)} className={classes.drawer}>
+      <Drawer
+        open={drawer.left}
+        onClose={toggleDrawer('left', false)}
+        className={classes.drawer}
+      >
         {sideList('left')}
       </Drawer>
     </div>
-  );
+  )
 }
 
-
-export default DrawerNavbar;
+export default DrawerNavbar
