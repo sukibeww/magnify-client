@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState, useContext } from 'react'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   AppBar,
   Toolbar,
@@ -7,10 +7,11 @@ import {
   Button,
   IconButton,
   Badge
-} from "@material-ui/core";
-// import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+} from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import { EmployeeContext } from '../../context/employeeContext'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,76 +26,74 @@ const useStyles = makeStyles(theme => ({
   navButton: {
     marginRight: theme.spacing(8)
   }
-}));
+}))
 
 const DesktopNavbar = () => {
-  const classes = useStyles();
-  const [auth, setAuth] = useState(false);
-  const handleLogin = () => {
-    setAuth(() => true);
-  };
-  const handleLogout = () => {
-    setAuth(() => false);
-  };
+  const employeeContext = useContext(EmployeeContext)
+  const { user, handleLogin, handleLogout } = employeeContext
+
+  const classes = useStyles()
+  const theme = useTheme()
+
   return (
     <>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar>
-          <Typography variant='h6' className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             Magnify
           </Typography>
-          {!auth && (
-            <Button onClick={handleLogin} color='inherit'>
+          {!user.email && (
+            <Button onClick={handleLogin} color="inherit">
               Login
             </Button>
           )}
-          {auth && (
+          {user.email && (
             <div>
               <Badge
-                variant='dot'
-                color='secondary'
+                variant="dot"
+                color="secondary"
                 className={classes.navButton}
               >
-                <Button color='inherit'>Survey</Button>
+                <Button color="inherit">Survey</Button>
               </Badge>
               <Badge
-                variant='dot'
-                color='secondary'
+                variant="dot"
+                color="secondary"
                 className={classes.navButton}
               >
-                <Button color='inherit'>Result</Button>
+                <Button color="inherit">Result</Button>
               </Badge>
               <Badge
-                variant='dot'
-                color='secondary'
+                variant="dot"
+                color="secondary"
                 className={classes.navButton}
               >
-                <Button color='inherit'>Interview</Button>
+                <Button color="inherit">Interview</Button>
               </Badge>
               <Badge
-                variant='dot'
-                color='secondary'
+                variant="dot"
+                color="secondary"
                 className={classes.navButton}
               >
-                <Button color='inherit'>Vacancy</Button>
+                <Button color="inherit">Vacancy</Button>
               </Badge>
               <IconButton
-                aria-label='show 17 new notifications'
-                color='inherit'
+                aria-label="show 17 new notifications"
+                color="inherit"
               >
-                <Badge variant='dot' color='secondary'>
+                <Badge variant="dot" color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
               <IconButton
-                aria-label='account of current user'
-                aria-controls='menu-appbar'
-                aria-haspopup='true'
-                color='inherit'
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
               >
                 <AccountCircle />
               </IconButton>
-              <Button onClick={handleLogout} color='inherit'>
+              <Button onClick={handleLogout} color="inherit">
                 Log out
               </Button>
             </div>
@@ -102,7 +101,7 @@ const DesktopNavbar = () => {
         </Toolbar>
       </AppBar>
     </>
-  );
-};
+  )
+}
 
-export default DesktopNavbar;
+export default DesktopNavbar
