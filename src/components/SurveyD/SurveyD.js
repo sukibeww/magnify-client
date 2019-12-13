@@ -18,10 +18,13 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10vh 20vw;
+  margin: 5vh auto;
   border-radius: 10px;
-  height: 50vh;
-  padding: 10vh;
+  height: auto;
+  width: 70%;
+  min-width: 320px;
+  max-width: max-content;
+  padding: 5vh 3vw;
 `;
 
 const StyledQuestion = styled.p`
@@ -83,8 +86,8 @@ const SurveyD = () => {
           <StyledHeader>Section D</StyledHeader>
           <StyledSubheader>Question 1</StyledSubheader>
         </HeaderWrapper>
+        <StyledQuestion>{currentQuestion["question"]}</StyledQuestion>
         <FormControl component='fieldset' className={classes.formControl}>
-          <StyledQuestion>{currentQuestion["question"]}</StyledQuestion>
           <FormLabel component='legend' color='secondary'>
             Options
           </FormLabel>
