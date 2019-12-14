@@ -49,14 +49,14 @@ const AccordionLandingItem = (props) => {
     })
   }
   return(
-    <AccordionWrapper onClick={toggleActive}>
+    <AccordionWrapper onClick={toggleActive} data-testid="accordion-item-wrapper">
       <AccordionHeaderWrapper >
         <AccordionSubheader>{props.header}</AccordionSubheader>
         {active ? 
-        <ArrowDropUpIcon color="secondary" fontSize="large" /> : 
-        <ArrowDropDownIcon color="secondary" fontSize="large" />}
+        <ArrowDropUpIcon color="secondary" fontSize="large" data-testid="drop-up"/> : 
+        <ArrowDropDownIcon color="secondary" fontSize="large" data-testid="drop-down" />}
       </AccordionHeaderWrapper>
-      <AccordionParagraph activated={active}>
+      <AccordionParagraph activated={active} data-testid="accordion-item-summary">
         {props.summary}
       </AccordionParagraph>
     </AccordionWrapper>

@@ -37,7 +37,7 @@ const placeHolderSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing e
 
 const AccordionLanding = () => {
   return(
-    <AccordionWrapper>
+    <AccordionWrapper data-testid="accordion-wrapper">
       <StyledIntroWrapper>
           <IntroHeader>Why Magnify?</IntroHeader>
       </StyledIntroWrapper>

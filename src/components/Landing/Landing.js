@@ -23,7 +23,7 @@ const StyledLogo = styled.img`
 const Landing = () => {
   return(
     <>
-      <LandingWrapper>
+      <LandingWrapper data-testid="landing-wrapper"> 
         <StyledLogo src={require('./images/landing-logo.png')} alt="magnifylogo"/>
         <AccordionLanding />
       </LandingWrapper>
