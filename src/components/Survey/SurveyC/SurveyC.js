@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useReducer } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -84,13 +84,32 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SelectOptions = () => {
+const SelectOptions = props => {
   const inputLabel = useRef(null)
   const [labelWidth, setLabelWidth] = useState(0)
   useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth)
   }, [])
-  const [selectedOption, setSelectedOption] = useState()
+
+  const { count, index, result, setResult, setShowNext } = props
+  const defaultOption = ''
+  const [selectedOption, setSelectedOption] = useState(defaultOption)
+
+  useEffect(() => {
+    setSelectedOption(result[count - 1][index] || defaultOption)
+  }, [index, result, count])
+
+  useEffect(() => {
+    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+  }, [result, count, setShowNext])
+
+  const saveResult = async select => {
+    const temp_result = result
+    temp_result[count - 1][index] = select
+    setResult(temp_result)
+    setSelectedOption(select || defaultOption)
+    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+  }
   return (
     <>
       <InputLabel id="select-label" ref={inputLabel}>
@@ -102,9 +121,7 @@ const SelectOptions = () => {
         variant="outlined"
         value={selectedOption}
         onChange={e => {
-          setSelectedOption(() => {
-            return e.target.value
-          })
+          saveResult(e.target.value)
         }}
         labelWidth={labelWidth}
       >
@@ -117,55 +134,93 @@ const SelectOptions = () => {
   )
 }
 
-const SurveyC = () => {
+const count_reducer = (state, action) => {
+  switch (action) {
+    case 'increment':
+      return state + 1
+    case 'decrement':
+      return state - 1
+    default:
+      throw new Error('Unexpected action')
+  }
+}
+
+const SurveyC = props => {
   const classes = useStyles()
-  // const [selectedValues, setSelectedValues] = useState([])
-  const currentQuestion = survey[0]['C']['questions'][0]
-  // const description = survey[0]["B"]["description"];
+  const { setSection, result, setResult } = props
+  const [showNext, setShowNext] = useState(false)
+  const [count, dispatch] = useReducer(count_reducer, 1)
+  if (!result[count - 1]) result[count - 1] = []
+  const totalQuestion = survey[0]['C']['questions'].length
+  let currentQuestion = survey[0]['C']['questions'][count - 1]
+
+  const next = () => {
+    if (count < totalQuestion) dispatch('increment')
+  }
+  const back = () => {
+    if (count > 1) dispatch('decrement')
+  }
+
+  const g_OptionWrapper = () => {
+    return Array.from(Array(4)).map((ele, index) => {
+      return (
+        <OptionWrapper key={currentQuestion['options'][index]}>
+          <StyledOption>{currentQuestion['options'][index]}</StyledOption>
+          <FormControl className={classes.formControl} variant="outlined">
+            <SelectOptions
+              count={count}
+              index={index}
+              result={result}
+              setResult={setResult}
+              setShowNext={setShowNext}
+            />
+          </FormControl>
+        </OptionWrapper>
+      )
+    })
+  }
+
   return (
     <>
       <StyledWrapper>
         <HeaderWrapper>
           <StyledHeader>Section C</StyledHeader>
-          <StyledSubheader>Question 1</StyledSubheader>
+          <StyledSubheader>Question {count}</StyledSubheader>
         </HeaderWrapper>
         <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
-        <OptionWrapper>
-          <StyledOption>{currentQuestion['options'][0]}</StyledOption>
-          <FormControl className={classes.formControl} variant="outlined">
-            <SelectOptions />
-          </FormControl>
-        </OptionWrapper>
-        <OptionWrapper>
-          <StyledOption>{currentQuestion['options'][1]}</StyledOption>
-          <FormControl className={classes.formControl} variant="outlined">
-            <SelectOptions />
-          </FormControl>
-        </OptionWrapper>
-        <OptionWrapper>
-          <StyledOption>{currentQuestion['options'][2]}</StyledOption>
-          <FormControl className={classes.formControl} variant="outlined">
-            <SelectOptions />
-          </FormControl>
-        </OptionWrapper>
-        <OptionWrapper>
-          <StyledOption>{currentQuestion['options'][3]}</StyledOption>
-          <FormControl className={classes.formControl} variant="outlined">
-            <SelectOptions />
-          </FormControl>
-        </OptionWrapper>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.formControl}
-        >
-          Next Question
-        </Button>
-        <Button variant="outlined" color="secondary">
-          Back
-        </Button>
-        <StyledIndex>1/5</StyledIndex>
+        {g_OptionWrapper()}
+
+        {showNext ? (
+          count === totalQuestion ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.formControl}
+              onClick={() => {
+                setSection('D')
+              }}
+            >
+              Next Section
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.formControl}
+              onClick={next}
+            >
+              Next Question
+            </Button>
+          )
+        ) : null}
+        {count === 1 ? null : (
+          <Button variant="outlined" color="secondary" onClick={back}>
+            Back
+          </Button>
+        )}
+        <StyledIndex>{count}/5</StyledIndex>
       </StyledWrapper>
     </>
   )

@@ -171,7 +171,7 @@ const SurveyB = props => {
             Back
           </Button>
         )}
-        <StyledIndex>1/32</StyledIndex>
+        <StyledIndex>{count}/32</StyledIndex>
       </StyledWrapper>
     </>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer, useEffect } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -70,13 +70,42 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SurveyD = () => {
+const count_reducer = (state, action) => {
+  switch (action) {
+    case 'increment':
+      return state + 1
+    case 'decrement':
+      return state - 1
+    default:
+      throw new Error('Unexpected action')
+  }
+}
+
+const SurveyD = props => {
   const classes = useStyles()
-  const [selectedValue, setSelectedValue] = useState('a')
-  const currentQuestion = survey[0]['D']['questions'][0]
-  console.log(currentQuestion['question'])
-  const handleChange = event => {
-    setSelectedValue(event.target.value)
+  const { setSection, result, setResult } = props
+  const [count, dispatch] = useReducer(count_reducer, 1)
+  const defaultSelect = ''
+  const [selectedValue, setSelectedValue] = useState(defaultSelect)
+  const totalQuestion = survey[0]['D']['questions'].length
+  let currentQuestion = survey[0]['D']['questions'][count - 1]
+
+  useEffect(() => {
+    setSelectedValue(result[count - 1] || defaultSelect)
+  }, [result, count])
+
+  const saveResult = async select => {
+    const temp_result = result
+    temp_result[count - 1] = select
+    setResult(temp_result)
+    setSelectedValue(select || defaultSelect)
+  }
+
+  const next = () => {
+    if (count < totalQuestion) dispatch('increment')
+  }
+  const back = () => {
+    if (count > 1) dispatch('decrement')
   }
 
   return (
@@ -84,7 +113,7 @@ const SurveyD = () => {
       <StyledWrapper>
         <HeaderWrapper>
           <StyledHeader>Section D</StyledHeader>
-          <StyledSubheader>Question 1</StyledSubheader>
+          <StyledSubheader>Question {count}</StyledSubheader>
         </HeaderWrapper>
         <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
         <FormControl component="fieldset" className={classes.formControl}>
@@ -95,7 +124,7 @@ const SurveyD = () => {
             aria-label="position"
             name="position"
             value={selectedValue}
-            onChange={handleChange}
+            onChange={e => saveResult(e.target.value)}
             column="true"
           >
             <FormControlLabel
@@ -115,18 +144,37 @@ const SurveyD = () => {
             />
           </RadioGroup>
         </FormControl>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.formControl}
-        >
-          Next Question
-        </Button>
-        <Button variant="outlined" color="secondary">
-          Back
-        </Button>
-        <StyledIndex>1/15</StyledIndex>
+        {selectedValue ? (
+          count === totalQuestion ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.formControl}
+              onClick={() => {
+                setSection('END')
+              }}
+            >
+              See Result
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.formControl}
+              onClick={next}
+            >
+              Next Question
+            </Button>
+          )
+        ) : null}
+        {count === 1 ? null : (
+          <Button variant="outlined" color="secondary" onClick={back}>
+            Back
+          </Button>
+        )}
+        <StyledIndex>{count}/4</StyledIndex>
       </StyledWrapper>
     </>
   )
