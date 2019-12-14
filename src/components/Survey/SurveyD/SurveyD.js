@@ -10,7 +10,7 @@ import {
   Button
 } from '@material-ui/core'
 
-const survey = require('../Survey/Survey.json')
+const survey = require('../Survey.json')
 
 const StyledWrapper = styled.div`
   border: solid #283593;
@@ -70,11 +70,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SurveyB = () => {
+const SurveyD = () => {
   const classes = useStyles()
   const [selectedValue, setSelectedValue] = useState('a')
-  const currentQuestion = survey[0]['B']['questions'][0]
-  // const description = survey[0]["B"]["description"];
+  const currentQuestion = survey[0]['D']['questions'][0]
+  console.log(currentQuestion['question'])
   const handleChange = event => {
     setSelectedValue(event.target.value)
   }
@@ -83,7 +83,7 @@ const SurveyB = () => {
     <>
       <StyledWrapper>
         <HeaderWrapper>
-          <StyledHeader>Section B</StyledHeader>
+          <StyledHeader>Section D</StyledHeader>
           <StyledSubheader>Question 1</StyledSubheader>
         </HeaderWrapper>
         <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
@@ -101,14 +101,17 @@ const SurveyB = () => {
             <FormControlLabel
               value="1"
               control={<Radio color="secondary" />}
-              label={currentQuestion['options'][0]}
+              label={currentQuestion['options'][0]['description']}
               labelPlacement="end"
+              image={currentQuestion['options'][0]['image']}
             />
+
             <FormControlLabel
               value="2"
               control={<Radio color="secondary" />}
-              label={currentQuestion['options'][1]}
+              label={currentQuestion['options'][1]['description']}
               labelPlacement="end"
+              image={currentQuestion['options'][0]['image']}
             />
           </RadioGroup>
         </FormControl>
@@ -123,10 +126,10 @@ const SurveyB = () => {
         <Button variant="outlined" color="secondary">
           Back
         </Button>
-        <StyledIndex>1/32</StyledIndex>
+        <StyledIndex>1/15</StyledIndex>
       </StyledWrapper>
     </>
   )
 }
 
-export default SurveyB
+export default SurveyD

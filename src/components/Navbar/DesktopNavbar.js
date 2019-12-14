@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   AppBar,
@@ -8,7 +8,6 @@ import {
   IconButton,
   Badge
 } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { EmployeeContext } from '../../context/employeeContext'
@@ -33,7 +32,7 @@ const DesktopNavbar = () => {
   const { user, handleLogin, handleLogout } = employeeContext
 
   const classes = useStyles()
-  const theme = useTheme()
+  useTheme()
 
   return (
     <>

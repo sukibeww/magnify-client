@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -10,7 +10,7 @@ import {
   Button
 } from '@material-ui/core'
 
-const survey = require('../Survey/Survey.json')
+const survey = require('../Survey.json')
 
 const StyledWrapper = styled.div`
   border: solid #283593;
@@ -70,43 +70,52 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SurveyA = props => {
+const count_reducer = (state, action) => {
+  switch (action) {
+    case 'increment':
+      return state + 1
+    case 'decrement':
+      return state - 1
+    default:
+      throw new Error('Unexpected action')
+  }
+}
+
+const SurveyB = props => {
   const classes = useStyles()
   const { setSection, result, setResult } = props
-  const [count, setCount] = useState(1)
-  const [selectedValue, setSelectedValue] = useState(result[count - 1] || '')
-  const totalQuestion = survey[0]['A']['questions'].length
-  let currentQuestion = survey[0]['A']['questions'][count - 1]
-  let description = survey[0]['A']['description']
+  const [count, dispatch] = useReducer(count_reducer, 1)
+  const defaultSelect = '1'
+  const [selectedValue, setSelectedValue] = useState(defaultSelect)
+  const totalQuestion = survey[0]['B']['questions'].length
+  let currentQuestion = survey[0]['B']['questions'][count - 1]
+
   useEffect(() => {
-    setSelectedValue(result[count - 1] || '')
-  }, [count])
+    setSelectedValue(result[count - 1] || defaultSelect)
+  }, [result, count])
+
   const saveResult = async select => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
-    setSelectedValue(select || '')
+    setSelectedValue(select || defaultSelect)
   }
+
   const next = () => {
-    if (count < totalQuestion) {
-      setCount(count + 1)
-    }
+    if (count < totalQuestion) dispatch('increment')
   }
   const back = () => {
-    if (count > 1) {
-      setCount(count - 1)
-      setSelectedValue(result[count - 1] || '')
-    }
+    if (count > 1) dispatch('decrement')
   }
 
   return (
     <>
       <StyledWrapper>
         <HeaderWrapper>
-          <StyledHeader>Section A</StyledHeader>
+          <StyledHeader>Section B</StyledHeader>
           <StyledSubheader>Question {count}</StyledSubheader>
         </HeaderWrapper>
-        <StyledQuestion>{description}</StyledQuestion>
+        <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend" color="secondary">
             Options
@@ -115,8 +124,8 @@ const SurveyA = props => {
             aria-label="position"
             name="position"
             value={selectedValue}
-            column="true"
             onChange={e => saveResult(e.target.value)}
+            column="true"
           >
             <FormControlLabel
               value="1"
@@ -130,44 +139,42 @@ const SurveyA = props => {
               label={currentQuestion['options'][1]}
               labelPlacement="end"
             />
-            <FormControlLabel
-              value="3"
-              control={<Radio color="secondary" />}
-              label={currentQuestion['options'][2]}
-              labelPlacement="end"
-            />
           </RadioGroup>
         </FormControl>
-        {count == totalQuestion ? (
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            className={classes.formControl}
-            onClick={next}
-          >
-            Next Section
-          </Button>
-        ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.formControl}
-            onClick={next}
-          >
-            Next Question
-          </Button>
-        )}
-        {count == 1 ? null : (
+        {selectedValue ? (
+          count === totalQuestion ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.formControl}
+              onClick={() => {
+                setSection('C')
+              }}
+            >
+              Next Section
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.formControl}
+              onClick={next}
+            >
+              Next Question
+            </Button>
+          )
+        ) : null}
+        {count === 1 ? null : (
           <Button variant="outlined" color="secondary" onClick={back}>
             Back
           </Button>
         )}
-        <StyledIndex>{count}/15</StyledIndex>
+        <StyledIndex>1/32</StyledIndex>
       </StyledWrapper>
     </>
   )
 }
 
-export default SurveyA
+export default SurveyB

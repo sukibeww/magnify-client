@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import SurveyA from '../SurveyA/SurveyA'
-import SurveyB from '../SurveyB/SurveyB'
-import SurveyC from '../SurveyC/SurveyC'
-import SurveyD from '../SurveyD/SurveyD'
+import SurveyA from './SurveyA/SurveyA'
+import SurveyB from './SurveyB/SurveyB'
+import SurveyC from './SurveyC/SurveyC'
+import SurveyD from './SurveyD/SurveyD'
 
 const SurveyList = () => {
   const [resultA, setResultA] = useState([])
+  const [resultB, setResultB] = useState([])
+  const [resultC, setResultC] = useState([])
+  const [resultD, setResultD] = useState([])
   const [section, setSection] = useState('A')
   const currestSection = () => {
     switch (section) {
@@ -21,24 +24,24 @@ const SurveyList = () => {
         return (
           <SurveyB
             setSection={setSection}
-            result={resultA}
-            setResultA={setResultA}
+            result={resultB}
+            setResult={setResultB}
           />
         )
       case 'C':
         return (
           <SurveyC
             setSection={setSection}
-            result={resultA}
-            setResultA={setResultA}
+            result={resultC}
+            setResult={setResultC}
           />
         )
       case 'D':
         return (
           <SurveyD
             setSection={setSection}
-            result={resultA}
-            setResult={setResultA}
+            result={resultD}
+            setResult={setResultD}
           />
         )
       default:

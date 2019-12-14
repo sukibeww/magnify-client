@@ -9,7 +9,7 @@ import {
   InputLabel
 } from '@material-ui/core'
 
-const survey = require('../Survey/Survey.json')
+const survey = require('../Survey.json')
 
 const StyledWrapper = styled.div`
   border: solid #283593;
@@ -119,7 +119,7 @@ const SelectOptions = () => {
 
 const SurveyC = () => {
   const classes = useStyles()
-  const [selectedValues, setSelectedValues] = useState([])
+  // const [selectedValues, setSelectedValues] = useState([])
   const currentQuestion = survey[0]['C']['questions'][0]
   // const description = survey[0]["B"]["description"];
   return (
