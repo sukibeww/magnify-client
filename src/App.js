@@ -1,36 +1,26 @@
-import React from "react";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import DesktopNavbar from "./components/Navbar/DesktopNavbar";
-import DrawerNavbar from "./components/Navbar/DrawerNavbar";
-import SurveyA from "./components/SurveyA/SurveyA";
-import SurveyB from "./components/SurveyB/SurveyB";
-import SurveyC from "./components/SurveyC/SurveyC";
-import SurveyD from "./components/SurveyD/SurveyD";
-import { useMediaQuery } from "@material-ui/core";
+import React from 'react'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { useMediaQuery } from '@material-ui/core'
+import AppEmployee from './pages/AppEmployee.js'
 
 function App() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: "#283593"
+        main: '#283593'
       },
       secondary: {
-        main: "#ffa726"
+        main: '#ffa726'
       },
-      viewPort: "small"
+      viewPort: 'small'
     }
-  });
-  const large = useMediaQuery(theme.breakpoints.up("lg"));
+  })
+  const large = useMediaQuery(theme.breakpoints.up('lg'))
   return (
     <ThemeProvider theme={theme}>
-      {large && <DesktopNavbar />}
-      {!large && <DrawerNavbar />}
-      <SurveyA />
-      <SurveyB />
-      <SurveyC />
-      <SurveyD />
+      <AppEmployee large={large} />
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App

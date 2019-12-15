@@ -1,0 +1,229 @@
+import React, { useState, useRef, useEffect, useReducer } from 'react'
+import styled from 'styled-components'
+import { makeStyles } from '@material-ui/styles'
+import {
+  FormControl,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel
+} from '@material-ui/core'
+
+const survey = require('../Survey.json')
+
+const StyledWrapper = styled.div`
+  border: solid #283593;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5vh auto;
+  border-radius: 10px;
+  height: auto;
+  width: 70%;
+  min-width: 320px;
+  max-width: max-content;
+  padding: 5vh 3vw;
+`
+
+const StyledQuestion = styled.p`
+  color: #283593;
+  font-size: 1.3em;
+  text-align: center;
+`
+
+const StyledOption = styled.p`
+  color: #283593;
+  font-size: 1em;
+  text-align: left;
+`
+
+const OptionWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
+
+const StyledHeader = styled.h1`
+  color: #283593;
+  font-size: 2em;
+  line-height: 0;
+`
+
+const StyledSubheader = styled.h2`
+  color: #ffa726;
+  font-size: 1.5em;
+  line-height: 0;
+  opacity: 0.5;
+`
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledIndex = styled.p`
+  color: #283593;
+  font-size: 1em;
+  line-height: 0;
+  opacity: 0.5;
+`
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(2),
+    minWidth: '120px'
+  },
+  radioControl: {
+    display: 'flex',
+    flexDirection: 'column'
+  }
+}))
+
+const SelectOptions = props => {
+  const inputLabel = useRef(null)
+  const [labelWidth, setLabelWidth] = useState(0)
+  useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth)
+  }, [])
+
+  const { count, index, result, setResult, setShowNext } = props
+  const defaultOption = ''
+  const [selectedOption, setSelectedOption] = useState(defaultOption)
+
+  useEffect(() => {
+    setSelectedOption(result[count - 1][index] || defaultOption)
+  }, [index, result, count])
+
+  useEffect(() => {
+    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+  }, [result, count, setShowNext])
+
+  const saveResult = async select => {
+    const temp_result = result
+    temp_result[count - 1][index] = select
+    setResult(temp_result)
+    setSelectedOption(select || defaultOption)
+    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+  }
+  return (
+    <>
+      <InputLabel id="select-label" ref={inputLabel}>
+        Select
+      </InputLabel>
+      <Select
+        labelId="select-label"
+        id="select-outlined"
+        variant="outlined"
+        value={selectedOption}
+        onChange={e => {
+          saveResult(e.target.value)
+        }}
+        labelWidth={labelWidth}
+      >
+        <MenuItem value="1">1</MenuItem>
+        <MenuItem value="2">2</MenuItem>
+        <MenuItem value="3">3</MenuItem>
+        <MenuItem value="4">4</MenuItem>
+      </Select>
+    </>
+  )
+}
+
+const count_reducer = (state, action) => {
+  switch (action) {
+    case 'increment':
+      return state + 1
+    case 'decrement':
+      return state - 1
+    default:
+      throw new Error('Unexpected action')
+  }
+}
+
+const SurveyC = props => {
+  const classes = useStyles()
+  const { setSection, result, setResult } = props
+  const [showNext, setShowNext] = useState(false)
+  const [count, dispatch] = useReducer(count_reducer, 1)
+  if (!result[count - 1]) result[count - 1] = []
+  const totalQuestion = survey[0]['C']['questions'].length
+  let currentQuestion = survey[0]['C']['questions'][count - 1]
+
+  const next = () => {
+    if (count < totalQuestion) dispatch('increment')
+  }
+  const back = () => {
+    if (count > 1) dispatch('decrement')
+  }
+
+  const g_OptionWrapper = () => {
+    return Array.from(Array(4)).map((ele, index) => {
+      return (
+        <OptionWrapper key={currentQuestion['options'][index]}>
+          <StyledOption>{currentQuestion['options'][index]}</StyledOption>
+          <FormControl className={classes.formControl} variant="outlined">
+            <SelectOptions
+              count={count}
+              index={index}
+              result={result}
+              setResult={setResult}
+              setShowNext={setShowNext}
+            />
+          </FormControl>
+        </OptionWrapper>
+      )
+    })
+  }
+
+  return (
+    <>
+      <StyledWrapper>
+        <HeaderWrapper>
+          <StyledHeader>Section C</StyledHeader>
+          <StyledSubheader>Question {count}</StyledSubheader>
+        </HeaderWrapper>
+        <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
+        {g_OptionWrapper()}
+
+        {showNext ? (
+          count === totalQuestion ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.formControl}
+              onClick={() => {
+                setSection('D')
+              }}
+            >
+              Next Section
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.formControl}
+              onClick={next}
+            >
+              Next Question
+            </Button>
+          )
+        ) : null}
+        {count === 1 ? null : (
+          <Button variant="outlined" color="secondary" onClick={back}>
+            Back
+          </Button>
+        )}
+        <StyledIndex>{count}/5</StyledIndex>
+      </StyledWrapper>
+    </>
+  )
+}
+
+export default SurveyC
