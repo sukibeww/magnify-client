@@ -100,7 +100,11 @@ const SelectOptions = props => {
   }, [index, result, count])
 
   useEffect(() => {
-    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+    if (result[count - 1].length > 3)
+      result[count - 1].includes(undefined)
+        ? setShowNext(false)
+        : setShowNext(true)
+    else setShowNext(false)
   }, [result, count, setShowNext])
 
   const saveResult = async select => {
@@ -108,7 +112,11 @@ const SelectOptions = props => {
     temp_result[count - 1][index] = select
     setResult(temp_result)
     setSelectedOption(select || defaultOption)
-    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+    if (result[count - 1].length > 3)
+      result[count - 1].includes(undefined)
+        ? setShowNext(false)
+        : setShowNext(true)
+    else setShowNext(false)
   }
   return (
     <>
