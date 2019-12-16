@@ -11,10 +11,14 @@ import {
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { EmployeeContext } from '../../context/employeeContext'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    color: 'white',
+    textDecoration: 'none',
+    cursor: 'pointer'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -38,9 +42,18 @@ const DesktopNavbar = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Magnify
-          </Typography>
+          <Link
+            to="/"
+            style={{
+              textDecoration: 'none',
+              color: 'white',
+              flexGrow: 1
+            }}
+          >
+            <Typography variant="h6" className={classes.title}>
+              Magnify
+            </Typography>
+          </Link>
           {!user.email && (
             <Button onClick={handleLogin} color="inherit">
               Login
