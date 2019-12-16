@@ -21,7 +21,6 @@ const getProfile = async () => {
       'Access-Control-Allow-Credentials': true
     }
   }).then(resp => resp.json())
-  console.log(user)
   return user
 }
 

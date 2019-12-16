@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import SurveyA from './SurveyA'
 import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
+import { EmployeeContext } from '../../context/employeeContext'
 
 const SurveyList = () => {
-  const [resultA, setResultA] = useState([])
-  const [resultB, setResultB] = useState([])
-  const [resultC, setResultC] = useState([])
-  const [resultD, setResultD] = useState([])
-  const [section, setSection] = useState('A')
+  const employeeContext = useContext(EmployeeContext)
+  const { user } = employeeContext
+  const {
+    survey: { surveyA = [], surveyB = [], surveyC = [], surveyD = [] } = {},
+    current: { current_section = 'A', current_count = 1 } = {}
+  } = user
+  const [resultA, setResultA] = useState(surveyA || [])
+  const [resultB, setResultB] = useState(surveyB || [])
+  const [resultC, setResultC] = useState(surveyC || [])
+  const [resultD, setResultD] = useState(surveyD || [])
+  const [section, setSection] = useState(current_section)
   const currestSection = () => {
     switch (section) {
       case 'A':
@@ -18,6 +25,7 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultA}
             setResult={setResultA}
+            count={current_count}
           />
         )
       case 'B':
@@ -26,6 +34,7 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultB}
             setResult={setResultB}
+            count={current_count}
           />
         )
       case 'C':
@@ -34,6 +43,7 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultC}
             setResult={setResultC}
+            count={current_count}
           />
         )
       case 'D':
@@ -42,6 +52,7 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultD}
             setResult={setResultD}
+            count={current_count}
           />
         )
       default:
