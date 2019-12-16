@@ -1,7 +1,7 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { useMediaQuery } from '@material-ui/core'
 import AppEmployee from './pages/AppEmployee.js'
+import MediaContextProvider from './context/mediaContext'
 
 function App() {
   const theme = createMuiTheme({
@@ -15,10 +15,11 @@ function App() {
       viewPort: 'small'
     }
   })
-  const large = useMediaQuery(theme.breakpoints.up('lg'))
   return (
     <ThemeProvider theme={theme}>
-      <AppEmployee large={large} />
+      <MediaContextProvider>
+        <AppEmployee />
+      </MediaContextProvider>
     </ThemeProvider>
   )
 }
