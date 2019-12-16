@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import SurveyA from './SurveyA/SurveyA'
-import SurveyB from './SurveyB/SurveyB'
-import SurveyC from './SurveyC/SurveyC'
-import SurveyD from './SurveyD/SurveyD'
+import SurveyA from './SurveyA'
+import SurveyB from './SurveyB'
+import SurveyC from './SurveyC'
+import SurveyD from './SurveyD'
 
 const SurveyList = () => {
   const [resultA, setResultA] = useState([])
