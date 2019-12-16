@@ -81,6 +81,8 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultC}
             setResult={setResultC}
+            count={count}
+            dispatch={dispatch}
           />
         )
       case 'D':
@@ -89,6 +91,8 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultD}
             setResult={setResultD}
+            count={count}
+            dispatch={dispatch}
           />
         )
       default:

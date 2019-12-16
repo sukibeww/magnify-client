@@ -113,7 +113,7 @@ const SelectOptions = props => {
     setResult(temp_result)
     setSelectedOption(select)
     if (result[count - 1].length > 3)
-      result[count - 1].includes(undefined)
+      result[count - 1].includes(undefined || null)
         ? setShowNext(false)
         : setShowNext(true)
     else setShowNext(false)
@@ -194,6 +194,7 @@ const SurveyC = props => {
               size="large"
               className={classes.formControl}
               onClick={() => {
+                dispatch(1)
                 setSection('D')
               }}
             >
@@ -218,6 +219,7 @@ const SurveyC = props => {
             size="large"
             className={classes.formControl}
             onClick={() => {
+              dispatch(32)
               setSection('B')
             }}
           >

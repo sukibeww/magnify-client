@@ -164,6 +164,7 @@ const SurveyD = props => {
             size="large"
             className={classes.formControl}
             onClick={() => {
+              dispatch(4)
               setSection('C')
             }}
           >
