@@ -22,6 +22,7 @@ const AccordionSubheader = styled.h3`
   font-family: 'Roboto', sans-serif;
   font-size: 2em;
   background: linear-gradient(0.25turn, #B973F9, #6ED3FC, #B973F9, #6ED3FC);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 300;

@@ -23,6 +23,7 @@ const IntroHeader = styled.h1`
   font-family: 'Roboto', sans-serif;
   font-size: 3em;
   background: linear-gradient(0.25turn, #b973f9, #6ed3fc, #b973f9, #6ed3fc);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 300;
