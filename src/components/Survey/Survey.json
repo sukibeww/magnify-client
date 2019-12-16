@@ -1,0 +1,494 @@
+[
+  {
+    "A": {
+      "intro": "In the following question please select one answer next to the response that most appeals to you. There are no correct or incorrect answers, you simply indicating your preferences. The mode that you score highest indicates your perceptual preference",
+      "description": "In the list below, highlight one answer next to the response that most appeals to you in A, B or C",
+      "questions": [
+        {
+          "id": 1,
+          "options": [
+            "Listening to the sounds of the ocean is calming",
+            "I find watching people enjoyable",
+            "Walking barefoot in the sand is terrific"
+          ]
+        },
+        {
+          "id": 2,
+          "options": [
+            "I enjoy looking at illustrations, paintings and picture books",
+            "Gut feelings help me sense the answer to test questions",
+            "I would rather take an oral test than a written test"
+          ]
+        },
+        {
+          "id": 3,
+          "options": [
+            "People tell me I have a good speaking voice.",
+            "I enjoy being touched",
+            "When I look good my confidence increases"
+          ]
+        },
+        {
+          "id": 4,
+          "options": [
+            "I seem to want to hold or touch as they are explained",
+            "I would rather be shown an illustration than have something explained to me.",
+            "When I talk out loud it helps me to undestand things better"
+          ]
+        },
+        {
+          "id": 5,
+          "options": [
+            "I am sensitive to the energy in a home",
+            "I enjoy colourful illustrations and unusual artwork",
+            "I am a good listener"
+          ]
+        },
+        {
+          "id": 6,
+          "options": [
+            "I would rather listen to CD's or my iPod than read books",
+            "I like hiking and other outdoor activities",
+            "I like to watch television and go to the movies"
+          ]
+        },
+        {
+          "id": 7,
+          "options": [
+            "A car that feels good when I drive it is terrific",
+            "It's important that my car is kept clean inside and out",
+            "I notice even the slightest noise that my car makes"
+          ]
+        },
+        {
+          "id": 8,
+          "options": [
+            "When I am conversing with people I tend to touch them",
+            "\"People watching\" is a favorite thing for me",
+            "Others tell me that I'm easy to talk to."
+          ]
+        },
+        {
+          "id": 9,
+          "options": [
+            "I can recognize voices on the phone with ease",
+            "I like walking with people I am fond of",
+            "I often remember what someone looks like, but not the person's name"
+          ]
+        },
+        {
+          "id": 10,
+          "options": [
+            "Making things with my hands is fun",
+            "I often find myself humming or singing to the radio when driving",
+            "I enjoy photography"
+          ]
+        },
+        {
+          "id": 11,
+          "options": [
+            "I can always clearly see shapes in the clouds",
+            "I enjoy anagrams and crossword puzzles",
+            "I like to hold or touch an object as it is being discussed"
+          ]
+        },
+        {
+          "id": 12,
+          "options": [
+            "I prefer to map out directions when I drive",
+            "I like to think I am well coordinated",
+            "I like to be in quiet surroundings"
+          ]
+        },
+        {
+          "id": 13,
+          "options": [
+            "I exercise because of the way I feel afterward",
+            "I am good at finding my way using a map",
+            "I can resolve problems more quickly when I talk out loud"
+          ]
+        },
+        {
+          "id": 14,
+          "options": [
+            "I like a house with rooms that allow for quiet areas",
+            "I like a house that feels welcoming and comfortable",
+            "It's important that my house is clean and tidy"
+          ]
+        },
+        {
+          "id": 15,
+          "options": [
+            "I find being touched very relaxing",
+            "I find visual aids make explainations much clearer",
+            "I prefer to be asked questions in an exam"
+          ]
+        }
+      ]
+    },
+    "B": {
+      "intro": "Read the description for each situation and vividly image it happening to you, even if it has never actually happened. Than read the two reasons why this situation happened. Choose the cause more likely to apply to you. You may not like the way some of the responses sound, but don't choose what you think you should say or what would sound right to other people; chiise the response you'd be likelier to have",
+      "questions": [
+        {
+          "id": 1,
+          "question": "You and your significant other/best friend find a compromise after a heated argument",
+          "options": [
+            "I forgave him/her",
+            "I am usually understanding and forgiving"
+          ]
+        },
+        {
+          "id": 2,
+          "question": "You forgot your inlaws were coming to dinner",
+          "options": [
+            "I was immersed in work and unmindful of the time",
+            "I am not good at remembering specific dates"
+          ]
+        },
+        {
+          "id": 3,
+          "question": "You receive an unexpected gift anonymously from someone at work",
+          "options": [
+            "I am well liked and respected",
+            "I must have been helpful this week"
+          ]
+        },
+        {
+          "id": 4,
+          "question": "You run from a community office position and you win",
+          "options": [
+            "I devoted a lot of time and energy to campaigning",
+            "I work very hard at everything I do"
+          ]
+        },
+        {
+          "id": 5,
+          "question": "You miss an important engagement",
+          "options": [
+            "Sometimes my memory fails me",
+            "I sometimes forgot to check my appointment book"
+          ]
+        },
+        {
+          "id": 6,
+          "question": "You host a successful workshop",
+          "options": ["I was on form that day", "I am a great host"]
+        },
+        {
+          "id": 7,
+          "question": "You owe the library ten dollars for an overdue book",
+          "options": [
+            "When I am really involved in what I am reading, I often forget when it's due",
+            "I was so involved in writing the report that I forgot to return the book"
+          ]
+        },
+
+        {
+          "id": 8,
+          "question": "Your stocks make you a lot of money",
+          "options": [
+            "My broker is top-notch investor",
+            "My broker decided to take a chance on something new"
+          ]
+        },
+        {
+          "id": 9,
+          "question": "You win an athletic contest",
+          "options": ["I was feeling unbeatable", "I train hard"]
+        },
+        {
+          "id": 10,
+          "question": "You fail an important examination",
+          "options": [
+            "I wasn't as smart as the other people taking the exam",
+            "I didn't prepare for it well"
+          ]
+        },
+        {
+          "id": 11,
+          "question": "You prepared a vegetarian meal for a vegan friend and she/he just picked at it",
+          "options": ["It wasn't a good result", "I made it in a hurry"]
+        },
+        {
+          "id": 12,
+          "question": "You lose a sporting event for which you have been training for a long time",
+          "options": ["I'm not good at the sport", "I'm not very athletic"]
+        },
+        {
+          "id": 13,
+          "question": "You lose your temper with a friend",
+          "options": [
+            "He/she was in a hostile mood",
+            "He/she is always nagging me"
+          ]
+        },
+        {
+          "id": 14,
+          "question": "You are fined for parking on a yellow line",
+          "options": [
+            "I was lazy about checking where to park",
+            "I always miss seeing the signs"
+          ]
+        },
+        {
+          "id": 15,
+          "question": "You ask a person out on a date and he/she says no",
+          "options": [
+            "I was a wreck that day",
+            "I got tongue tied when I asked him/her on the date"
+          ]
+        },
+        {
+          "id": 16,
+          "question": "You are frequently asked to dance at a party",
+          "options": [
+            "I am outgoing at parties",
+            "I was in perfect form that night"
+          ]
+        },
+        {
+          "id": 17,
+          "question": "You do exceptionally well in a job interview",
+          "options": [
+            "I interviewed well",
+            "I felt extremely confident during the interview"
+          ]
+        },
+        {
+          "id": 18,
+          "question": "Your boss gives you too little time in which to finish a project, but you get it finished anyway",
+          "options": ["I am good at my job", "I am an efficient person"]
+        },
+        {
+          "id": 19,
+          "question": "You've been feeling run down lately",
+          "options": [
+            "I never get a chance to relax",
+            "I was exceptionally busy this week"
+          ]
+        },
+        {
+          "id": 20,
+          "question": "You save a person from choking to death",
+          "options": [
+            "I know a technique to stop someone from choking",
+            "I know what to do in crisis situations"
+          ]
+        },
+        {
+          "id": 21,
+          "question": "Your romantic partner wants to cool things off for a while",
+          "options": [
+            "I don't spend enough time with him/her",
+            "I'm too self centered"
+          ]
+        },
+        {
+          "id": 22,
+          "question": "A friend says something that hurts your feelings",
+          "options": [
+            "My friend was in a bad mood and took it out on me",
+            "She always blurts things out without thinking of others"
+          ]
+        },
+        {
+          "id": 23,
+          "question": "A senior colleague comes to you fro advice",
+          "options": [
+            "I am good at giving useful advice",
+            "I am an expert in the area about which I was asked"
+          ]
+        },
+        {
+          "id": 24,
+          "question": "A friend thanks you for helping him/her get through a bad time",
+          "options": [
+            "I knew about the subject matter",
+            "I am good at giving beneficial advice"
+          ]
+        },
+        {
+          "id": 25,
+          "question": "Your doctor tells you that you are in good physical shape",
+          "options": [
+            "I make sure I exercice frequently",
+            "I am very health conscious"
+          ]
+        },
+        {
+          "id": 26,
+          "question": "Your partner (boyfriend/girlfriend) takes you away for a romantic weekend",
+          "options": [
+            "He/she needed to get away for a few days",
+            "He/She likes to explore new areas"
+          ]
+        },
+        {
+          "id": 27,
+          "question": "You are asked to head an important project",
+          "options": [
+            "I am a good supervisor",
+            "I just successfully completed a similar project"
+          ]
+        },
+        {
+          "id": 28,
+          "question": "You fall down a great deal while skiing",
+          "options": ["Skiing is difficult", "The trails were icy"]
+        },
+        {
+          "id": 29,
+          "question": "You win a prestigious award",
+          "options": [
+            "I solved an important problem",
+            "I was the best employee"
+          ]
+        },
+        {
+          "id": 30,
+          "question": "Your stocks are at an all time low",
+          "options": [
+            "I made a poor choice of stocks",
+            "I didn't know much about the busincess climate at the time"
+          ]
+        },
+        {
+          "id": 31,
+          "question": "You gain weight over the holiday and you can't lose it",
+          "options": [
+            "Diets don't work in the long run",
+            "The diet I tried didn't work"
+          ]
+        },
+        {
+          "id": 32,
+          "question": "They won't honor your credit card at a store",
+          "options": [
+            "I sometimes overestimate how much money I have",
+            "I sometimes forget to pay my credit card bill"
+          ]
+        }
+      ]
+    },
+    "C": {
+      "intro": "For each of the following statements, please place a number either 1, 2, 3, or 4 next to every phrase, where 4 is most like you, 1 is least like you",
+      "questions": [
+        {
+          "id": 1,
+          "question": "I make important decisions based on: ( 4 if most like you, 1 is least like you )",
+          "options": [
+            "What looks best to me",
+            "Gut level feelings",
+            "Precise review and study of the issues",
+            "Which way sounds the best"
+          ]
+        },
+        {
+          "id": 2,
+          "question": "During an argument, I am most likely to be influenced by: ( 4 if most like you, 1 is least like you)",
+          "options": [
+            "Whether or not I am in touch with the other person's true feelings",
+            "The logic of the other person's argument",
+            "The other person's tone of voice",
+            "Whether or not I can see the other person's point of view"
+          ]
+        },
+        {
+          "id": 3,
+          "question": "I most easily communicate what is going on with me by: ( 4 if most like you , 1 is least like you )",
+          "options": [
+            "How I dress and look",
+            "How I feel and what I share",
+            "I can convey much with the tone of my voice",
+            "The words or expressions I choose"
+          ]
+        },
+        {
+          "id": 4,
+          "question": "It is easiest for me to: ( 4 if most like you , 1 is least like you )",
+          "options": [
+            "Discover the most academically pertinent point in a stimulating discussion",
+            "Listen to my favourite radio station at the volume I like",
+            "Find the most eye-catching and colourful designs",
+            "Choose the most comfortable armchair to sink into"
+          ]
+        },
+        {
+          "id": 5,
+          "question": "This phrase describes me",
+          "options": [
+            "I am in sync with the sounds in my environment",
+            "I am skilled at gathering intelligence from statistics and information",
+            "I am extremely receptive to colours and how they can brighten a room",
+            "I am very perceptive to how silk feels against my skin"
+          ]
+        }
+      ]
+    },
+    "D": {
+      "intro": "Almost complete! Answer the following questions selecting one answer for each",
+      "questions": [
+        {
+          "id": 1,
+          "question": "When you are making a big decision, eg. like buying a house or car, how do you do it? ( Would yoou visit an Excibition Village or a Car Showroom? i.e. Big Picture or would you explore the web or visit an Architect i.e. Small picture",
+          "options": [
+            {
+              "description": "Small to big picture",
+              "image": "--link here--"
+            },
+            {
+              "description": "Big to small picture",
+              "image": "--link here--"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "How do you know when you have done a good job? Do you get a gut feeling and know instictively ie. Internally Referenced or do you look for outside feedback and recognition from others ie. Externally Referenced",
+          "options": [
+            {
+              "description": "Externally Referenced",
+              "image": "--link here--"
+            },
+            {
+              "description": "Internally Referenced",
+              "image": "--link here--"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Were you involved in earning an income or working in a business prior to the age of 12?",
+          "options": [
+            {
+              "description": "No",
+              "image": "--link here--"
+            },
+            {
+              "description": "Yes",
+              "image": "--link here--"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Does your partner support you 100% in your business?",
+          "options": [
+            {
+              "description": "Not applicable",
+              "image": "--link here--"
+            },
+            {
+              "description": "Yes",
+              "image": "--link here--"
+            },
+            {
+              "description": "No",
+              "image": "--link here--"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
