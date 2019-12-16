@@ -1,22 +1,58 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect, useReducer } from 'react'
+import { Button } from '@material-ui/core'
 import SurveyA from './SurveyA'
 import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
 import { EmployeeContext } from '../../context/employeeContext'
 
+const count_reducer = (state, action) => {
+  switch (action) {
+    case 'increment':
+      return state + 1
+    case 'decrement':
+      return state - 1
+    case 'reset':
+      return 1
+    default:
+      return isNaN(action) ? 1 : parseInt(action)
+  }
+}
+
 const SurveyList = () => {
   const employeeContext = useContext(EmployeeContext)
-  const { user } = employeeContext
-  const {
-    survey: { surveyA = [], surveyB = [], surveyC = [], surveyD = [] } = {},
-    current: { current_section = 'A', current_count = 1 } = {}
-  } = user
-  const [resultA, setResultA] = useState(surveyA || [])
-  const [resultB, setResultB] = useState(surveyB || [])
-  const [resultC, setResultC] = useState(surveyC || [])
-  const [resultD, setResultD] = useState(surveyD || [])
-  const [section, setSection] = useState(current_section)
+  const { user, saveSurvey } = employeeContext
+  const [resultA, setResultA] = useState([])
+  const [resultB, setResultB] = useState([])
+  const [resultC, setResultC] = useState([])
+  const [resultD, setResultD] = useState([])
+  const [section, setSection] = useState('A')
+  const [count, dispatch] = useReducer(count_reducer, 1)
+
+  useEffect(() => {
+    if (user.survey) {
+      setResultA(user.survey.surveyA || [])
+      setResultB(user.survey.surveyB || [])
+      setResultC(user.survey.surveyC || [])
+      setResultD(user.survey.surveyD || [])
+    }
+    if (user.current) {
+      setSection(user.current.current_section || 'A')
+      dispatch(user.current.current_count || 'reset')
+    }
+  }, [user])
+
+  const saving = () => {
+    saveSurvey({
+      surveyA: resultA,
+      surveyB: resultB,
+      surveyC: resultC,
+      surveyD: resultD,
+      count,
+      section
+    })
+  }
+
   const currestSection = () => {
     switch (section) {
       case 'A':
@@ -25,7 +61,8 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultA}
             setResult={setResultA}
-            count={current_count}
+            count={count}
+            dispatch={dispatch}
           />
         )
       case 'B':
@@ -34,7 +71,8 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultB}
             setResult={setResultB}
-            count={current_count}
+            count={count}
+            dispatch={dispatch}
           />
         )
       case 'C':
@@ -43,7 +81,6 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultC}
             setResult={setResultC}
-            count={current_count}
           />
         )
       case 'D':
@@ -52,14 +89,29 @@ const SurveyList = () => {
             setSection={setSection}
             result={resultD}
             setResult={setResultD}
-            count={current_count}
           />
         )
       default:
         return null
     }
   }
-  return <>{currestSection()}</>
+  return (
+    <>
+      {user.email ? (
+        <Button
+          variant="outlined"
+          color="inherit"
+          size="large"
+          onClick={() => {
+            saving()
+          }}
+        >
+          Save
+        </Button>
+      ) : null}
+      {currestSection()}
+    </>
+  )
 }
 
 export default SurveyList

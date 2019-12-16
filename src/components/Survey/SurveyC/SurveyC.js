@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useReducer } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -111,7 +111,7 @@ const SelectOptions = props => {
     const temp_result = result
     temp_result[count - 1][index] = select
     setResult(temp_result)
-    setSelectedOption(select || defaultOption)
+    setSelectedOption(select)
     if (result[count - 1].length > 3)
       result[count - 1].includes(undefined)
         ? setShowNext(false)
@@ -142,22 +142,10 @@ const SelectOptions = props => {
   )
 }
 
-const count_reducer = (state, action) => {
-  switch (action) {
-    case 'increment':
-      return state + 1
-    case 'decrement':
-      return state - 1
-    default:
-      throw new Error('Unexpected action')
-  }
-}
-
 const SurveyC = props => {
   const classes = useStyles()
-  const { setSection, result, setResult } = props
+  const { setSection, result, setResult, count, dispatch } = props
   const [showNext, setShowNext] = useState(false)
-  const [count, dispatch] = useReducer(count_reducer, 1)
   if (!result[count - 1]) result[count - 1] = []
   const totalQuestion = survey[0]['C']['questions'].length
   let currentQuestion = survey[0]['C']['questions'][count - 1]
@@ -223,7 +211,19 @@ const SurveyC = props => {
             </Button>
           )
         ) : null}
-        {count === 1 ? null : (
+        {count === 1 ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              setSection('B')
+            }}
+          >
+            Back to Section B
+          </Button>
+        ) : (
           <Button variant="outlined" color="secondary" onClick={back}>
             Back
           </Button>
