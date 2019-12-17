@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useContext } from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
+import { MediaContext } from '../../context/mediaContext'
+import styled from 'styled-components';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '40%',
-  },
-}));
+const StepperWrapper = styled.div`
+  width: ${(props) => props.media ? "40vw" : "90vw"};
+`
 
 const getSteps = () => {
   return ['A', 'B', 'C', 'D'];
 }
 
 const SurveyStepper = (props) => {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
   const setSection = props.setSection;
+  const mediaContext = useContext(MediaContext);
+  const { media } = mediaContext;
 
   const handleStep = step => () => {
     setActiveStep(step);
@@ -26,7 +26,7 @@ const SurveyStepper = (props) => {
   };
 
   return (
-    <div className={classes.root}>
+    <StepperWrapper media={media}>
       <Stepper alternativeLabel nonLinear activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -43,7 +43,7 @@ const SurveyStepper = (props) => {
           );
         })}
       </Stepper>
-    </div>
+    </StepperWrapper>
   );
 }
 

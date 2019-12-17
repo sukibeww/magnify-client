@@ -1,34 +1,25 @@
-import React, { useEffect , useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect , useState , useContext} from 'react';
 import Slider from '@material-ui/core/Slider';
+import { MediaContext } from '../../context/mediaContext'
+import styled from 'styled-components';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "40vw"
-  },
-}));
-
-const valuetext = (value) => {
-  return `${value}°C`;
-}
-
-// const valueLabelFormat = (value) => {
-//   return marks.findIndex(mark => mark.value === value) + 1;
-// }
+const SliderWrapper = styled.div`
+  width: ${(props) => props.media ? "40vw" : "100%"};
+`
 
 const SurveySlider = (props) => {
-  const classes = useStyles();
   const { currentQuestion, dispatch } = props
   const [index, setIndex] = useState(currentQuestion)
+  const mediaContext = useContext(MediaContext);
+  const { media } = mediaContext;
   useEffect(() => {
     console.log("effect " + currentQuestion)
     setIndex(()=> {return currentQuestion})
   }, [currentQuestion])
   return (
-    <div className={classes.root}>
+    <SliderWrapper media={media}>
       <Slider
         defaultValue={index}
-        getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-small-steps"
         step={1}
         min={1}
@@ -39,7 +30,7 @@ const SurveySlider = (props) => {
         onChange={ (e, value) => dispatch(value)}  
         onDragStop={ (e, value) => dispatch(value)}
       />
-    </div>
+    </SliderWrapper>
   );
 }
 
