@@ -11,10 +11,13 @@ import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
 import { EmployeeContext } from '../../context/employeeContext'
+import SurveyStepper from '../SurveyStepper/SurveyStepper'
 
 const FabWrapper = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 `
 
@@ -146,15 +149,18 @@ const SurveyList = () => {
     <>
       {currestSection()}
       {user.email ? (
-      <FabWrapper>
-        <Fab 
-        aria-label="join-us" color="secondary"
-        onClick={() => {
-          saving()
-        }}>
-          <SaveIcon />
-        </Fab>
-      </FabWrapper>
+      <>
+        <FabWrapper>
+          <SurveyStepper setSection={setSection}/>
+          <Fab 
+          aria-label="join-us" color="secondary"
+          onClick={() => {
+            saving()
+          }}>
+            <SaveIcon />
+          </Fab>
+        </FabWrapper>
+      </>
       ) : null}
       <Snackbar
         anchorOrigin={{
