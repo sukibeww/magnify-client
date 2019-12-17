@@ -1,10 +1,39 @@
 import React, { useState, useContext, useEffect, useReducer } from 'react'
-import { Button } from '@material-ui/core'
+import SaveIcon from '@material-ui/icons/Save';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CloseIcon from '@material-ui/icons/Close';
+import styled from 'styled-components'
+import { green } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
+import { Fab, Snackbar, IconButton, SnackbarContent } from '@material-ui/core'
 import SurveyA from './SurveyA'
 import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
 import { EmployeeContext } from '../../context/employeeContext'
+
+const FabWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`
+
+const useStyles = makeStyles(theme => ({
+  success: {
+    backgroundColor: green[600],
+  },
+  icon: {
+    fontSize: 20,
+  },
+  iconVariant: {
+    opacity: 0.9,
+    marginRight: theme.spacing(1),
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+}));
 
 const count_reducer = (state, action) => {
   switch (action) {
@@ -20,6 +49,8 @@ const count_reducer = (state, action) => {
 }
 
 const SurveyList = () => {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
   const employeeContext = useContext(EmployeeContext)
   const { user, saveSurvey } = employeeContext
   const [resultA, setResultA] = useState([])
@@ -42,6 +73,17 @@ const SurveyList = () => {
     }
   }, [user])
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   const saving = () => {
     saveSurvey({
       surveyA: resultA,
@@ -51,6 +93,7 @@ const SurveyList = () => {
       count,
       section
     })
+    handleClick();
   }
 
   const currestSection = () => {
@@ -99,21 +142,38 @@ const SurveyList = () => {
         return null
     }
   }
-  return (
+  return(
     <>
-      {user.email ? (
-        <Button
-          variant="outlined"
-          color="inherit"
-          size="large"
-          onClick={() => {
-            saving()
-          }}
-        >
-          Save
-        </Button>
-      ) : null}
       {currestSection()}
+      {user.email ? (
+      <FabWrapper>
+        <Fab 
+        aria-label="join-us" color="secondary"
+        onClick={() => {
+          saving()
+        }}>
+          <SaveIcon />
+        </Fab>
+      </FabWrapper>
+      ) : null}
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <SnackbarContent 
+        message={<span id="message-id" className={classes.message}><CheckCircleIcon className={classes.iconVariant}/>Progress saved</span>}
+        action={[
+          <IconButton key="close" aria-label="close" color="inherit" onClick={handleClose}>
+            <CloseIcon className={classes.icon} />
+          </IconButton>,
+        ]}
+        className={classes.success}/>
+      </Snackbar>
     </>
   )
 }
