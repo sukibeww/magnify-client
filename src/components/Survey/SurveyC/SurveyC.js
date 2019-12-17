@@ -8,6 +8,7 @@ import {
   MenuItem,
   InputLabel
 } from '@material-ui/core'
+import SurveySlider from '../../SurveySlider/SurveySlider.js'
 
 const survey = require('../Survey.json')
 
@@ -230,6 +231,7 @@ const SurveyC = props => {
             Back
           </Button>
         )}
+        <SurveySlider currentQuestion={count} sectionLength={5} dispatch={dispatch}/>
         <StyledIndex>{count}/5</StyledIndex>
       </StyledWrapper>
     </>
