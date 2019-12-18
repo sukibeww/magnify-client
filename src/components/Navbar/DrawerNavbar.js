@@ -72,7 +72,7 @@ const DrawerNavbar = () => {
     >
       <div className={classes.banner}></div>
       <List className={classes.navigation}>
-        <ListItem button key="Survey" data-testid="test-survey" >
+        <ListItem button key="Survey" data-testid="test-survey">
           <ListItemIcon>
             <Assignment />
           </ListItemIcon>
@@ -99,13 +99,22 @@ const DrawerNavbar = () => {
       </List>
       <Divider />
       <List>
-        <ListItem button key="Account Settings" data-testid="test-account-settings">
+        <ListItem
+          button
+          key="Account Settings"
+          data-testid="test-account-settings"
+        >
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
           <ListItemText primary="Account Settings" />
         </ListItem>
-        <ListItem button data-testid="test-logout" key="Log Out" onClick={handleLogout} >
+        <ListItem
+          button
+          data-testid="test-logout"
+          key="Log Out"
+          onClick={handleLogout}
+        >
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>

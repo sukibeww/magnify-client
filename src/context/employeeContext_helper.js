@@ -3,14 +3,13 @@ const linkedin_login = () => {
 }
 
 const linkedin_logout = async () => {
-  const user = await fetch('http://localhost:3000/logout', {
+  await fetch('http://localhost:3000/logout', {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': true
     }
   }).then(resp => resp.json())
-  console.log(user)
 }
 
 const getProfile = async () => {
@@ -21,12 +20,25 @@ const getProfile = async () => {
       'Access-Control-Allow-Credentials': true
     }
   }).then(resp => resp.json())
-  console.log(user)
   return user
+}
+
+const saveSurvey = async survey => {
+  const resp = await fetch('http://localhost:3000/employee/survey', {
+    method: 'POST',
+    body: JSON.stringify(survey),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
 }
 
 module.exports = {
   linkedin_login,
   linkedin_logout,
-  getProfile
+  getProfile,
+  saveSurvey
 }

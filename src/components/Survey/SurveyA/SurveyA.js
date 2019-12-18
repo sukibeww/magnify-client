@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -9,6 +9,7 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
+import SurveySlider from '../../SurveySlider/SurveySlider.js'
 
 const survey = require('../Survey.json')
 
@@ -70,27 +71,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const count_reducer = (state, action) => {
-  switch (action) {
-    case 'increment':
-      return state + 1
-    case 'decrement':
-      return state - 1
-    default:
-      throw new Error('Unexpected action')
-  }
-}
-
 const SurveyA = props => {
   const classes = useStyles()
-  const { setSection, result, setResult } = props
-  const [count, dispatch] = useReducer(count_reducer, 1)
+  const { setSection, result, setResult, count, dispatch } = props
   const defaultSelect = '1'
   const [selectedValue, setSelectedValue] = useState(defaultSelect)
   const totalQuestion = survey[0]['A']['questions'].length
   let currentQuestion = survey[0]['A']['questions'][count - 1]
   const description = survey[0]['A']['description']
-
   useEffect(() => {
     setSelectedValue(result[count - 1] || defaultSelect)
   }, [result, count])
@@ -99,7 +87,7 @@ const SurveyA = props => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
-    setSelectedValue(select || defaultSelect)
+    setSelectedValue(select)
   }
 
   const next = () => {
@@ -157,6 +145,7 @@ const SurveyA = props => {
               size="large"
               className={classes.formControl}
               onClick={() => {
+                dispatch(1)
                 setSection('B')
               }}
             >
@@ -179,6 +168,7 @@ const SurveyA = props => {
             Back
           </Button>
         )}
+        <SurveySlider currentQuestion={count} sectionLength={15} dispatch={dispatch}/>
         <StyledIndex>{count}/15</StyledIndex>
       </StyledWrapper>
     </>

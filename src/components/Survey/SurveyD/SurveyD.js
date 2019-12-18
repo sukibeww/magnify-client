@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -9,6 +9,7 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
+import SurveySlider from '../../SurveySlider/SurveySlider.js'
 
 const survey = require('../Survey.json')
 
@@ -70,21 +71,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const count_reducer = (state, action) => {
-  switch (action) {
-    case 'increment':
-      return state + 1
-    case 'decrement':
-      return state - 1
-    default:
-      throw new Error('Unexpected action')
-  }
-}
-
 const SurveyD = props => {
   const classes = useStyles()
-  const { setSection, result, setResult } = props
-  const [count, dispatch] = useReducer(count_reducer, 1)
+  const { setSection, result, setResult, count, dispatch } = props
   const defaultSelect = ''
   const [selectedValue, setSelectedValue] = useState(defaultSelect)
   const totalQuestion = survey[0]['D']['questions'].length
@@ -98,7 +87,7 @@ const SurveyD = props => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
-    setSelectedValue(select || defaultSelect)
+    setSelectedValue(select)
   }
 
   const next = () => {
@@ -169,11 +158,25 @@ const SurveyD = props => {
             </Button>
           )
         ) : null}
-        {count === 1 ? null : (
+        {count === 1 ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              dispatch(4)
+              setSection('C')
+            }}
+          >
+            Back to Section C
+          </Button>
+        ) : (
           <Button variant="outlined" color="secondary" onClick={back}>
             Back
           </Button>
         )}
+        <SurveySlider currentQuestion={count} sectionLength={4} dispatch={dispatch}/>
         <StyledIndex>{count}/4</StyledIndex>
       </StyledWrapper>
     </>

@@ -2,7 +2,8 @@ import React, { createContext, useState, useEffect } from 'react'
 import {
   linkedin_login,
   linkedin_logout,
-  getProfile
+  getProfile,
+  saveSurvey
 } from './employeeContext_helper'
 
 export const EmployeeContext = createContext()
@@ -12,7 +13,9 @@ const EmployeeContextProvider = props => {
     email: undefined,
     displayName: '',
     photos: null,
-    category: []
+    category: [],
+    survey: {},
+    current: {}
   }
   const [user, setUser] = useState(defaultUser)
 
@@ -27,15 +30,15 @@ const EmployeeContextProvider = props => {
   useEffect(() => {
     async function fetchData() {
       const user = await getProfile()
-      if (user) {
-        setUser(user)
-      }
+      if (user) setUser(user)
     }
     fetchData()
   }, [])
 
   return (
-    <EmployeeContext.Provider value={{ user, handleLogin, handleLogout }}>
+    <EmployeeContext.Provider
+      value={{ user, handleLogin, handleLogout, saveSurvey }}
+    >
       {props.children}
     </EmployeeContext.Provider>
   )
