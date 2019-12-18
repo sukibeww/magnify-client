@@ -97,14 +97,15 @@ const DesktopNavbar = () => {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton
+              <Link to="/profile" style={{color: "white"}}>
+                <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                color="inherit"
-              >
+                color="inherit">
                 <AccountCircle />
               </IconButton>
+              </Link>
               <Button onClick={handleLogout} color="inherit">
                 Log out
               </Button>

@@ -21,6 +21,7 @@ import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import People from '@material-ui/icons/People'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
 import { EmployeeContext } from '../../context/employeeContext'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   title: {
@@ -99,16 +100,18 @@ const DrawerNavbar = () => {
       </List>
       <Divider />
       <List>
-        <ListItem
-          button
-          key="Account Settings"
-          data-testid="test-account-settings"
-        >
-          <ListItemIcon>
-            <AccountCircle />
-          </ListItemIcon>
-          <ListItemText primary="Account Settings" />
-        </ListItem>
+        <Link to="/profile" style={{color: "inherit", textDecoration: "none"}}>
+          <ListItem
+            button
+            key="Account Settings"
+            data-testid="test-account-settings"
+          >
+            <ListItemIcon>
+              <AccountCircle />
+            </ListItemIcon>
+            <ListItemText primary="Account Settings" />
+          </ListItem>
+        </Link>
         <ListItem
           button
           data-testid="test-logout"
@@ -139,9 +142,11 @@ const DrawerNavbar = () => {
               <MenuIcon />
             </IconButton>
           )}
-          <Typography variant="h6" className={classes.title}>
-            Magnify
-          </Typography>
+          <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
+            <Typography variant="h6" className={classes.title}>
+              Magnify
+            </Typography>
+          </Link>
           {!user.email && (
             <Button color="inherit" onClick={handleLogin}>
               Login
