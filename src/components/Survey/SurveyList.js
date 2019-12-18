@@ -39,7 +39,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const count_reducer = (state, action) => {
-  console.log("cr: " + state)
   switch (action) {
     case 'increment':
       return state + 1

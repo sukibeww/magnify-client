@@ -101,11 +101,11 @@ const SelectOptions = props => {
   }, [index, result, count])
 
   useEffect(() => {
-    if (result[count - 1].length > 3)
-      result[count - 1].includes(undefined)
+    if (result[count - 1].length > 3) {
+      result[count - 1].includes(undefined, null)
         ? setShowNext(false)
         : setShowNext(true)
-    else setShowNext(false)
+    } else setShowNext(false)
   }, [result, count, setShowNext])
 
   const saveResult = async select => {
@@ -113,11 +113,11 @@ const SelectOptions = props => {
     temp_result[count - 1][index] = select
     setResult(temp_result)
     setSelectedOption(select)
-    if (result[count - 1].length > 3)
-      result[count - 1].includes(undefined || null)
+    if (result[count - 1].length > 3) {
+      result[count - 1].includes(undefined, null)
         ? setShowNext(false)
         : setShowNext(true)
-    else setShowNext(false)
+    } else setShowNext(false)
   }
   return (
     <>
@@ -152,7 +152,9 @@ const SurveyC = props => {
   let currentQuestion = survey[0]['C']['questions'][count - 1]
 
   const next = () => {
-    if (count < totalQuestion) dispatch('increment')
+    if (count < totalQuestion) {
+      dispatch('increment')
+    }
   }
   const back = () => {
     if (count > 1) dispatch('decrement')
@@ -187,32 +189,32 @@ const SurveyC = props => {
         <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
         {g_OptionWrapper()}
 
-        {showNext ? (
-          count === totalQuestion ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.formControl}
-              onClick={() => {
-                dispatch(1)
-                setSection('D')
-              }}
-            >
-              Next Section
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.formControl}
-              onClick={next}
-            >
-              Next Question
-            </Button>
-          )
-        ) : null}
+        {count === totalQuestion ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              dispatch(1)
+              setSection('D')
+            }}
+            disabled={showNext ? false : true}
+          >
+            Next Section
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.formControl}
+            onClick={next}
+            disabled={showNext ? false : true}
+          >
+            Next Question
+          </Button>
+        )}
         {count === 1 ? (
           <Button
             variant="contained"
@@ -231,7 +233,11 @@ const SurveyC = props => {
             Back
           </Button>
         )}
-        <SurveySlider currentQuestion={count} sectionLength={5} dispatch={dispatch}/>
+        <SurveySlider
+          currentQuestion={count}
+          sectionLength={result.length}
+          dispatch={dispatch}
+        />
         <StyledIndex>{count}/5</StyledIndex>
       </StyledWrapper>
     </>

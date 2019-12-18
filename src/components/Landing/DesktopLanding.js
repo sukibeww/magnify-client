@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import AccordionLanding from '../AccordionLanding/AccodionLanding'
 import { MediaContext } from '../../context/mediaContext'
 
@@ -8,7 +8,7 @@ const LandingWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  background-image: url(${require("./images/desktop-bg.png")});
+  background-image: url(${require('./images/desktop-bg.png')});
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 95vh;
@@ -21,16 +21,19 @@ const StyledLogo = styled.img`
 `
 
 const DesktopLanding = () => {
-  const mediaContext = useContext(MediaContext);
-  const { media } = mediaContext;
-  return(
+  const mediaContext = useContext(MediaContext)
+  const { media } = mediaContext
+  return (
     <>
-      <LandingWrapper data-testid="landing-wrapper"> 
-        <StyledLogo src={require('./images/landing-logo.png')} alt="magnifylogo"/>
-        <AccordionLanding media={media}/>
+      <LandingWrapper data-testid="landing-wrapper">
+        <StyledLogo
+          src={require('./images/landing-logo.png')}
+          alt="magnifylogo"
+        />
+        <AccordionLanding media={media} />
       </LandingWrapper>
     </>
   )
 }
 
-export default DesktopLanding;
+export default DesktopLanding

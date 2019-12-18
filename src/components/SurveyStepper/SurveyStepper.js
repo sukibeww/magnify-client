@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepButton from '@material-ui/core/StepButton'
@@ -10,19 +10,6 @@ import styled from 'styled-components'
 const StepperWrapper = styled.div`
   width: ${props => (props.media ? '40vw' : '90vw')};
 `
-
-const useStyles = makeStyles(theme => ({
-  active: {
-    '& $line': {
-      backgroundImage: 'linear-gradient( 95deg,#045cc8,#02389d,#022080)'
-    }
-  },
-  completed: {
-    '& $line': {
-      backgroundImage: 'linear-gradient( 95deg,#0575e6,#046ede,#045cc8)'
-    }
-  }
-}))
 
 const ColorConnector = withStyles({
   active: {
@@ -48,7 +35,6 @@ function getSteps() {
 }
 
 const SurveyStepper = props => {
-  const classes = useStyles()
   const { section, dispatch, setSection } = props
   const [activeStep, setActiveStep] = useState(0)
   const steps = getSteps()
@@ -64,7 +50,7 @@ const SurveyStepper = props => {
   }
 
   return (
-    <StepperWrapper media={media} className={classes.root}>
+    <StepperWrapper media={media}>
       <Stepper
         alternativeLabel
         activeStep={activeStep}
