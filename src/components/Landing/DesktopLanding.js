@@ -23,7 +23,6 @@ const StyledLogo = styled.img`
 const DesktopLanding = () => {
   const mediaContext = useContext(MediaContext);
   const { media } = mediaContext;
-  console.log("desktop"  + media)
   return(
     <>
       <LandingWrapper data-testid="landing-wrapper"> 

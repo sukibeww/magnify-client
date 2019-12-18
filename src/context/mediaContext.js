@@ -9,13 +9,8 @@ const MediaContextProvider = props => {
   const large = useMediaQuery(theme.breakpoints.up('lg'));
   const [media, setMedia] = useState(large)
   useEffect(() => {
-    console.log("effect")
-    console.log(large)
     setMedia(large)
   }, [large])
-
-  console.log("context")
-  console.log(large)
   return (
     <MediaContext.Provider value={{media}}>
       {props.children}

@@ -9,6 +9,7 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
+import SurveySlider from '../../SurveySlider/SurveySlider.js'
 
 const survey = require('../Survey.json')
 
@@ -175,6 +176,7 @@ const SurveyD = props => {
             Back
           </Button>
         )}
+        <SurveySlider currentQuestion={count} sectionLength={4} dispatch={dispatch}/>
         <StyledIndex>{count}/4</StyledIndex>
       </StyledWrapper>
     </>
