@@ -24,6 +24,11 @@ import { EmployeeContext } from '../../context/employeeContext'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    color: 'white',
+    textDecoration: 'none'
+  },
   title: {
     flexGrow: 1
   },
@@ -34,6 +39,11 @@ const useStyles = makeStyles({
   banner: {
     height: '20vh',
     backgroundColor: 'purple'
+  },
+  navWrapper: {
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'flex-end'
   },
   navigation: {
     height: '65vh',
@@ -47,7 +57,7 @@ const useStyles = makeStyles({
 
 const DrawerNavbar = () => {
   const employeeContext = useContext(EmployeeContext)
-  const { user, handleLogin, handleLogout } = employeeContext
+  const { user, handleLogout } = employeeContext
 
   const classes = useStyles()
   const [drawer, setdrawer] = useState({
@@ -128,8 +138,8 @@ const DrawerNavbar = () => {
   )
 
   return (
-    <div>
-      <AppBar position="static">
+    <>
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           {user.email && (
             <IconButton
@@ -142,16 +152,25 @@ const DrawerNavbar = () => {
               <MenuIcon />
             </IconButton>
           )}
-          <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
-            <Typography variant="h6" className={classes.title}>
-              Magnify
-            </Typography>
-          </Link>
-          {!user.email && (
-            <Button color="inherit" onClick={handleLogin}>
-              Login
-            </Button>
-          )}
+            <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
+              <Typography variant="h6" className={classes.title}>
+                Magnify
+              </Typography>
+            </Link>
+            <div className={classes.navWrapper}>
+              {!user.email && (
+                <Link 
+                to="/login" 
+                style={{
+                  textDecoration: 'none',
+                  color: 'white'
+                }}>
+                  <Button color="inherit">
+                    Login
+                  </Button>
+                </Link>
+              )}
+            </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -161,7 +180,7 @@ const DrawerNavbar = () => {
       >
         {sideList('left')}
       </Drawer>
-    </div>
+    </>
   )
 }
 

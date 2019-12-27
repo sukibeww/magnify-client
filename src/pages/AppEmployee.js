@@ -6,6 +6,7 @@ import EmployeeContextProvider from '../context/employeeContext'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from '../components/Landing/Landing'
 import EmployeeProfile from '../components/EmployeeProfile/EmployeeProfile'
+import LoginPage from './LoginPage'
 import { MediaContext }  from '../context/mediaContext'
 
 function AppEmployee(props) {
@@ -20,6 +21,7 @@ function AppEmployee(props) {
           <Route exact path="/" render={(props) => <Landing />}></Route>
           <Route exact path="/survey" component={SurveyList}></Route>
           <Route exact path="/profile" component={EmployeeProfile}></Route>
+          <Route exact path="/login" component={LoginPage}></Route>
         </Switch>
       </Router>
     </EmployeeContextProvider>

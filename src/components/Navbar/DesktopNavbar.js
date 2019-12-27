@@ -15,16 +15,20 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
     color: 'white',
     textDecoration: 'none',
-    cursor: 'pointer'
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+  },
+  navWrapper: {
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'flex-end'
   },
   navButton: {
     marginRight: theme.spacing(8)
@@ -33,21 +37,19 @@ const useStyles = makeStyles(theme => ({
 
 const DesktopNavbar = () => {
   const employeeContext = useContext(EmployeeContext)
-  const { user, handleLogin, handleLogout } = employeeContext
-
+  const { user, handleLogout } = employeeContext
   const classes = useStyles()
   useTheme()
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Link
             to="/"
             style={{
               textDecoration: 'none',
-              color: 'white',
-              flexGrow: 1
+              color: 'white'
             }}
           >
             <Typography variant="h6" className={classes.title}>
@@ -55,12 +57,21 @@ const DesktopNavbar = () => {
             </Typography>
           </Link>
           {!user.email && (
-            <Button onClick={handleLogin} color="inherit">
-              Login
-            </Button>
+          <div className={classes.navWrapper}>
+            <Link 
+            to="/login" 
+            style={{
+              textDecoration: 'none',
+              color: 'white'
+            }}>
+              <Button color="inherit">
+                Login
+              </Button>
+            </Link>
+          </div>
           )}
           {user.email && (
-            <div>
+            <div className={classes.navWrapper}>
               <Badge
                 variant="dot"
                 color="secondary"
