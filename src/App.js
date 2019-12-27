@@ -1,13 +1,7 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import DesktopNavbar from './components/Navbar/DesktopNavbar'
-import DrawerNavbar from './components/Navbar/DrawerNavbar'
-import SurveyA from './components/SurveyA/SurveyA'
-import SurveyB from './components/SurveyB/SurveyB'
-import SurveyC from './components/SurveyC/SurveyC'
-import SurveyD from './components/SurveyD/SurveyD'
-import { useMediaQuery } from '@material-ui/core'
-import EmployeeContextProvider from './context/employeeContext'
+import AppEmployee from './pages/AppEmployee.js'
+import MediaContextProvider from './context/mediaContext'
 
 function App() {
   const theme = createMuiTheme({
@@ -21,19 +15,12 @@ function App() {
       viewPort: 'small'
     }
   })
-  const large = useMediaQuery(theme.breakpoints.up('lg'))
   return (
     <ThemeProvider theme={theme}>
-      <EmployeeContextProvider>
-        {large && <DesktopNavbar />}
-        {!large && <DrawerNavbar />}
-        <SurveyA />
-        {/* <SurveyB />
-      <SurveyC />
-      <SurveyD /> */}
-      </EmployeeContextProvider>
+      <MediaContextProvider>
+        <AppEmployee />
+      </MediaContextProvider>
     </ThemeProvider>
   )
 }
-
 export default App
