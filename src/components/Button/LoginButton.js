@@ -9,10 +9,11 @@ const LoginButton = props => {
   const [fill, setFill] = useState('#40abde')
   const useStyles = makeStyles(theme => ({
     button: {
-      backgroundColor: '#EAEFF7',
+      backgroundColor: '#DDE6F4',
       maxWidth: '90%',
-      margin: '10px 0',
-      boxShadow: "5px 5px 8px rgb(163, 177, 198, 0.6), -5px -5px 8px #FFFFFF"
+      marginTop: '35px',
+      boxShadow: "5px 5px 8px rgb(163, 177, 198), -5px -5px 8px #FFFFFF",
+      borderRadius: "30px"
     },
     text: {
       margin: '0 5px',

@@ -15,28 +15,28 @@ const LoginBackground = styled.div`
 `
 
 const LoginHeader = styled.h1`
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 3em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 4em;
   margin: 3vh 0;
 `
 
 const LoginSubHeader = styled.h2`
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 300;
   margin: 1vh 0;
 `
 
 const LoginFormWrapper = styled.div`
-  background-color: #EAEFF7;
+  background-color: #DDE6F4;
   width: 100%;
   height: 80%;
-  border-radius: 10px;
+  border-radius: 30px;
   margin-top: 5vh;
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6), -9px -9px 16px #FFFFFF;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #FFFFFF;
 `
 
 const LoginSection = styled.div`
