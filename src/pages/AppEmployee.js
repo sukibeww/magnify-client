@@ -15,8 +15,7 @@ function AppEmployee(props) {
   return (
     <EmployeeContextProvider>
       <Router>
-        {media && <DesktopNavbar />}
-        {!media && <DrawerNavbar />}
+        {media ? <DesktopNavbar /> : <DrawerNavbar />} 
         <Switch>
           <Route exact path="/" render={(props) => <Landing />}></Route>
           <Route exact path="/survey" component={SurveyList}></Route>

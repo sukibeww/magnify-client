@@ -26,7 +26,7 @@ const StyledIntroWrapper = styled.div`
 
 const IntroHeader = styled.h1`
   font-family: 'Roboto', sans-serif;
-  font-size: ${props => (props.media ? '3em' : '2em')};
+  font-size: ${(props) => props.media ? '3em' : '2em'};
   background: linear-gradient(0.25turn, #b973f9, #6ed3fc, #b973f9, #6ed3fc);
   -webkit-background-clip: text;
   background-clip: text;
@@ -47,9 +47,9 @@ const AccordionLanding = props => {
   const mediaContext = useContext(MediaContext)
   const { media } = mediaContext
   return (
-    <AccordionWrapper data-testid="accordion-wrapper" media={media}>
+    <AccordionWrapper data-testid="accordion-wrapper" media={media ? media.toString() : null}>
       <StyledIntroWrapper>
-        <IntroHeader media={media}>Why Magnify?</IntroHeader>
+        <IntroHeader media={media ? media.toString() : null}>Why Magnify?</IntroHeader>
       </StyledIntroWrapper>
       <AccordionLandingItem
         header="Lorem Ipsum"

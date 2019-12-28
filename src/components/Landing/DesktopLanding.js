@@ -30,7 +30,7 @@ const DesktopLanding = () => {
           src={require('./images/landing-logo.png')}
           alt="magnifylogo"
         />
-        <AccordionLanding media={media} />
+        <AccordionLanding media={media ? media.toString() : null} />
       </LandingWrapper>
     </>
   )
