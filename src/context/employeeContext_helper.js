@@ -23,6 +23,13 @@ const getProfile = async () => {
   return user
 }
 
+const isRegistered = (user) => {
+  if(user.category.length === 0 ){
+    return false
+  }
+  return true
+}
+
 const saveSurvey = async survey => {
   const resp = await fetch('http://localhost:3000/employee/survey', {
     method: 'POST',
@@ -40,5 +47,6 @@ module.exports = {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  saveSurvey
+  saveSurvey,
+  isRegistered
 }

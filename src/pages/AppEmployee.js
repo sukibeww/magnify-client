@@ -13,8 +13,8 @@ function AppEmployee(props) {
   const mediaContext = useContext(MediaContext);
   const { media } = mediaContext;
   return (
-    <EmployeeContextProvider>
-      <Router>
+    <Router>
+      <EmployeeContextProvider>
         {media ? <DesktopNavbar /> : <DrawerNavbar />} 
         <Switch>
           <Route exact path="/" render={(props) => <Landing />}></Route>
@@ -22,8 +22,8 @@ function AppEmployee(props) {
           <Route exact path="/profile" component={EmployeeProfile}></Route>
           <Route exact path="/login" component={LoginPage}></Route>
         </Switch>
-      </Router>
-    </EmployeeContextProvider>
+      </EmployeeContextProvider>
+    </Router>
   )
 }
 
