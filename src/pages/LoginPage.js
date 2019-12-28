@@ -10,7 +10,7 @@ const LoginBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding:  0 20vw;
+  padding: ${(props)=> props.media ? "0 20vw" : "0 5vw"};
   background-color: #EAEFF7;
 `
 
@@ -30,9 +30,9 @@ const LoginSubHeader = styled.h2`
 const LoginFormWrapper = styled.div`
   background-color: #DDE6F4;
   width: 100%;
-  height: 80%;
+  height: 70%;
   border-radius: 30px;
-  margin-top: 5vh;
+  margin-top: 10vh;
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -48,7 +48,7 @@ const LoginSection = styled.div`
 
 const LoginForm = styled.div`
   display: flex;
-  width: 50%;
+  width: ${(props)=> props.media ? "50%" : "100%"};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,10 +60,10 @@ function LoginPage(props) {
   const { media } = mediaContext;
   return (
     <>
-      <LoginBackground>
-        <LoginFormWrapper>
-          <LoginSection></LoginSection>
-          <LoginForm>
+      <LoginBackground media={media}>
+        <LoginFormWrapper >
+          {media ? <LoginSection></LoginSection>  : null }
+          <LoginForm media={media}>
             <LoginHeader>Login</LoginHeader>
             <LoginSubHeader>Hello, User</LoginSubHeader>
             <LoginSubHeader>Welcome to Magnify</LoginSubHeader>
