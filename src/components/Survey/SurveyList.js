@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect, useReducer } from 'react'
-import SaveIcon from '@material-ui/icons/Save';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CloseIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/Save'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle'
+import CloseIcon from '@material-ui/icons/Close'
 import styled from 'styled-components'
-import { green } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors'
+import { makeStyles } from '@material-ui/core/styles'
 import { Fab, Snackbar, IconButton, SnackbarContent } from '@material-ui/core'
 import SurveyA from './SurveyA'
 import SurveyB from './SurveyB'
@@ -23,23 +23,22 @@ const FabWrapper = styled.div`
 
 const useStyles = makeStyles(theme => ({
   success: {
-    backgroundColor: green[600],
+    backgroundColor: green[600]
   },
   icon: {
-    fontSize: 20,
+    fontSize: 20
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   message: {
     display: 'flex',
-    alignItems: 'center',
-  },
-}));
+    alignItems: 'center'
+  }
+}))
 
 const count_reducer = (state, action) => {
-  console.log("cr: " + state)
   switch (action) {
     case 'increment':
       return state + 1
@@ -53,8 +52,8 @@ const count_reducer = (state, action) => {
 }
 
 const SurveyList = () => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const classes = useStyles()
+  const [open, setOpen] = useState(false)
   const employeeContext = useContext(EmployeeContext)
   const { user, saveSurvey } = employeeContext
   const [resultA, setResultA] = useState([])
@@ -78,15 +77,15 @@ const SurveyList = () => {
   }, [user])
 
   const handleClick = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return;
+      return
     }
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const saving = () => {
     saveSurvey({
@@ -97,7 +96,7 @@ const SurveyList = () => {
       count,
       section
     })
-    handleClick();
+    handleClick()
   }
 
   const currestSection = () => {
@@ -146,40 +145,61 @@ const SurveyList = () => {
         return null
     }
   }
-  return(
+  return (
     <>
-      {currestSection()}
+      {user.email ? currestSection() : null}
       {user.email ? (
-      <>
-        <FabWrapper>
-          <SurveyStepper setSection={setSection}/>
-          <Fab 
-          aria-label="join-us" color="secondary"
-          onClick={() => {
-            saving()
-          }}>
-            <SaveIcon />
-          </Fab>
-        </FabWrapper>
-      </>
+        <>
+          <FabWrapper>
+            <SurveyStepper
+              section={section}
+              dispatch={dispatch}
+              setSection={setSection}
+              resultA={resultA}
+              resultB={resultB}
+              resultC={resultC}
+              resultD={resultD}
+            />
+            <Fab
+              aria-label="join-us"
+              color="secondary"
+              onClick={() => {
+                saving()
+              }}
+            >
+              <SaveIcon />
+            </Fab>
+          </FabWrapper>
+        </>
       ) : null}
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'left'
         }}
         open={open}
         autoHideDuration={3000}
         onClose={handleClose}
       >
-        <SnackbarContent 
-        message={<span id="message-id" className={classes.message}><CheckCircleIcon className={classes.iconVariant}/>Progress saved</span>}
-        action={[
-          <IconButton key="close" aria-label="close" color="inherit" onClick={handleClose}>
-            <CloseIcon className={classes.icon} />
-          </IconButton>,
-        ]}
-        className={classes.success}/>
+        <SnackbarContent
+          message={
+            <span id="message-id" className={classes.message}>
+              <CheckCircleIcon className={classes.iconVariant} />
+              Progress saved
+            </span>
+          }
+          action={[
+            <IconButton
+              key="close"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <CloseIcon className={classes.icon} />
+            </IconButton>
+          ]}
+          className={classes.success}
+        />
       </Snackbar>
     </>
   )

@@ -83,15 +83,18 @@ const SurveyB = props => {
     setSelectedValue(result[count - 1] || defaultSelect)
   }, [result, count])
 
-  const saveResult = async select => {
+  const saveResult = async (select, count) => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
-    setSelectedValue(select || defaultSelect)
+    setSelectedValue(select)
   }
 
   const next = () => {
-    if (count < totalQuestion) dispatch('increment')
+    if (count < totalQuestion) {
+      saveResult(selectedValue, count)
+      dispatch('increment')
+    }
   }
   const back = () => {
     if (count > 1) dispatch('decrement')
@@ -130,32 +133,33 @@ const SurveyB = props => {
             />
           </RadioGroup>
         </FormControl>
-        {selectedValue ? (
-          count === totalQuestion ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.formControl}
-              onClick={() => {
-                dispatch(1)
-                setSection('C')
-              }}
-            >
-              Next Section
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.formControl}
-              onClick={next}
-            >
-              Next Question
-            </Button>
-          )
-        ) : null}
+        {count === totalQuestion ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              saveResult(selectedValue, count)
+              dispatch(1)
+              setSection('C')
+            }}
+            disabled={selectedValue ? false : true}
+          >
+            Next Section
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.formControl}
+            onClick={next}
+            disabled={selectedValue ? false : true}
+          >
+            Next Question
+          </Button>
+        )}
         {count === 1 ? (
           <Button
             variant="contained"
@@ -174,7 +178,11 @@ const SurveyB = props => {
             Back
           </Button>
         )}
-        <SurveySlider currentQuestion={count} sectionLength={32} dispatch={dispatch}/>
+        <SurveySlider
+          currentQuestion={count}
+          sectionLength={result.length}
+          dispatch={dispatch}
+        />
         <StyledIndex>{count}/32</StyledIndex>
       </StyledWrapper>
     </>

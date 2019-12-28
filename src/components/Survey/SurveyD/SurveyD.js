@@ -83,7 +83,7 @@ const SurveyD = props => {
     setSelectedValue(result[count - 1] || defaultSelect)
   }, [result, count])
 
-  const saveResult = async select => {
+  const saveResult = async (select, count) => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
@@ -91,7 +91,10 @@ const SurveyD = props => {
   }
 
   const next = () => {
-    if (count < totalQuestion) dispatch('increment')
+    if (count < totalQuestion) {
+      saveResult(selectedValue, count)
+      dispatch('increment')
+    }
   }
   const back = () => {
     if (count > 1) dispatch('decrement')
@@ -113,7 +116,7 @@ const SurveyD = props => {
             aria-label="position"
             name="position"
             value={selectedValue}
-            onChange={e => saveResult(e.target.value)}
+            onChange={e => saveResult(e.target.value, count)}
             column="true"
           >
             <FormControlLabel
@@ -143,6 +146,7 @@ const SurveyD = props => {
               onClick={() => {
                 setSection('END')
               }}
+              disabled={selectedValue ? false : true}
             >
               See Result
             </Button>
@@ -153,6 +157,7 @@ const SurveyD = props => {
               size="large"
               className={classes.formControl}
               onClick={next}
+              disabled={selectedValue ? false : true}
             >
               Next Question
             </Button>
@@ -176,7 +181,11 @@ const SurveyD = props => {
             Back
           </Button>
         )}
-        <SurveySlider currentQuestion={count} sectionLength={4} dispatch={dispatch}/>
+        <SurveySlider
+          currentQuestion={count}
+          sectionLength={result.length}
+          dispatch={dispatch}
+        />
         <StyledIndex>{count}/4</StyledIndex>
       </StyledWrapper>
     </>
