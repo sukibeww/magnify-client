@@ -8,6 +8,7 @@ import Landing from '../components/Landing/Landing'
 import EmployeeProfile from '../components/EmployeeProfile/EmployeeProfile'
 import LoginPage from './LoginPage'
 import { MediaContext }  from '../context/mediaContext'
+import RegistrationPage from './RegistrationPage'
 
 function AppEmployee(props) {
   const mediaContext = useContext(MediaContext);
@@ -21,6 +22,7 @@ function AppEmployee(props) {
           <Route exact path="/survey" component={SurveyList}></Route>
           <Route exact path="/profile" component={EmployeeProfile}></Route>
           <Route exact path="/login" component={LoginPage}></Route>
+          <Route exact path="/register" component={RegistrationPage}></Route>
         </Switch>
       </EmployeeContextProvider>
     </Router>

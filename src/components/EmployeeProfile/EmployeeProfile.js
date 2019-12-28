@@ -59,8 +59,8 @@ const EmployeeProfile = () => {
   console.log(user)
   return (
     <>
-      <ProfileWrapper media={media}>
-        <ProfilePicture src={user.photos} alt="profile-pic" media={media}/>
+      <ProfileWrapper media={media ? media.toString() : null}>
+        <ProfilePicture src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
         <DisplayName>{user.displayName}</DisplayName>
         <Email>{user.email}</Email>
         <Category>Software Developer</Category>
