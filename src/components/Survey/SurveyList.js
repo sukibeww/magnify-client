@@ -147,7 +147,7 @@ const SurveyList = () => {
   }
   return (
     <>
-      {currestSection()}
+      {user.email ? currestSection() : null}
       {user.email ? (
         <>
           <FabWrapper>
