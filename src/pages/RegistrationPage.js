@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import CategorySelect from '../components/CategorySelect/CategorySelect'
 import SaveButton from '../components/Button/SaveButton'
 import BioTextbox from '../components/TextBoxes/BioTextbox'
+import { EmployeeContext } from '../context/employeeContext'
 
 const RegisterationBackground = styled.div`
   height: 100vh;
@@ -38,10 +39,20 @@ const RegisterHeader = styled.h1`
 `
 
 const RegistrationPage = (props) => {
-  const mediaContext = useContext(MediaContext);
+  const mediaContext = useContext(MediaContext)
+  const employeeContext = useContext(EmployeeContext)
   const [category, setCategory] = useState([])
   const [biography, setBiography] = useState('')
   const { media } = mediaContext;
+  const { user, handleUpdate } = employeeContext
+  const handleClick = () => {
+    const editedUser = user
+    if(category.length > 0){
+      editedUser.category = category
+      editedUser.bio = biography
+      handleUpdate(editedUser)
+    }
+  }
   return (
     <>
       <RegisterationBackground>
@@ -49,7 +60,7 @@ const RegistrationPage = (props) => {
           <RegisterHeader>Register</RegisterHeader>
           <CategorySelect handleChange={setCategory}/>
           <BioTextbox handleChange={setBiography}/>
-          <SaveButton />
+          <SaveButton handleClick={handleClick}/>
         </RegistrationFormWrapper>
       </RegisterationBackground>
     </>

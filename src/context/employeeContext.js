@@ -5,7 +5,8 @@ import {
   linkedin_logout,
   getProfile,
   saveSurvey,
-  isRegistered
+  isRegistered,
+  updateEmployee
 } from './employeeContext_helper'
 
 export const EmployeeContext = createContext()
@@ -32,6 +33,11 @@ const EmployeeContextProvider = props => {
     setUser(defaultUser)
   }
 
+  const handleUpdate = (editedEmployee) => {
+    setUser(()=> editedEmployee)
+    updateEmployee({editedEmployee : user})
+  }
+
   useEffect(() => {
     async function fetchData() {
       const user = await getProfile()
@@ -45,14 +51,14 @@ const EmployeeContextProvider = props => {
       setRedirectToRegistration(() => {
         return isRegistered(user)
       })
-      redirectToRegistration ? history.push('/home') :  history.push('/register')
+      redirectToRegistration ? history.push('/') :  history.push('/register')
     }
     redirectAfterLogin()
   }, [user, redirectToRegistration, history])
 
   return (
     <EmployeeContext.Provider
-      value={{ user, handleLogin, handleLogout, saveSurvey }}
+      value={{ user, handleLogin, handleLogout, saveSurvey , handleUpdate}}
     >
       {props.children}
     </EmployeeContext.Provider>

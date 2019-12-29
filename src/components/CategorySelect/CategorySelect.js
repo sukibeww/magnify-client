@@ -81,9 +81,9 @@ const CategorySelect = (props) => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  const handleChange = event => {
-    setCategories(event.target.value)
-    props.handleChange(categories)
+  const handleChange = async (event) => {
+    setCategories(() => event.target.value)
+    props.handleChange(event.target.value)
   };
 
   return(
