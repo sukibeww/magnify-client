@@ -51,7 +51,9 @@ const EmployeeContextProvider = props => {
       setRedirectToRegistration(() => {
         return isRegistered(user)
       })
-      redirectToRegistration ? history.push('/') :  history.push('/register')
+      if(user.email){
+        redirectToRegistration ? history.push('/') :  history.push('/register')
+      }
     }
     redirectAfterLogin()
   }, [user, redirectToRegistration, history])
