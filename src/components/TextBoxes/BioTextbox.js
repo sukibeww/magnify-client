@@ -24,6 +24,7 @@ const BioTextbox = props => {
         className={classes.formControl}
         id="outlined-multiline-static"
         label="Enter your Bio"
+        defaultValue={props.current}
         multiline
         rows="10"
         variant="outlined"

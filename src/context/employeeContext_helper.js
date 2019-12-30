@@ -1,5 +1,3 @@
-const axios = require('axios')
-
 const linkedin_login = () => {
   window.open('http://localhost:3000/auth/linkedin', '_self')
 }
@@ -46,14 +44,14 @@ const saveSurvey = async survey => {
 }
 
 const updateEmployee = async (editedEmployee) => {
-  axios.put('http://localhost:3000/employee/update', {
-    editedEmployee: editedEmployee
-  })
-  .then((res)=> {
-    console.log(res)
-  })
-  .catch((err)=> {
-    console.log(err)
+  fetch('http://localhost:3000/employee/update', {
+    method: 'PUT',
+    body: JSON.stringify(editedEmployee),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
   })
 }
 

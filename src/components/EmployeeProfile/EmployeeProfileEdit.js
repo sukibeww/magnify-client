@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext , useState} from 'react'
+import { useHistory } from "react-router-dom";
+import styled from 'styled-components'
 import { MediaContext }  from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
-import styled from 'styled-components'
-import EditButton from "../Button/EditButton";
+import CategorySelect from '../CategorySelect/CategorySelect'
+import BioTextbox from '../TextBoxes/BioTextbox'
+import SaveButton from '../Button/SaveButton'
+
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -39,58 +42,35 @@ const Email = styled.h3`
   opacity: 0.5;
 `
 
-const Subheader = styled.h2`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  font-weight: 400;
-  color: #ffa726;
-  margin-top: 1.5vh;
-`
-
-const Categories = styled.h3`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  
-  font-weight: 400;
-  opacity: 0.5;
-  color: #283593;
-`
-
-const Bio = styled.p`
-  color: #283593;
-  font-family: 'Roboto', sans-serif;
-  margin-top: 1.5vh;
-  font-weight: 300;
-  text-align: center;
-`
-
-const AbsoluteWrapper = styled.div`
-  justify-self: flex-start;
-  align-self: flex-end;
-  height: 0;
-  overflow: visible;
-`
-
-const EmployeeProfile = () => {
+const EmployeeProfileEdit = () => {
   const { media } = useContext(MediaContext);
-  const { user } = useContext(EmployeeContext)
+  const { user, handleUpdate } = useContext(EmployeeContext)
+  const [category, setCategory] = useState(user.category)
+  const [biography, setBiography] = useState(user.bio)
+  let history = useHistory()
+
+  const handleClick = () => {
+    const editedUser = user
+    if(category.length > 0){
+      editedUser.category = category
+      editedUser.bio = biography
+      handleUpdate(editedUser)
+      history.push('/profile')
+    }
+  }
+
   return (
     <>
       <ProfileWrapper media={media ? media.toString() : null}>
-        <AbsoluteWrapper>
-          <Link to="/profile/edit">
-            <EditButton/>
-          </Link>
-        </AbsoluteWrapper>
         <ProfilePicture src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
         <DisplayName>{user.displayName}</DisplayName>
         <Email>{user.email}</Email>
-        <Subheader>Industry Category</Subheader>
-        <Categories>{user.category.join(" ")}</Categories>
-        <Bio>{user.bio}</Bio>
+        <CategorySelect current={user.category} handleChange={setCategory}></CategorySelect>
+        <BioTextbox current={user.bio} handleChange={setBiography}></BioTextbox>
+        <SaveButton handleClick={handleClick}/>
       </ProfileWrapper>
     </>
   )
 }
 
-export default EmployeeProfile
+export default EmployeeProfileEdit

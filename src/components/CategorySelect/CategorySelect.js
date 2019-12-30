@@ -73,7 +73,7 @@ const MenuProps = {
 const CategorySelect = (props) => {
   const classes = useStyles();
   const inputLabel = useRef(null);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(props.current || []);
   const [labelWidth, setLabelWidth] = useState(0);
 
   useEffect(() => {
@@ -95,6 +95,7 @@ const CategorySelect = (props) => {
           labelId="category-select-label"
           id="category-select"
           multiple
+          defaultValue={props.current}
           value={categories}
           onChange={handleChange}
           renderValue={selected => `${selected.length} industry selected`}
