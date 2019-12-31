@@ -1,4 +1,5 @@
 import React, { useContext , useState} from 'react'
+import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
 import { MediaContext }  from '../../context/mediaContext'
@@ -6,7 +7,7 @@ import { EmployeeContext } from '../../context/employeeContext'
 import CategorySelect from '../CategorySelect/CategorySelect'
 import BioTextbox from '../TextBoxes/BioTextbox'
 import SaveButton from '../Button/SaveButton'
-
+import CloseIcon from '@material-ui/icons/Close';
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -42,6 +43,18 @@ const Email = styled.h3`
   opacity: 0.5;
 `
 
+const AbsoluteWrapper = styled.div`
+  justify-self: flex-start;
+  align-self: flex-end;
+  height: 0;
+  overflow: visible;
+  cursor: pointer;
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+`
+
 const EmployeeProfileEdit = () => {
   const { media } = useContext(MediaContext);
   const { user, handleUpdate } = useContext(EmployeeContext)
@@ -62,6 +75,11 @@ const EmployeeProfileEdit = () => {
   return (
     <>
       <ProfileWrapper media={media ? media.toString() : null}>
+        <AbsoluteWrapper>
+          <Link to="/profile">
+            <CloseIcon/>
+          </Link>
+        </AbsoluteWrapper>
         <ProfilePicture src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
         <DisplayName>{user.displayName}</DisplayName>
         <Email>{user.email}</Email>
