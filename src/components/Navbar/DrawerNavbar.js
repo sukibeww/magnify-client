@@ -83,12 +83,14 @@ const DrawerNavbar = () => {
     >
       <div className={classes.banner}></div>
       <List className={classes.navigation}>
-        <ListItem button key="Survey" data-testid="test-survey">
-          <ListItemIcon>
-            <Assignment />
-          </ListItemIcon>
-          <ListItemText primary="Survey" />
-        </ListItem>
+        <Link to="/survey" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <ListItem button key="Survey" data-testid="test-survey">
+            <ListItemIcon>
+              <Assignment />
+            </ListItemIcon>
+            <ListItemText primary="Survey" />
+          </ListItem>
+        </Link>
         <ListItem button key="Result" data-testid="test-result">
           <ListItemIcon>
             <AssignmentTurnedIn />
@@ -110,7 +112,10 @@ const DrawerNavbar = () => {
       </List>
       <Divider />
       <List>
-        <Link to="/profile" style={{color: "inherit", textDecoration: "none"}}>
+        <Link
+          to="/profile"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
           <ListItem
             button
             key="Account Settings"
@@ -152,25 +157,24 @@ const DrawerNavbar = () => {
               <MenuIcon />
             </IconButton>
           )}
-            <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
-              <Typography variant="h6" className={classes.title}>
-                Magnify
-              </Typography>
-            </Link>
-            <div className={classes.navWrapper}>
-              {!user.email && (
-                <Link 
-                to="/login" 
+          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <Typography variant="h6" className={classes.title}>
+              Magnify
+            </Typography>
+          </Link>
+          <div className={classes.navWrapper}>
+            {!user.email && (
+              <Link
+                to="/login"
                 style={{
                   textDecoration: 'none',
                   color: 'white'
-                }}>
-                  <Button color="inherit">
-                    Login
-                  </Button>
-                </Link>
-              )}
-            </div>
+                }}
+              >
+                <Button color="inherit">Login</Button>
+              </Link>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer

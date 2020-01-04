@@ -36,9 +36,23 @@ const saveSurvey = async survey => {
   return resp
 }
 
+const submitSurvey = async survey => {
+  const resp = await fetch('http://localhost:3000/employee/result', {
+    method: 'POST',
+    body: JSON.stringify(survey),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
+
 module.exports = {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  saveSurvey
+  saveSurvey,
+  submitSurvey
 }

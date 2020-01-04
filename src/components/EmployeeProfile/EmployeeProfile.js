@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
-import { MediaContext }  from '../../context/mediaContext'
+import { MediaContext } from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
+import { Redirect } from 'react-router-dom'
 
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${(props) => props.media ? "10vh 20vw" : "5vh 5vw"};
+  margin: ${props => (props.media ? '10vh 20vw' : '5vh 5vw')};
   border: solid 3px #283593;
   border-radius: 10px;
   padding: 5vh 10vw;
@@ -16,8 +17,8 @@ const ProfileWrapper = styled.div`
 
 const ProfilePicture = styled.img`
   border-radius: 100%;
-  width: ${(props) => props.media ? "30vh" : "20vh"};
-  height: ${(props) => props.media ? "30vh" : "20vh"};
+  width: ${props => (props.media ? '30vh' : '20vh')};
+  height: ${props => (props.media ? '30vh' : '20vh')};
   color: #283593;
 `
 
@@ -54,20 +55,28 @@ const Bio = styled.p`
 `
 
 const EmployeeProfile = () => {
-  const { media } = useContext(MediaContext);
+  const { media } = useContext(MediaContext)
   const { user } = useContext(EmployeeContext)
   console.log(user)
-  return (
-    <>
-      <ProfileWrapper media={media}>
-        <ProfilePicture src={user.photos} alt="profile-pic" media={media}/>
-        <DisplayName>{user.displayName}</DisplayName>
-        <Email>{user.email}</Email>
-        <Category>Software Developer</Category>
-        <Bio>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nunc volutpat sagittis integer nulla eleifend amet. Amet ultrices quis duis sit scelerisque feugiat vulputate etiam.</Bio>
-      </ProfileWrapper>
-    </>
-  )
+  if (user.email) {
+    return (
+      <>
+        <ProfileWrapper media={media}>
+          <ProfilePicture src={user.photos} alt="profile-pic" media={media} />
+          <DisplayName>{user.displayName}</DisplayName>
+          <Email>{user.email}</Email>
+          <Category>Software Developer</Category>
+          <Bio>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nunc
+            volutpat sagittis integer nulla eleifend amet. Amet ultrices quis
+            duis sit scelerisque feugiat vulputate etiam.
+          </Bio>
+        </ProfileWrapper>
+      </>
+    )
+  } else {
+    return <Redirect to="/" />
+  }
 }
 
 export default EmployeeProfile

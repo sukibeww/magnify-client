@@ -1,8 +1,11 @@
 import React, { useContext } from 'react'
-import { MediaContext }  from '../context/mediaContext'
+import { MediaContext } from '../context/mediaContext'
 
 import LoginButton from '../components/Button/LoginButton'
 import styled from 'styled-components'
+
+import { EmployeeContext } from '../context/employeeContext'
+import { Redirect } from 'react-router-dom'
 
 const LoginBackground = styled.div`
   height: 100vh;
@@ -10,8 +13,8 @@ const LoginBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding:  0 20vw;
-  background-color: #EAEFF7;
+  padding: 0 20vw;
+  background-color: #eaeff7;
 `
 
 const LoginHeader = styled.h1`
@@ -28,7 +31,7 @@ const LoginSubHeader = styled.h2`
 `
 
 const LoginFormWrapper = styled.div`
-  background-color: #DDE6F4;
+  background-color: #dde6f4;
   width: 100%;
   height: 80%;
   border-radius: 30px;
@@ -36,12 +39,12 @@ const LoginFormWrapper = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #FFFFFF;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #ffffff;
 `
 
 const LoginSection = styled.div`
   width: 50%;
-  background-image: url("https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url('https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   background-size: cover;
   filter: grayscale(30%);
 `
@@ -54,26 +57,31 @@ const LoginForm = styled.div`
   align-items: center;
 `
 
-
 function LoginPage(props) {
-  const mediaContext = useContext(MediaContext);
-  const { media } = mediaContext;
-  return (
-    <>
-      <LoginBackground>
-        <LoginFormWrapper>
-          <LoginSection></LoginSection>
-          <LoginForm>
-            <LoginHeader>Login</LoginHeader>
-            <LoginSubHeader>Hello, User</LoginSubHeader>
-            <LoginSubHeader>Welcome to Magnify</LoginSubHeader>
-            <LoginButton userType={"Employee"}></LoginButton>
-            <LoginButton userType={"Employer"}></LoginButton>
-          </LoginForm>
-        </LoginFormWrapper>
-      </LoginBackground>
-    </>
-  )
+  const mediaContext = useContext(MediaContext)
+  const employeeContext = useContext(EmployeeContext)
+  const { user } = employeeContext
+  const { media } = mediaContext
+  if (!user.email) {
+    return (
+      <>
+        <LoginBackground>
+          <LoginFormWrapper>
+            <LoginSection></LoginSection>
+            <LoginForm>
+              <LoginHeader>Login</LoginHeader>
+              <LoginSubHeader>Hello, User</LoginSubHeader>
+              <LoginSubHeader>Welcome to Magnify</LoginSubHeader>
+              <LoginButton userType={'Employee'}></LoginButton>
+              <LoginButton userType={'Employer'}></LoginButton>
+            </LoginForm>
+          </LoginFormWrapper>
+        </LoginBackground>
+      </>
+    )
+  } else {
+    return <Redirect to="/" />
+  }
 }
 
 export default LoginPage

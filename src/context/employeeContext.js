@@ -3,7 +3,8 @@ import {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  saveSurvey
+  saveSurvey,
+  submitSurvey
 } from './employeeContext_helper'
 
 export const EmployeeContext = createContext()
@@ -37,7 +38,7 @@ const EmployeeContextProvider = props => {
 
   return (
     <EmployeeContext.Provider
-      value={{ user, handleLogin, handleLogout, saveSurvey }}
+      value={{ user, handleLogin, handleLogout, saveSurvey, submitSurvey }}
     >
       {props.children}
     </EmployeeContext.Provider>
