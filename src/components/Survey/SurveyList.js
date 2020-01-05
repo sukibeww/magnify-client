@@ -170,7 +170,6 @@ const SurveyList = () => {
         return <Redirect to="/" />
     }
   }
-
   const progressBar = () => {
     return (
       <FabWrapper>
