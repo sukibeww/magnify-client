@@ -12,7 +12,7 @@ import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
 import { EmployeeContext } from '../../context/employeeContext'
-import SurveyStepper from '../SurveyStepper/SurveyStepper'
+import SurveyStepper from './SurveyStepper/SurveyStepper.js'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 

@@ -3,7 +3,7 @@ import { MediaContext } from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
-import Guage from './Guage'
+import Gauge from './Gauge'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
@@ -118,7 +118,7 @@ const Result = () => {
         <>
           <Wrapper media={media}>
             <h1>Profile Overview</h1>
-            <Guage totalScore={TotalScore}></Guage>
+            <Gauge totalScore={TotalScore}></Gauge>
             <RadarWrapper>
               <RadarChart
                 cx="50%"

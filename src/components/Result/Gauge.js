@@ -3,7 +3,7 @@ import { interpolateRgb } from 'd3-interpolate'
 import React, { Component } from 'react'
 import LiquidFillGauge from 'react-liquid-gauge'
 
-class Guage extends Component {
+class Gauge extends Component {
   startColor = '#f27474'
   endColor = '#3a07f0'
 
@@ -96,4 +96,4 @@ class Guage extends Component {
   }
 }
 
-export default Guage
+export default Gauge
