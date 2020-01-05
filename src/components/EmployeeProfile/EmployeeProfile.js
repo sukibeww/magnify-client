@@ -1,18 +1,20 @@
 import React, { useContext } from 'react'
+import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MediaContext } from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
-import { Redirect } from 'react-router-dom'
+import EditButton from '../Button/EditButton'
 
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${props => (props.media ? '10vh 20vw' : '5vh 5vw')};
+  margin: ${props => (props.media ? '10vh 25vw' : '5vh 5vw')};
   border: solid 3px #283593;
   border-radius: 10px;
-  padding: 5vh 10vw;
+  padding: 5vh 5vw;
 `
 
 const ProfilePicture = styled.img`
@@ -38,39 +40,60 @@ const Email = styled.h3`
   opacity: 0.5;
 `
 
-const Category = styled.h2`
+const Subheader = styled.h2`
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  margin-top: 3vh;
   font-weight: 400;
   color: #ffa726;
+  margin-top: 1.5vh;
+`
+
+const Categories = styled.h3`
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+
+  font-weight: 400;
+  opacity: 0.5;
+  color: #283593;
 `
 
 const Bio = styled.p`
   color: #283593;
   font-family: 'Roboto', sans-serif;
-  margin-top: 0;
+  margin-top: 1.5vh;
   font-weight: 300;
   text-align: center;
+`
+
+const AbsoluteWrapper = styled.div`
+  justify-self: flex-start;
+  align-self: flex-end;
+  height: 0;
+  overflow: visible;
 `
 
 const EmployeeProfile = () => {
   const { media } = useContext(MediaContext)
   const { user } = useContext(EmployeeContext)
-  console.log(user)
   if (user.email) {
     return (
       <>
-        <ProfileWrapper media={media}>
-          <ProfilePicture src={user.photos} alt="profile-pic" media={media} />
+        <ProfileWrapper media={media ? media.toString() : null}>
+          <AbsoluteWrapper>
+            <Link to="/profile/edit">
+              <EditButton />
+            </Link>
+          </AbsoluteWrapper>
+          <ProfilePicture
+            src={user.photos}
+            alt="profile-pic"
+            media={media ? media.toString() : null}
+          />
           <DisplayName>{user.displayName}</DisplayName>
           <Email>{user.email}</Email>
-          <Category>Software Developer</Category>
-          <Bio>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nunc
-            volutpat sagittis integer nulla eleifend amet. Amet ultrices quis
-            duis sit scelerisque feugiat vulputate etiam.
-          </Bio>
+          <Subheader>Industry Category</Subheader>
+          <Categories>{user.category.join(' ')}</Categories>
+          <Bio>{user.bio}</Bio>
         </ProfileWrapper>
       </>
     )

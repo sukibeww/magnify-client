@@ -55,14 +55,14 @@ const AccordionLandingItem = (props) => {
     })
   }
   return(
-    <AccordionWrapper onClick={toggleActive}    data-testid="accordion-item-wrapper" media={media} onTouchCancel={toggleActive}>
-      <AccordionHeaderWrapper media={media}>
-        <AccordionSubheader media={media}>{props.header}</AccordionSubheader>
+    <AccordionWrapper onClick={toggleActive}    data-testid="accordion-item-wrapper" media={media.toString() ? media.toString() : null} onTouchCancel={toggleActive}>
+      <AccordionHeaderWrapper media={media ? media.toString() : null}>
+        <AccordionSubheader media={media ? media.toString() : null}>{props.header}</AccordionSubheader>
         {active ? 
         <ArrowDropUpIcon color="secondary" fontSize="large" data-testid="drop-up"/> : 
         <ArrowDropDownIcon color="secondary" fontSize="large" data-testid="drop-down" />}
       </AccordionHeaderWrapper>
-      <AccordionParagraph activated={active} data-testid="accordion-item-summary" media={media}>
+      <AccordionParagraph activated={active} data-testid="accordion-item-summary" media={media ? media.toString() : null}>
         {props.summary}
       </AccordionParagraph>
     </AccordionWrapper>

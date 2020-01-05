@@ -47,9 +47,14 @@ const AccordionLanding = props => {
   const mediaContext = useContext(MediaContext)
   const { media } = mediaContext
   return (
-    <AccordionWrapper data-testid="accordion-wrapper" media={media}>
+    <AccordionWrapper
+      data-testid="accordion-wrapper"
+      media={media ? media.toString() : null}
+    >
       <StyledIntroWrapper>
-        <IntroHeader media={media}>Why Magnify?</IntroHeader>
+        <IntroHeader media={media ? media.toString() : null}>
+          Why Magnify?
+        </IntroHeader>
       </StyledIntroWrapper>
       <AccordionLandingItem
         header="Lorem Ipsum"
