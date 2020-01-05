@@ -5,6 +5,7 @@ import CategorySelect from '../components/CategorySelect/CategorySelect'
 import SaveButton from '../components/Button/SaveButton'
 import BioTextbox from '../components/TextBoxes/BioTextbox'
 import { EmployeeContext } from '../context/employeeContext'
+import { useHistory } from "react-router-dom";
 
 const RegisterationBackground = styled.div`
   height: 100vh;
@@ -45,12 +46,14 @@ const RegistrationPage = (props) => {
   const [biography, setBiography] = useState('')
   const { media } = mediaContext;
   const { user, handleUpdate } = employeeContext
+  let history = useHistory()
   const handleClick = () => {
     const editedUser = user
     if(category.length > 0){
       editedUser.category = category
       editedUser.bio = biography
       handleUpdate(editedUser)
+      history.push('/profile')
     }
   }
   return (
