@@ -38,15 +38,22 @@ const data = [
   }
 ]
 
+const StyledHeader = styled.h1`
+  color: #283593;
+  font-size: 2em;
+  line-height: 0;
+`
+
 const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: max-content;
   margin: 20px auto;
   border: solid 3px #283593;
   border-radius: 10px;
+  padding: 5vh 0;
 `
 const RadarWrapper = styled.div`
   position: relative;
@@ -56,8 +63,7 @@ const RadarWrapper = styled.div`
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 99%;
-  overflow: scroll;
+  width: max-content;
 `
 
 const Result = () => {
@@ -117,7 +123,7 @@ const Result = () => {
       return (
         <>
           <Wrapper media={media}>
-            <h1>Profile Overview</h1>
+            <StyledHeader>Profile Overview</StyledHeader>
             <Guage totalScore={TotalScore}></Guage>
             <RadarWrapper>
               <RadarChart
@@ -125,7 +131,7 @@ const Result = () => {
                 cy="50%"
                 innerRadius="30%"
                 outerRadius="70%"
-                width={0.8 * width}
+                width={0.5 * width}
                 height={300 + 0.1 * width}
                 data={result.length > 0 ? result : data} //hack to prevent error and dispay dummy for now
               >
@@ -147,7 +153,7 @@ const Result = () => {
     } else {
       return (
         <>
-          <h1>You haven't done the survey</h1>
+          <StyledHeader>You haven't done the survey</StyledHeader>
           <Link
             to="/survey"
             style={{
