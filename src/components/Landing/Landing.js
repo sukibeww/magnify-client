@@ -8,8 +8,7 @@ function AppEmployee(props) {
   const { media } = mediaContext;
   return (
     <>
-      {media && <DesktopLanding media={media} />}
-      {!media && <MobileLanding media={media} />}
+      {media ? <DesktopLanding/> : <MobileLanding/>}
     </>
   )
 }

@@ -50,7 +50,7 @@ const SurveyStepper = props => {
   }
 
   return (
-    <StepperWrapper media={media}>
+    <StepperWrapper media={media ? media.toString() : null}>
       <Stepper
         alternativeLabel
         activeStep={activeStep}

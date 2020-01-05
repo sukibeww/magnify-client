@@ -23,6 +23,13 @@ const getProfile = async () => {
   return user
 }
 
+const isRegistered = (user) => {
+  if(user.category.length === 0 ){
+    return false
+  }
+  return true
+}
+
 const saveSurvey = async survey => {
   const resp = await fetch('http://localhost:3000/employee/survey', {
     method: 'POST',
@@ -36,9 +43,23 @@ const saveSurvey = async survey => {
   return resp
 }
 
+const updateEmployee = async (editedEmployee) => {
+  fetch('http://localhost:3000/employee/update', {
+    method: 'PUT',
+    body: JSON.stringify(editedEmployee),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+}
+
 module.exports = {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  saveSurvey
+  saveSurvey,
+  isRegistered,
+  updateEmployee
 }

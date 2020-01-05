@@ -60,10 +60,10 @@ function LoginPage(props) {
   const { media } = mediaContext;
   return (
     <>
-      <LoginBackground media={media}>
+      <LoginBackground media={media ? media.toString() : null}>
         <LoginFormWrapper >
           {media ? <LoginSection></LoginSection>  : null }
-          <LoginForm media={media}>
+          <LoginForm media={media ? media.toString() : null}>
             <LoginHeader>Login</LoginHeader>
             <LoginSubHeader>Hello, User</LoginSubHeader>
             <LoginSubHeader>Welcome to Magnify</LoginSubHeader>

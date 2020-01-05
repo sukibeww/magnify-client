@@ -19,7 +19,7 @@ const SurveySlider = props => {
   }, [currentQuestion])
 
   return (
-    <SliderWrapper media={media}>
+    <SliderWrapper media={media ? media.toString() : null}>
       <Slider
         defaultValue={index}
         aria-labelledby="discrete-slider-small-steps"
