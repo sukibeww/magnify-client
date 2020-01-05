@@ -91,24 +91,30 @@ const DrawerNavbar = () => {
             <ListItemText primary="Survey" />
           </ListItem>
         </Link>
-        <ListItem button key="Result" data-testid="test-result">
-          <ListItemIcon>
-            <AssignmentTurnedIn />
-          </ListItemIcon>
-          <ListItemText primary="Result" />
-        </ListItem>
-        <ListItem button key="Interview" data-testid="test-interview">
-          <ListItemIcon>
-            <People />
-          </ListItemIcon>
-          <ListItemText primary="Interview" />
-        </ListItem>
-        <ListItem button key="Vacancy" data-testid="test-vacancy">
-          <ListItemIcon>
-            <MeetingRoom />
-          </ListItemIcon>
-          <ListItemText primary="Vacancy" />
-        </ListItem>
+        <Link to="/result" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <ListItem button key="Result" data-testid="test-result">
+            <ListItemIcon>
+              <AssignmentTurnedIn />
+            </ListItemIcon>
+            <ListItemText primary="Result" />
+          </ListItem>
+        </Link>
+        <Link to="/interview" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <ListItem button key="Interview" data-testid="test-interview">
+            <ListItemIcon>
+              <People />
+            </ListItemIcon>
+            <ListItemText primary="Interview" />
+          </ListItem>
+        </Link>
+        <Link to="/vacancy" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <ListItem button key="Vacancy" data-testid="test-vacancy">
+            <ListItemIcon>
+              <MeetingRoom />
+            </ListItemIcon>
+            <ListItemText primary="Vacancy" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
@@ -119,8 +125,7 @@ const DrawerNavbar = () => {
           <ListItem
             button
             key="Account Settings"
-            data-testid="test-account-settings"
-          >
+            data-testid="test-account-settings">
             <ListItemIcon>
               <AccountCircle />
             </ListItemIcon>
@@ -131,8 +136,7 @@ const DrawerNavbar = () => {
           button
           data-testid="test-logout"
           key="Log Out"
-          onClick={handleLogout}
-        >
+          onClick={handleLogout}>
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
