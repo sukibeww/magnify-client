@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import styled from 'styled-components';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import { MediaContext } from '../../context/mediaContext';
+import { MediaContext } from '../../../context/mediaContext';
 
 
 const AccordionWrapper = styled.div`
