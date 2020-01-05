@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Slider from '@material-ui/core/Slider'
-import { MediaContext } from '../../context/mediaContext'
+import { MediaContext } from '../../../context/mediaContext'
 import styled from 'styled-components'
 
 const SliderWrapper = styled.div`
@@ -27,7 +27,7 @@ const SurveySlider = props => {
         min={1}
         value={index}
         marks
-        max={sectionLength}
+        max={sectionLength > 0 ? sectionLength : 1}
         valueLabelDisplay="auto"
         onChange={(e, value) => dispatch(value)}
         onDragEnd={(e, value) => dispatch(value)}

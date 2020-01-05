@@ -1,16 +1,17 @@
 import React, { useContext } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { MediaContext }  from '../../context/mediaContext'
+import { MediaContext } from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
-import EditButton from "../Button/EditButton";
+import EditButton from '../Button/EditButton'
 
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${(props) => props.media ? "10vh 25vw" : "5vh 5vw"};
+  margin: ${props => (props.media ? '10vh 25vw' : '5vh 5vw')};
   border: solid 3px #283593;
   border-radius: 10px;
   padding: 5vh 5vw;
@@ -18,8 +19,8 @@ const ProfileWrapper = styled.div`
 
 const ProfilePicture = styled.img`
   border-radius: 100%;
-  width: ${(props) => props.media ? "30vh" : "20vh"};
-  height: ${(props) => props.media ? "30vh" : "20vh"};
+  width: ${props => (props.media ? '30vh' : '20vh')};
+  height: ${props => (props.media ? '30vh' : '20vh')};
   color: #283593;
 `
 
@@ -50,7 +51,7 @@ const Subheader = styled.h2`
 const Categories = styled.h3`
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  
+
   font-weight: 400;
   opacity: 0.5;
   color: #283593;
@@ -72,25 +73,33 @@ const AbsoluteWrapper = styled.div`
 `
 
 const EmployeeProfile = () => {
-  const { media } = useContext(MediaContext);
+  const { media } = useContext(MediaContext)
   const { user } = useContext(EmployeeContext)
-  return (
-    <>
-      <ProfileWrapper media={media ? media.toString() : null}>
-        <AbsoluteWrapper>
-          <Link to="/profile/edit">
-            <EditButton/>
-          </Link>
-        </AbsoluteWrapper>
-        <ProfilePicture src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
-        <DisplayName>{user.displayName}</DisplayName>
-        <Email>{user.email}</Email>
-        <Subheader>Industry Category</Subheader>
-        <Categories>{user.category.join(" ")}</Categories>
-        <Bio>{user.bio}</Bio>
-      </ProfileWrapper>
-    </>
-  )
+  if (user.email) {
+    return (
+      <>
+        <ProfileWrapper media={media ? media.toString() : null}>
+          <AbsoluteWrapper>
+            <Link to="/profile/edit">
+              <EditButton />
+            </Link>
+          </AbsoluteWrapper>
+          <ProfilePicture
+            src={user.photos}
+            alt="profile-pic"
+            media={media ? media.toString() : null}
+          />
+          <DisplayName>{user.displayName}</DisplayName>
+          <Email>{user.email}</Email>
+          <Subheader>Industry Category</Subheader>
+          <Categories>{user.category.join(' ')}</Categories>
+          <Bio>{user.bio}</Bio>
+        </ProfileWrapper>
+      </>
+    )
+  } else {
+    return <Redirect to="/" />
+  }
 }
 
 export default EmployeeProfile

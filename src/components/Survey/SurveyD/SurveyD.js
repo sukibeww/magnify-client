@@ -9,7 +9,7 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
-import SurveySlider from '../../SurveySlider/SurveySlider.js'
+import SurveySlider from '../SurveySlider/SurveySlider'
 
 const survey = require('../Survey.json')
 
@@ -136,33 +136,33 @@ const SurveyD = props => {
             />
           </RadioGroup>
         </FormControl>
-        {selectedValue ? (
-          count === totalQuestion ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.formControl}
-              onClick={() => {
-                setSection('END')
-              }}
-              disabled={selectedValue ? false : true}
-            >
-              See Result
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.formControl}
-              onClick={next}
-              disabled={selectedValue ? false : true}
-            >
-              Next Question
-            </Button>
-          )
-        ) : null}
+        {count === totalQuestion ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              saveResult(selectedValue, count)
+              dispatch(1)
+              setSection('END')
+            }}
+            disabled={selectedValue ? false : true}
+          >
+            See Result
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.formControl}
+            onClick={next}
+            disabled={selectedValue ? false : true}
+          >
+            Next Question
+          </Button>
+        )}
         {count === 1 ? (
           <Button
             variant="contained"
@@ -170,7 +170,7 @@ const SurveyD = props => {
             size="large"
             className={classes.formControl}
             onClick={() => {
-              dispatch(4)
+              dispatch(5)
               setSection('C')
             }}
           >

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect, useReducer } from 'react'
+import { Redirect } from 'react-router-dom'
 import SaveIcon from '@material-ui/icons/Save'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import CloseIcon from '@material-ui/icons/Close'
@@ -11,7 +12,9 @@ import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
 import { EmployeeContext } from '../../context/employeeContext'
-import SurveyStepper from '../SurveyStepper/SurveyStepper'
+import SurveyStepper from './SurveyStepper/SurveyStepper'
+import { Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 const FabWrapper = styled.div`
   display: flex;
@@ -55,7 +58,7 @@ const SurveyList = () => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const employeeContext = useContext(EmployeeContext)
-  const { user, saveSurvey } = employeeContext
+  const { user, saveSurvey, submitSurvey } = employeeContext
   const [resultA, setResultA] = useState([])
   const [resultB, setResultB] = useState([])
   const [resultC, setResultC] = useState([])
@@ -85,6 +88,14 @@ const SurveyList = () => {
       return
     }
     setOpen(false)
+  }
+  const submit = () => {
+    submitSurvey({
+      surveyA: resultA,
+      surveyB: resultB,
+      surveyC: resultC,
+      surveyD: resultD
+    })
   }
 
   const saving = () => {
@@ -141,37 +152,51 @@ const SurveyList = () => {
             dispatch={dispatch}
           />
         )
+      case 'END':
+        submit()
+        setSection('DONE')
+        return <Redirect to="/result" />
+      case 'DONE':
+        return (
+          <>
+            <h1>You have done the survey</h1>
+            <Link to="/result">
+              <Button color="inherit">See Result</Button>
+            </Link>
+          </>
+        )
+      //fetch to see  the date of result and show information when they can redo the survey
       default:
-        return null
+        return <Redirect to="/" />
     }
   }
-  return (
-    <>
-      {user.email ? currestSection() : null}
-      {user.email ? (
-        <>
-          <FabWrapper>
-            <SurveyStepper
-              section={section}
-              dispatch={dispatch}
-              setSection={setSection}
-              resultA={resultA}
-              resultB={resultB}
-              resultC={resultC}
-              resultD={resultD}
-            />
-            <Fab
-              aria-label="join-us"
-              color="secondary"
-              onClick={() => {
-                saving()
-              }}
-            >
-              <SaveIcon />
-            </Fab>
-          </FabWrapper>
-        </>
-      ) : null}
+  const progressBar = () => {
+    return (
+      <FabWrapper>
+        <SurveyStepper
+          section={section}
+          dispatch={dispatch}
+          setSection={setSection}
+          resultA={resultA}
+          resultB={resultB}
+          resultC={resultC}
+          resultD={resultD}
+        />
+        <Fab
+          aria-label="join-us"
+          color="secondary"
+          onClick={() => {
+            saving()
+          }}
+        >
+          <SaveIcon />
+        </Fab>
+      </FabWrapper>
+    )
+  }
+
+  const snackBar = () => {
+    return (
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
@@ -201,6 +226,20 @@ const SurveyList = () => {
           className={classes.success}
         />
       </Snackbar>
+    )
+  }
+
+  return (
+    <>
+      {user.email ? (
+        <>
+          {currestSection()}
+          {section !== 'DONE' ? progressBar() : null}
+          {section !== 'DONE' ? snackBar() : null}
+        </>
+      ) : (
+        <Redirect to="/login" />
+      )}
     </>
   )
 }

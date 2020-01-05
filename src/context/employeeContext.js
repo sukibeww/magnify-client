@@ -1,10 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 import {
   linkedin_login,
   linkedin_logout,
   getProfile,
   saveSurvey,
+  submitSurvey,
   isRegistered,
   updateEmployee
 } from './employeeContext_helper'
@@ -33,9 +34,9 @@ const EmployeeContextProvider = props => {
     setUser(defaultUser)
   }
 
-  const handleUpdate = (editedEmployee) => {
-    setUser(()=> editedEmployee)
-    updateEmployee({editedEmployee : user})
+  const handleUpdate = editedEmployee => {
+    setUser(() => editedEmployee)
+    updateEmployee({ editedEmployee: user })
   }
 
   useEffect(() => {
@@ -51,8 +52,8 @@ const EmployeeContextProvider = props => {
       setRedirectToRegistration(() => {
         return isRegistered(user)
       })
-      if(user.email){
-        redirectToRegistration ? history.push('/') :  history.push('/register')
+      if (user.email) {
+        redirectToRegistration ? history.push('/') : history.push('/register')
       }
     }
     redirectAfterLogin()
@@ -60,7 +61,14 @@ const EmployeeContextProvider = props => {
 
   return (
     <EmployeeContext.Provider
-      value={{ user, handleLogin, handleLogout, saveSurvey , handleUpdate}}
+      value={{
+        user,
+        handleLogin,
+        handleLogout,
+        saveSurvey,
+        submitSurvey,
+        handleUpdate
+      }}
     >
       {props.children}
     </EmployeeContext.Provider>

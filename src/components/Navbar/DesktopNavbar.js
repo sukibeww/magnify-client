@@ -17,13 +17,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     color: 'white',
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   navWrapper: {
     display: 'flex',
@@ -57,18 +57,17 @@ const DesktopNavbar = () => {
             </Typography>
           </Link>
           {!user.email && (
-          <div className={classes.navWrapper}>
-            <Link 
-            to="/login" 
-            style={{
-              textDecoration: 'none',
-              color: 'white'
-            }}>
-              <Button color="inherit">
-                Login
-              </Button>
-            </Link>
-          </div>
+            <div className={classes.navWrapper}>
+              <Link
+                to="/login"
+                style={{
+                  textDecoration: 'none',
+                  color: 'white'
+                }}
+              >
+                <Button color="inherit">Login</Button>
+              </Link>
+            </div>
           )}
           {user.email && (
             <div className={classes.navWrapper}>
@@ -77,14 +76,34 @@ const DesktopNavbar = () => {
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Survey</Button>
+                <Link
+                  to="/survey"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Survey</Button>
+                </Link>
               </Badge>
               <Badge
                 variant="dot"
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Result</Button>
+                <Link
+                  to="/result"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Result</Button>
+                </Link>
               </Badge>
               <Badge
                 variant="dot"
@@ -108,14 +127,15 @@ const DesktopNavbar = () => {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <Link to="/profile" style={{color: "white"}}>
+              <Link to="/profile" style={{ color: 'white' }}>
                 <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit">
-                <AccountCircle />
-              </IconButton>
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
               </Link>
               <Button onClick={handleLogout} color="inherit">
                 Log out
