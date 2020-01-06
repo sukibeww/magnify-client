@@ -19,7 +19,8 @@ const RegisterationBackground = styled.div`
 
 const RegistrationFormWrapper = styled.div`
   background-color: #DDE6F4;
-  width: 40vw;
+  min-width:  ${(props)=> props.media ? "40vw" : "min-content"};
+  padding: 0 5vw;
   max-height: max-content;
   border-radius: 30px;
   margin-top: 10vh;
@@ -59,7 +60,7 @@ const RegistrationPage = (props) => {
   return (
     <>
       <RegisterationBackground>
-        <RegistrationFormWrapper>
+        <RegistrationFormWrapper media={media ? media.toString() : null}>
           <RegisterHeader>Register</RegisterHeader>
           <CategorySelect handleChange={setCategory}/>
           <BioTextbox handleChange={setBiography}/>

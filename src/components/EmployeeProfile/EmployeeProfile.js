@@ -9,12 +9,13 @@ import EditButton from '../Button/EditButton'
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: ${props => (props.media ? '10vh 25vw' : '5vh 5vw')};
   border: solid 3px #283593;
   border-radius: 10px;
   padding: 5vh 5vw;
+  min-height: 70vh;
 `
 
 const ProfilePicture = styled.img`
@@ -22,6 +23,7 @@ const ProfilePicture = styled.img`
   width: ${props => (props.media ? '30vh' : '20vh')};
   height: ${props => (props.media ? '30vh' : '20vh')};
   color: #283593;
+  border: solid 10px #28359380;
 `
 
 const DisplayName = styled.h1`
