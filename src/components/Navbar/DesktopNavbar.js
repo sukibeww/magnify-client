@@ -110,14 +110,35 @@ const DesktopNavbar = () => {
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Interview</Button>
+                <Link
+                  to="/interview"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Interview</Button>
+                </Link>
               </Badge>
               <Badge
                 variant="dot"
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Vacancy</Button>
+                <Link
+                  to="/vacancies"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Vacancy</Button>
+                </Link>
+                
               </Badge>
               <IconButton
                 aria-label="show 17 new notifications"
