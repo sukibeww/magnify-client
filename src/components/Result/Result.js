@@ -4,7 +4,6 @@ import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 import Guage from './Guage'
-import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 import {
@@ -14,6 +13,7 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis
 } from 'recharts'
+import SurveyButton from '../Button/SurveyButton'
 
 const data = [
   {
@@ -42,6 +42,7 @@ const StyledHeader = styled.h1`
   color: #283593;
   font-size: 2em;
   line-height: 0;
+  margin: 3vw;
 `
 
 const Wrapper = styled.div`
@@ -53,8 +54,18 @@ const Wrapper = styled.div`
   margin: 20px auto;
   border: solid 3px #283593;
   border-radius: 10px;
-  padding: 5vh 0;
+  padding: 5vh 5vh;
 `
+
+const FallbackWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 80vh
+`
+
 const RadarWrapper = styled.div`
   position: relative;
   display: flex;
@@ -153,18 +164,22 @@ const Result = () => {
     } else {
       return (
         <>
-          <StyledHeader>You haven't done the survey</StyledHeader>
-          <Link
-            to="/survey"
-            style={{
-              textDecoration: 'none',
-              color: 'white',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Button color="inherit">Do The Survey</Button>
-          </Link>
+          <FallbackWrapper>
+            <Wrapper>
+              <StyledHeader>You haven't done the survey</StyledHeader>
+              <Link
+                to="/survey"
+                style={{
+                  textDecoration: 'none',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
+                <SurveyButton></SurveyButton>
+              </Link>
+            </Wrapper>
+          </FallbackWrapper>
         </>
       )
     }
