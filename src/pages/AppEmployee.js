@@ -7,9 +7,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from '../components/Landing/Landing'
 import Result from '../components/Result/Result'
 import EmployeeProfile from '../components/EmployeeProfile/EmployeeProfile'
-import LoginPage from './LoginPage'
+import LoginPage from '../components/Login/LoginPage'
 import { MediaContext } from '../context/mediaContext'
-import RegistrationPage from './RegistrationPage'
+import RegistrationPage from '../components/Register/RegistrationPage'
 import EmployeeProfileEdit from '../components/EmployeeProfile/EmployeeProfileEdit'
 
 function AppEmployee(props) {

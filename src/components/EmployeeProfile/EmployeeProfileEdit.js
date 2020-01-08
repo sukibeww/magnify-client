@@ -25,6 +25,7 @@ const ProfilePicture = styled.img`
   width: ${(props) => props.media ? "30vh" : "20vh"};
   height: ${(props) => props.media ? "30vh" : "20vh"};
   color: #283593;
+  border: solid 10px #28359380;
 `
 
 const DisplayName = styled.h1`
@@ -84,7 +85,7 @@ const EmployeeProfileEdit = () => {
         <DisplayName>{user.displayName}</DisplayName>
         <Email>{user.email}</Email>
         <CategorySelect current={user.category} handleChange={setCategory}></CategorySelect>
-        <BioTextbox current={user.bio} handleChange={setBiography}></BioTextbox>
+        <BioTextbox media={media ? media.toString() : null} current={user.bio} handleChange={setBiography}></BioTextbox>
         <SaveButton handleClick={handleClick}/>
       </ProfileWrapper>
     </>
