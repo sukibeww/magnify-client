@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react'
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   Button,
@@ -77,16 +77,18 @@ const VacanciesList = () => {
           <StyledWrapper>
             <CompanyInfo />
           </StyledWrapper>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            // className={classes.formControl}
-            // onClick={next}
-            href="/vacancyForm"
-          >
-            Add New Vacancy +
-          </Button>
+          <Link to="/vacancies/add">
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              // className={classes.formControl}
+              // onClick={next}
+              href="/vacancies/add"
+            >
+              Add New Vacancy +
+            </Button>
+          </Link>
           <AccordionVacancies />
         </HeaderWrapper>
       </StyledWrapper>

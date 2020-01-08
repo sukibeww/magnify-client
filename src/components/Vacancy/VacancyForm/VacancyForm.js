@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react'
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   Button,
@@ -103,9 +103,12 @@ const VacancyForm = () => {
         >
           Save
         </Button>
-        <Button variant="outlined" color="secondary">
-          Back
-        </Button>
+        <Link to="/vacancies">
+          <Button variant="outlined" color="secondary">
+            Back
+          </Button>
+        </Link>
+        
       </StyledWrapper>
     </>
   )

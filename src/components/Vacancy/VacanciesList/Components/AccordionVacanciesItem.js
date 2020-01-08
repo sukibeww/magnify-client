@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
+import { Link } from 'react-router-dom'
 
 const AccordionWrapper = styled.div`
   border-style: ridge;
@@ -90,14 +91,15 @@ const AccordionVacanciesItem = props => {
         >
           Aplicants {count}
         </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          href="/vacancyInfo"
-        >
-          Details
-        </Button>
+        <Link to="/vacancies/info">
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Details
+          </Button>
+        </Link>
       </AccordionParagraph>
     </AccordionWrapper>
   )

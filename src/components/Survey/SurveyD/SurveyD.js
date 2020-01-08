@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -9,6 +9,7 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
+import SurveySlider from '../SurveySlider/SurveySlider'
 
 const survey = require('../Survey.json')
 
@@ -70,21 +71,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const count_reducer = (state, action) => {
-  switch (action) {
-    case 'increment':
-      return state + 1
-    case 'decrement':
-      return state - 1
-    default:
-      throw new Error('Unexpected action')
-  }
-}
-
 const SurveyD = props => {
   const classes = useStyles()
-  const { setSection, result, setResult } = props
-  const [count, dispatch] = useReducer(count_reducer, 1)
+  const { setSection, result, setResult, count, dispatch } = props
   const defaultSelect = ''
   const [selectedValue, setSelectedValue] = useState(defaultSelect)
   const totalQuestion = survey[0]['D']['questions'].length
@@ -94,15 +83,18 @@ const SurveyD = props => {
     setSelectedValue(result[count - 1] || defaultSelect)
   }, [result, count])
 
-  const saveResult = async select => {
+  const saveResult = async (select, count) => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
-    setSelectedValue(select || defaultSelect)
+    setSelectedValue(select)
   }
 
   const next = () => {
-    if (count < totalQuestion) dispatch('increment')
+    if (count < totalQuestion) {
+      saveResult(selectedValue, count)
+      dispatch('increment')
+    }
   }
   const back = () => {
     if (count > 1) dispatch('decrement')
@@ -124,7 +116,7 @@ const SurveyD = props => {
             aria-label="position"
             name="position"
             value={selectedValue}
-            onChange={e => saveResult(e.target.value)}
+            onChange={e => saveResult(e.target.value, count)}
             column="true"
           >
             <FormControlLabel
@@ -144,36 +136,56 @@ const SurveyD = props => {
             />
           </RadioGroup>
         </FormControl>
-        {selectedValue ? (
-          count === totalQuestion ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.formControl}
-              onClick={() => {
-                setSection('END')
-              }}
-            >
-              See Result
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.formControl}
-              onClick={next}
-            >
-              Next Question
-            </Button>
-          )
-        ) : null}
-        {count === 1 ? null : (
+        {count === totalQuestion ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              saveResult(selectedValue, count)
+              dispatch(1)
+              setSection('END')
+            }}
+            disabled={selectedValue ? false : true}
+          >
+            See Result
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.formControl}
+            onClick={next}
+            disabled={selectedValue ? false : true}
+          >
+            Next Question
+          </Button>
+        )}
+        {count === 1 ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              dispatch(5)
+              setSection('C')
+            }}
+          >
+            Back to Section C
+          </Button>
+        ) : (
           <Button variant="outlined" color="secondary" onClick={back}>
             Back
           </Button>
         )}
+        <SurveySlider
+          currentQuestion={count}
+          sectionLength={result.length}
+          dispatch={dispatch}
+        />
         <StyledIndex>{count}/4</StyledIndex>
       </StyledWrapper>
     </>

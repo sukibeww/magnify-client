@@ -15,16 +15,20 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
     color: 'white',
-    textDecoration: 'none',
-    cursor: 'pointer'
+    textDecoration: 'none'
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
     flexGrow: 1
+  },
+  navWrapper: {
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'flex-end'
   },
   navButton: {
     marginRight: theme.spacing(8)
@@ -33,21 +37,19 @@ const useStyles = makeStyles(theme => ({
 
 const DesktopNavbar = () => {
   const employeeContext = useContext(EmployeeContext)
-  const { user, handleLogin, handleLogout } = employeeContext
-
+  const { user, handleLogout } = employeeContext
   const classes = useStyles()
   useTheme()
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Link
             to="/"
             style={{
               textDecoration: 'none',
-              color: 'white',
-              flexGrow: 1
+              color: 'white'
             }}
           >
             <Typography variant="h6" className={classes.title}>
@@ -55,39 +57,88 @@ const DesktopNavbar = () => {
             </Typography>
           </Link>
           {!user.email && (
-            <Button onClick={handleLogin} color="inherit">
-              Login
-            </Button>
+            <div className={classes.navWrapper}>
+              <Link
+                to="/login"
+                style={{
+                  textDecoration: 'none',
+                  color: 'white'
+                }}
+              >
+                <Button color="inherit">Login</Button>
+              </Link>
+            </div>
           )}
           {user.email && (
-            <div>
+            <div className={classes.navWrapper}>
               <Badge
                 variant="dot"
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Survey</Button>
+                <Link
+                  to="/survey"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Survey</Button>
+                </Link>
               </Badge>
               <Badge
                 variant="dot"
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Result</Button>
+                <Link
+                  to="/result"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Result</Button>
+                </Link>
               </Badge>
               <Badge
                 variant="dot"
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Interview</Button>
+                <Link
+                  to="/interview"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Interview</Button>
+                </Link>
               </Badge>
               <Badge
                 variant="dot"
                 color="secondary"
                 className={classes.navButton}
               >
-                <Button color="inherit">Vacancy</Button>
+                <Link
+                  to="/vacancies"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Button color="inherit">Vacancy</Button>
+                </Link>
+                
               </Badge>
               <IconButton
                 aria-label="show 17 new notifications"
@@ -97,14 +148,16 @@ const DesktopNavbar = () => {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <Link to="/profile" style={{ color: 'white' }}>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Link>
               <Button onClick={handleLogout} color="inherit">
                 Log out
               </Button>

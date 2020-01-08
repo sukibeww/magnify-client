@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useReducer } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -8,6 +8,7 @@ import {
   MenuItem,
   InputLabel
 } from '@material-ui/core'
+import SurveySlider from '../SurveySlider/SurveySlider'
 
 const survey = require('../Survey.json')
 
@@ -100,15 +101,23 @@ const SelectOptions = props => {
   }, [index, result, count])
 
   useEffect(() => {
-    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+    if (result[count - 1].length > 3) {
+      result[count - 1].includes(undefined, null)
+        ? setShowNext(false)
+        : setShowNext(true)
+    } else setShowNext(false)
   }, [result, count, setShowNext])
 
   const saveResult = async select => {
     const temp_result = result
     temp_result[count - 1][index] = select
     setResult(temp_result)
-    setSelectedOption(select || defaultOption)
-    result[count - 1].length > 3 ? setShowNext(true) : setShowNext(false)
+    setSelectedOption(select)
+    if (result[count - 1].length > 3) {
+      result[count - 1].includes(undefined, null)
+        ? setShowNext(false)
+        : setShowNext(true)
+    } else setShowNext(false)
   }
   return (
     <>
@@ -134,28 +143,18 @@ const SelectOptions = props => {
   )
 }
 
-const count_reducer = (state, action) => {
-  switch (action) {
-    case 'increment':
-      return state + 1
-    case 'decrement':
-      return state - 1
-    default:
-      throw new Error('Unexpected action')
-  }
-}
-
 const SurveyC = props => {
   const classes = useStyles()
-  const { setSection, result, setResult } = props
+  const { setSection, result, setResult, count, dispatch } = props
   const [showNext, setShowNext] = useState(false)
-  const [count, dispatch] = useReducer(count_reducer, 1)
   if (!result[count - 1]) result[count - 1] = []
   const totalQuestion = survey[0]['C']['questions'].length
   let currentQuestion = survey[0]['C']['questions'][count - 1]
 
   const next = () => {
-    if (count < totalQuestion) dispatch('increment')
+    if (count < totalQuestion) {
+      dispatch('increment')
+    }
   }
   const back = () => {
     if (count > 1) dispatch('decrement')
@@ -190,36 +189,55 @@ const SurveyC = props => {
         <StyledQuestion>{currentQuestion['question']}</StyledQuestion>
         {g_OptionWrapper()}
 
-        {showNext ? (
-          count === totalQuestion ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.formControl}
-              onClick={() => {
-                setSection('D')
-              }}
-            >
-              Next Section
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.formControl}
-              onClick={next}
-            >
-              Next Question
-            </Button>
-          )
-        ) : null}
-        {count === 1 ? null : (
+        {count === totalQuestion ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              dispatch(1)
+              setSection('D')
+            }}
+            disabled={showNext ? false : true}
+          >
+            Next Section
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.formControl}
+            onClick={next}
+            disabled={showNext ? false : true}
+          >
+            Next Question
+          </Button>
+        )}
+        {count === 1 ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.formControl}
+            onClick={() => {
+              dispatch(32)
+              setSection('B')
+            }}
+          >
+            Back to Section B
+          </Button>
+        ) : (
           <Button variant="outlined" color="secondary" onClick={back}>
             Back
           </Button>
         )}
+        <SurveySlider
+          currentQuestion={count}
+          sectionLength={result.length}
+          dispatch={dispatch}
+        />
         <StyledIndex>{count}/5</StyledIndex>
       </StyledWrapper>
     </>
