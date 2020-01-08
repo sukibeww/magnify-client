@@ -2,6 +2,20 @@ import { color } from 'd3-color'
 import { interpolateRgb } from 'd3-interpolate'
 import React, { Component } from 'react'
 import LiquidFillGauge from 'react-liquid-gauge'
+import styled from 'styled-components'
+
+const StyledSubheader = styled.h2`
+  color: #ffa726;
+  font-size: 1.5em;
+  line-height: 0;
+  opacity: 0.5;
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 class Gauge extends Component {
   startColor = '#f27474'
@@ -37,8 +51,8 @@ class Gauge extends Component {
     ]
 
     return (
-      <div>
-        <h3>Overall Percentage</h3>
+      <Wrapper>
+        <StyledSubheader>Overall Percentage</StyledSubheader>
         <LiquidFillGauge
           style={{ margin: '0 auto' }}
           width={radius * 1.9}
@@ -47,7 +61,7 @@ class Gauge extends Component {
           percent="%"
           textSize={1}
           textOffsetX={0}
-          textOffsetY={0}
+          textOffsetY={20}
           textRenderer={props => {
             const value = Math.round(props.value)
             const radius = Math.min(props.height / 2, props.width / 2)
@@ -91,7 +105,7 @@ class Gauge extends Component {
             fontFamily: 'Arial'
           }}
         />
-      </div>
+      </Wrapper>
     )
   }
 }

@@ -1,10 +1,11 @@
 import React, { useContext , useState } from 'react'
-import { MediaContext }  from '../context/mediaContext'
+import { MediaContext }  from '../../context/mediaContext'
 import styled from 'styled-components'
-import CategorySelect from '../components/CategorySelect/CategorySelect'
-import SaveButton from '../components/Button/SaveButton'
-import BioTextbox from '../components/TextBoxes/BioTextbox'
-import { EmployeeContext } from '../context/employeeContext'
+import CategorySelect from '../CategorySelect/CategorySelect'
+import SaveButton from '../Button/SaveButton'
+import BioTextbox from '../TextBoxes/BioTextbox'
+import { EmployeeContext } from '../../context/employeeContext'
+import { useHistory } from "react-router-dom";
 
 const RegisterationBackground = styled.div`
   height: 100vh;
@@ -18,7 +19,8 @@ const RegisterationBackground = styled.div`
 
 const RegistrationFormWrapper = styled.div`
   background-color: #DDE6F4;
-  width: 40vw;
+  min-width:  ${(props)=> props.media ? "40vw" : "min-content"};
+  padding: 0 5vw;
   max-height: max-content;
   border-radius: 30px;
   margin-top: 10vh;
@@ -45,18 +47,20 @@ const RegistrationPage = (props) => {
   const [biography, setBiography] = useState('')
   const { media } = mediaContext;
   const { user, handleUpdate } = employeeContext
+  let history = useHistory()
   const handleClick = () => {
     const editedUser = user
     if(category.length > 0){
       editedUser.category = category
       editedUser.bio = biography
       handleUpdate(editedUser)
+      history.push('/profile')
     }
   }
   return (
     <>
       <RegisterationBackground>
-        <RegistrationFormWrapper>
+        <RegistrationFormWrapper media={media ? media.toString() : null}>
           <RegisterHeader>Register</RegisterHeader>
           <CategorySelect handleChange={setCategory}/>
           <BioTextbox handleChange={setBiography}/>

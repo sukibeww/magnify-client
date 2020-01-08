@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+<<<<<<< HEAD
 import AccordionLanding from './AccordionLanding/AccodionLanding.js'
+=======
+import AccordionLanding from './AccordionLanding/AccodionLanding'
+>>>>>>> c83e767c2ad7d28bd54a52c544899887ecf086d9
 import { MediaContext } from '../../context/mediaContext'
 
 const LandingWrapper = styled.div`

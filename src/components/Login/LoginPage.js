@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { MediaContext } from '../context/mediaContext'
+import { MediaContext } from '../../context/mediaContext'
 
-import LoginButton from '../components/Button/LoginButton'
+import LoginButton from '../Button/LoginButton'
 import styled from 'styled-components'
 
-import { EmployeeContext } from '../context/employeeContext'
+import { EmployeeContext } from '../../context/employeeContext'
 import { Redirect } from 'react-router-dom'
 
 const LoginBackground = styled.div`
