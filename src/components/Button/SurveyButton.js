@@ -16,7 +16,6 @@ const SurveyButton = () => {
       }
     }
   }))
-  const classes = useStyles()
   return(
     <Link to="/survey">
       <Fab aria-label="join-us" variant="extended" color="secondary">

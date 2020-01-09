@@ -2,10 +2,13 @@ import React, { useState, useContext} from 'react'
 import { Button} from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { EmployeeContext } from '../../context/employeeContext'
+import { EmployerContext } from '../../context/employerContext'
 
 const LoginButton = props => {
   const employeeContext = useContext(EmployeeContext)
-  const { handleLogin } = employeeContext
+  const employerContext = useContext(EmployerContext)
+  const { employeeLogin } = employeeContext
+  const { employerLogin } = employerContext
   const [fill, setFill] = useState('#40abde')
   const useStyles = makeStyles(theme => ({
     button: {
@@ -20,10 +23,20 @@ const LoginButton = props => {
       color: fill
     }
   }))
+  const login = () => {
+    if(props.userType === "Employee"){
+      console.log("Employee Login")
+      employeeLogin()
+    }
+    else{
+      console.log("Employer Login")
+      employerLogin()
+    }
+  } 
   const classes = useStyles()
   return (
     <Button
-      onClick={handleLogin}
+      onClick={login}
       onMouseOver={() => setFill('white')}
       onMouseOut={() => setFill('#40abde')}
       variant="contained"

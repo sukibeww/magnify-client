@@ -1,6 +1,6 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import AppEmployee from './pages/AppEmployee.js'
+import BaseApp from './pages/BaseApp'
 import MediaContextProvider from './context/mediaContext'
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <MediaContextProvider>
-        <AppEmployee />
+        <BaseApp />
       </MediaContextProvider>
     </ThemeProvider>
   )

@@ -4,45 +4,44 @@ import {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  saveSurvey,
-  submitSurvey,
   isRegistered,
-  updateEmployee
-} from './employeeContext_helper'
+  updateEmployer
+} from './employerContext_helper'
 
-export const EmployeeContext = createContext()
+export const EmployerContext = createContext()
 
-const EmployeeContextProvider = props => {
-  const defaultUser = {
+const EmployerContextProvider = props => {
+  const defaultEmployer = {
     email: undefined,
     displayName: '',
     photos: null,
-    category: [],
-    bio: undefined,
-    survey: {},
-    current: {}
+    linkedin_id: '',
+    companyName: '',
+    address: '',
+    creditCard: 0
   }
   let history = useHistory()
-  const [user, setUser] = useState(defaultUser)
+  const [employer, setEmployer] = useState(defaultEmployer)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
-  const employeeLogin = () => {
+  const employerLogin = () => {
     linkedin_login()
   }
 
   const handleLogout = () => {
     linkedin_logout()
-    setUser(defaultUser)
+    setEmployer(defaultEmployer)
   }
 
   const handleUpdate = editedEmployee => {
-    setUser(() => editedEmployee)
-    updateEmployee({ editedEmployee: user })
+    setEmployer(() => editedEmployee)
+    updateEmployer({ editedEmployee: employer })
   }
+
 
   useEffect(() => {
     async function fetchData() {
       const user = await getProfile()
-      if (user) setUser(user)
+      if (user) setEmployer(user)
     }
     fetchData()
   }, [])
@@ -50,30 +49,28 @@ const EmployeeContextProvider = props => {
   useEffect(() => {
     const redirectAfterLogin = () => {
       setRedirectToRegistration(() => {
-        return isRegistered(user)
+        return isRegistered(employer)
       })
-      if (user.email) {
-        console.log("fired")
+      if (employer.companyName) {
         redirectToRegistration ? history.push('/') : history.push('/register')
       }
     }
     redirectAfterLogin()
-  }, [user, redirectToRegistration, history])
+  }, [employer, redirectToRegistration, history])
 
+  
   return (
-    <EmployeeContext.Provider
+    <EmployerContext.Provider
       value={{
-        user,
-        employeeLogin,
+        employer,
+        employerLogin,
         handleLogout,
-        saveSurvey,
-        submitSurvey,
         handleUpdate
       }}
     >
       {props.children}
-    </EmployeeContext.Provider>
+    </EmployerContext.Provider>
   )
 }
 
-export default EmployeeContextProvider
+export default EmployerContextProvider

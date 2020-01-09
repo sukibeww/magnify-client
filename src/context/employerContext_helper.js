@@ -1,5 +1,5 @@
 const linkedin_login = () => {
-  window.open('http://localhost:3000/auth/linkedin/login/employee', '_self')
+  window.open('http://localhost:3000/auth/linkedin/login/employer', '_self')
 }
 
 const linkedin_logout = async () => {
@@ -28,39 +28,13 @@ const getProfile = async () => {
 }
 
 const isRegistered = user => {
-  if (user.category.length === 0) {
+  if (user.companyName) {
     return false
   }
   return true
 }
 
-const saveSurvey = async survey => {
-  const resp = await fetch('http://localhost:3000/employee/survey', {
-    method: 'POST',
-    body: JSON.stringify(survey),
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': true
-    }
-  })
-  return resp
-}
-
-const submitSurvey = async survey => {
-  const resp = await fetch('http://localhost:3000/employee/result', {
-    method: 'POST',
-    body: JSON.stringify(survey),
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': true
-    }
-  })
-  return resp
-}
-
-const updateEmployee = async editedEmployee => {
+const updateEmployer = async editedEmployee => {
   const resp = fetch('http://localhost:3000/employee/update', {
     method: 'PUT',
     body: JSON.stringify(editedEmployee),
@@ -77,8 +51,6 @@ module.exports = {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  saveSurvey,
-  submitSurvey,
   isRegistered,
-  updateEmployee
+  updateEmployer
 }
