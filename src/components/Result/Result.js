@@ -4,7 +4,6 @@ import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 import Guage from './Guage'
-import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 import {
@@ -14,6 +13,7 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis
 } from 'recharts'
+import SurveyButton from '../Button/SurveyButton'
 
 const data = [
   {
@@ -38,16 +38,34 @@ const data = [
   }
 ]
 
+const StyledHeader = styled.h1`
+  color: #283593;
+  font-size: 2em;
+  line-height: 0;
+  margin: 3vw;
+`
+
 const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: max-content;
   margin: 20px auto;
   border: solid 3px #283593;
   border-radius: 10px;
+  padding: 5vh 5vh;
 `
+
+const FallbackWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 80vh
+`
+
 const RadarWrapper = styled.div`
   position: relative;
   display: flex;
@@ -56,8 +74,7 @@ const RadarWrapper = styled.div`
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 99%;
-  overflow: scroll;
+  width: max-content;
 `
 
 const Result = () => {
@@ -117,7 +134,7 @@ const Result = () => {
       return (
         <>
           <Wrapper media={media}>
-            <h1>Profile Overview</h1>
+            <StyledHeader>Profile Overview</StyledHeader>
             <Guage totalScore={TotalScore}></Guage>
             <RadarWrapper>
               <RadarChart
@@ -125,7 +142,7 @@ const Result = () => {
                 cy="50%"
                 innerRadius="30%"
                 outerRadius="70%"
-                width={0.8 * width}
+                width={0.5 * width}
                 height={300 + 0.1 * width}
                 data={result.length > 0 ? result : data} //hack to prevent error and dispay dummy for now
               >
@@ -147,18 +164,22 @@ const Result = () => {
     } else {
       return (
         <>
-          <h1>You haven't done the survey</h1>
-          <Link
-            to="/survey"
-            style={{
-              textDecoration: 'none',
-              color: 'white',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Button color="inherit">Do The Survey</Button>
-          </Link>
+          <FallbackWrapper>
+            <Wrapper>
+              <StyledHeader>You haven't done the survey</StyledHeader>
+              <Link
+                to="/survey"
+                style={{
+                  textDecoration: 'none',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
+                <SurveyButton></SurveyButton>
+              </Link>
+            </Wrapper>
+          </FallbackWrapper>
         </>
       )
     }
