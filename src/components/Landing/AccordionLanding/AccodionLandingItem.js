@@ -1,16 +1,8 @@
 import React, { useState, useContext } from 'react'
-<<<<<<< HEAD
 import styled from 'styled-components'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import { MediaContext } from '../../../context/mediaContext'
-=======
-import styled from 'styled-components';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import { MediaContext } from '../../../context/mediaContext';
-
->>>>>>> c83e767c2ad7d28bd54a52c544899887ecf086d9
 
 const AccordionWrapper = styled.div`
   :hover {

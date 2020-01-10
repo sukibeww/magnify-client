@@ -231,6 +231,7 @@ const SurveyList = () => {
 
   return (
     <>
+      {console.log(user)}
       {user.email ? (
         <>
           {currestSection()}
@@ -238,7 +239,7 @@ const SurveyList = () => {
           {section !== 'DONE' ? snackBar() : null}
         </>
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
       )}
     </>
   )

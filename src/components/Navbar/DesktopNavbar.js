@@ -46,7 +46,7 @@ const DesktopNavbar = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Link
-            to="/"
+            to="/landing"
             style={{
               textDecoration: 'none',
               color: 'white'
@@ -56,19 +56,6 @@ const DesktopNavbar = () => {
               Magnify
             </Typography>
           </Link>
-          {!user.email && (
-            <div className={classes.navWrapper}>
-              <Link
-                to="/login"
-                style={{
-                  textDecoration: 'none',
-                  color: 'white'
-                }}
-              >
-                <Button color="inherit">Login</Button>
-              </Link>
-            </div>
-          )}
           {user.email && (
             <div className={classes.navWrapper}>
               <Badge
@@ -138,7 +125,6 @@ const DesktopNavbar = () => {
                 >
                   <Button color="inherit">Vacancy</Button>
                 </Link>
-                
               </Badge>
               <IconButton
                 aria-label="show 17 new notifications"

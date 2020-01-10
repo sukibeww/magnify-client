@@ -9,11 +9,8 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
-<<<<<<< HEAD
-import SurveySlider from '../SurveySlider/SurveySlider.js'
-=======
+
 import SurveySlider from '../SurveySlider/SurveySlider'
->>>>>>> c83e767c2ad7d28bd54a52c544899887ecf086d9
 
 const survey = require('../Survey.json')
 

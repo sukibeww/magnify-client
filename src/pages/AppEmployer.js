@@ -1,27 +1,26 @@
-import React from 'react'
-import DesktopNavbar from '../components/Navbar/DesktopNavbar'
-import DrawerNavbar from '../components/Navbar/DrawerNavbar'
-import EmployeeContextProvider from '../context/employeeContext'
+import React, { useContext } from 'react'
+import { MediaContext } from '../context/mediaContext'
+import EmployerContextProvider from '../context/employerContext'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import VacanciesList from '../components/Vacancy/VacanciesList/VacanciesList'
-import VacancyInfo from '../components/Vacancy/VacancyInfo/VacancyInfo'
-import VacancyForm from '../components/Vacancy/VacancyForm/VacancyForm'
+import Landing from '../components/Employer/landing.js'
 
-function AppEmployee(props) {
-  const large = props.large
+function AppEmployer(props) {
+  const mediaContext = useContext(MediaContext)
+  const { media } = mediaContext
   return (
-    <EmployeeContextProvider>
-      <Router>
-        {/* {large && <DesktopNavbar />}
-        {!large && <DrawerNavbar />} */}
-        <Switch>
-          <Route exact path="/vacancies" component={VacanciesList}></Route>
-          <Route exact path="/vacancyInfo" component={VacancyInfo}></Route>
-          <Route exact path="/vacancyForm" component={VacancyForm}></Route>
-        </Switch>
-      </Router>
-    </EmployeeContextProvider>
+    <Router>
+      {props.user ? (
+        <EmployerContextProvider
+          user={props.user}
+          setGlobalUser={props.setGlobalUser}
+        >
+          <Switch>
+            <Route path="/landing" component={Landing}></Route>
+          </Switch>
+        </EmployerContextProvider>
+      ) : null}
+    </Router>
   )
 }
 
-export default AppEmployee
+export default AppEmployer

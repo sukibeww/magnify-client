@@ -64,7 +64,7 @@ const FallbackWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 100vw;
-  min-height: 80vh
+  min-height: 80vh;
 `
 
 const RadarWrapper = styled.div`
@@ -135,13 +135,8 @@ const Result = () => {
       return (
         <>
           <Wrapper media={media}>
-<<<<<<< HEAD
-            <h1>Profile Overview</h1>
-            <Gauge totalScore={TotalScore}></Gauge>
-=======
             <StyledHeader>Profile Overview</StyledHeader>
-            <Guage totalScore={TotalScore}></Guage>
->>>>>>> c83e767c2ad7d28bd54a52c544899887ecf086d9
+            <Gauge totalScore={TotalScore}></Gauge>
             <RadarWrapper>
               <RadarChart
                 cx="50%"
