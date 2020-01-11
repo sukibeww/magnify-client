@@ -18,12 +18,14 @@ const EmployerContextProvider = props => {
     linkedin_id: '',
     companyName: '',
     address: '',
-    creditCard: 0
+    creditCard: 0,
+    type: 'Employer'
   }
   let history = useHistory()
   const [employer, setEmployer] = useState(defaultEmployer)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
   const employerLogin = () => {
+    console.log("Employer Login")
     linkedin_login()
   }
 
@@ -40,8 +42,9 @@ const EmployerContextProvider = props => {
 
   useEffect(() => {
     async function fetchData() {
-      const user = await getProfile()
-      if (user) setEmployer(user)
+      const employer = await getProfile()
+      console.log("Hit Employer")
+      if (employer) setEmployer(employer)
     }
     fetchData()
   }, [])
@@ -52,6 +55,7 @@ const EmployerContextProvider = props => {
         return isRegistered(employer)
       })
       if (employer.companyName) {
+        
         redirectToRegistration ? history.push('/') : history.push('/register')
       }
     }

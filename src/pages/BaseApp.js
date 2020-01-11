@@ -23,7 +23,7 @@ const  BaseApp = (props) => {
         <EmployeeContextProvider>
           <EmployerContextProvider>
             {media ? <DesktopNavbar /> : <DrawerNavbar />}  
-            <Route exact path="/login" component={LoginPage}></Route>
+            <Route exact path="/login" render={() => <LoginPage setUserType={setUserType}/> } ></Route>
             <Route exact path="/" component={Landing}></Route>
             {(userType === "Employee") ? 
               <> 
@@ -39,10 +39,6 @@ const  BaseApp = (props) => {
               </>
               :
               <>
-                <h1>Employer</h1>
-                <Route exact path="/survey" component={SurveyList}></Route>
-                <Route exact path="/profile" component={EmployeeProfile}></Route>
-                <Route exact path="/result" component={Result}></Route>
                 <Route
                   exact
                   path="/profile/edit"

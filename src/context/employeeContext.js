@@ -42,6 +42,7 @@ const EmployeeContextProvider = props => {
   useEffect(() => {
     async function fetchData() {
       const user = await getProfile()
+      console.log("Hit Employee")
       if (user) setUser(user)
     }
     fetchData()
@@ -53,7 +54,6 @@ const EmployeeContextProvider = props => {
         return isRegistered(user)
       })
       if (user.email) {
-        console.log("fired")
         redirectToRegistration ? history.push('/') : history.push('/register')
       }
     }

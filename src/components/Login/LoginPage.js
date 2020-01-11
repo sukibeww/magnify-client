@@ -70,8 +70,8 @@ function LoginPage(props) {
               <LoginHeader>Login</LoginHeader>
               <LoginSubHeader>Hello, User</LoginSubHeader>
               <LoginSubHeader>Welcome to Magnify</LoginSubHeader>
-              <LoginButton userType={'Employee'}></LoginButton>
-              <LoginButton userType={'Employer'}></LoginButton>
+              <LoginButton userType={'Employee'} setUserType={props.setUserType}></LoginButton>
+              <LoginButton userType={'Employer'} setUserType={props.setUserType}></LoginButton>
             </LoginForm>
           </LoginFormWrapper>
         </LoginBackground>

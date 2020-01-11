@@ -11,6 +11,7 @@ import {
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { EmployeeContext } from '../../context/employeeContext'
+import { EmployerContext } from '../../context/employerContext'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
@@ -38,9 +39,11 @@ const useStyles = makeStyles(theme => ({
 const DesktopNavbar = () => {
   const employeeContext = useContext(EmployeeContext)
   const { user, handleLogout } = employeeContext
+  const employerContext = useContext(EmployerContext)
+  const { employer } = employerContext
   const classes = useStyles()
   useTheme()
-
+  // console.log(employer)
   return (
     <>
       <AppBar position="static" className={classes.root}>
