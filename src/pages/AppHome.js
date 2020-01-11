@@ -49,7 +49,6 @@ function Home() {
         {!user ? (
           <Switch>
             <Route
-              exact
               path="/"
               component={props => <LoginPage {...props} user={user} />}
             ></Route>

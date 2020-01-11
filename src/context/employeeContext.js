@@ -11,15 +11,15 @@ import {
 export const EmployeeContext = createContext()
 
 const EmployeeContextProvider = props => {
-  const defaultUser = {
-    email: undefined,
-    displayName: '',
-    photos: null,
-    category: [],
-    bio: undefined,
-    survey: {},
-    current: {}
-  }
+  // const defaultUser = {
+  //   email: undefined,
+  //   displayName: '',
+  //   photos: null,
+  //   category: [],
+  //   bio: undefined,
+  //   survey: {},
+  //   current: {}
+  // }
   let history = useHistory()
   const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
@@ -35,14 +35,14 @@ const EmployeeContextProvider = props => {
     updateEmployee({ editedEmployee: user })
   }
 
-  useEffect(() => {
-    // async function fetchData() {
-    //   const user = await getProfile()
-    //   if (user) setUser(user)
-    // }
-    // fetchData()
-    if (user) setUser(props.user)
-  }, [])
+  // useEffect(() => {
+  //   // async function fetchData() {
+  //   //   const user = await getProfile()
+  //   //   if (user) setUser(user)
+  //   // }
+  //   // fetchData()
+  //   if (user) setUser(props.user)
+  // }, [])
 
   useEffect(() => {
     if (user) {
