@@ -3,7 +3,8 @@ import { MediaContext } from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
-import Guage from './Guage'
+import Gauge from './Gauge'
+import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 import {
@@ -63,7 +64,7 @@ const FallbackWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 100vw;
-  min-height: 80vh
+  min-height: 80vh;
 `
 
 const RadarWrapper = styled.div`
@@ -135,7 +136,7 @@ const Result = () => {
         <>
           <Wrapper media={media}>
             <StyledHeader>Profile Overview</StyledHeader>
-            <Guage totalScore={TotalScore}></Guage>
+            <Gauge totalScore={TotalScore}></Gauge>
             <RadarWrapper>
               <RadarChart
                 cx="50%"

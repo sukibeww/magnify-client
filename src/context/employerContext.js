@@ -1,75 +1,48 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import {
-  linkedin_login,
-  linkedin_logout,
-  getProfile,
-  isRegistered,
-  updateEmployer
-} from './employerContext_helper'
+import { linkedin_logout } from './helper/employer'
 
 export const EmployerContext = createContext()
 
 const EmployerContextProvider = props => {
-  const defaultEmployer = {
+  const defaultUser = {
     email: undefined,
     displayName: '',
     photos: null,
-    linkedin_id: '',
-    companyName: '',
-    address: '',
-    creditCard: 0,
-    type: 'Employer'
+    category: [],
+    bio: undefined,
+    survey: {},
+    current: {}
   }
   let history = useHistory()
-  const [employer, setEmployer] = useState(defaultEmployer)
-  const [redirectToRegistration, setRedirectToRegistration] = useState(false)
-  const employerLogin = () => {
-    console.log("Employer Login")
-    linkedin_login()
-  }
+  const [user, setUser] = useState(props.user)
 
   const handleLogout = () => {
     linkedin_logout()
-    setEmployer(defaultEmployer)
+    props.setGlobalUser(false)
+    history.push('/')
   }
-
-  const handleUpdate = editedEmployee => {
-    setEmployer(() => editedEmployee)
-    updateEmployer({ editedEmployee: employer })
-  }
-
 
   useEffect(() => {
-    async function fetchData() {
-      const employer = await getProfile()
-      console.log("Hit Employer")
-      if (employer) setEmployer(employer)
-    }
-    fetchData()
+    // async function fetchData() {
+    //   const user = await getProfile()
+    //   if (user) setUser(user)
+    // }
+    // fetchData()
+    if (user) setUser(props.user)
   }, [])
 
   useEffect(() => {
-    const redirectAfterLogin = () => {
-      setRedirectToRegistration(() => {
-        return isRegistered(employer)
-      })
-      if (employer.companyName) {
-        
-        redirectToRegistration ? history.push('/') : history.push('/register')
-      }
+    if (user) {
+      history.push('/landing')
     }
-    redirectAfterLogin()
-  }, [employer, redirectToRegistration, history])
+  }, [user, history])
 
-  
   return (
     <EmployerContext.Provider
       value={{
-        employer,
-        employerLogin,
-        handleLogout,
-        handleUpdate
+        user,
+        handleLogout
       }}
     >
       {props.children}

@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
-  linkedin_login,
   linkedin_logout,
-  getProfile,
   saveSurvey,
   submitSurvey,
   isRegistered,
   updateEmployee
-} from './employeeContext_helper'
+} from './helper/employee'
 
 export const EmployeeContext = createContext()
 
@@ -23,15 +21,13 @@ const EmployeeContextProvider = props => {
     current: {}
   }
   let history = useHistory()
-  const [user, setUser] = useState(defaultUser)
+  const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
-  const employeeLogin = () => {
-    linkedin_login()
-  }
 
   const handleLogout = () => {
     linkedin_logout()
-    setUser(defaultUser)
+    props.setGlobalUser(false)
+    history.push('/')
   }
 
   const handleUpdate = editedEmployee => {
@@ -40,31 +36,34 @@ const EmployeeContextProvider = props => {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const user = await getProfile()
-      console.log("Hit Employee")
-      if (user) setUser(user)
-    }
-    fetchData()
+    // async function fetchData() {
+    //   const user = await getProfile()
+    //   if (user) setUser(user)
+    // }
+    // fetchData()
+    if (user) setUser(props.user)
   }, [])
 
   useEffect(() => {
-    const redirectAfterLogin = () => {
-      setRedirectToRegistration(() => {
-        return isRegistered(user)
-      })
-      if (user.email) {
-        redirectToRegistration ? history.push('/') : history.push('/register')
+    if (user) {
+      const redirectAfterLogin = () => {
+        setRedirectToRegistration(() => {
+          return isRegistered(user)
+        })
+        if (user.email) {
+          redirectToRegistration
+            ? history.push('/landing')
+            : history.push('/register')
+        }
       }
+      redirectAfterLogin()
     }
-    redirectAfterLogin()
   }, [user, redirectToRegistration, history])
 
   return (
     <EmployeeContext.Provider
       value={{
         user,
-        employeeLogin,
         handleLogout,
         saveSurvey,
         submitSurvey,

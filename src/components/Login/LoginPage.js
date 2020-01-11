@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { MediaContext } from '../../context/mediaContext'
 import LoginButton from '../Button/LoginButton'
 import styled from 'styled-components'
-import { EmployeeContext } from '../../context/employeeContext'
 import { Redirect } from 'react-router-dom'
 
 const LoginBackground = styled.div`
@@ -57,10 +56,9 @@ const LoginForm = styled.div`
 
 function LoginPage(props) {
   const mediaContext = useContext(MediaContext)
-  const employeeContext = useContext(EmployeeContext)
-  const { user } = employeeContext
+  const { user } = props.user
   const { media } = mediaContext
-  if (!user.email) {
+  if (!user) {
     return (
       <>
         <LoginBackground media={media ? media.toString() : null}>
@@ -78,7 +76,7 @@ function LoginPage(props) {
       </>
     )
   } else {
-    return <Redirect to="/" />
+    return <Redirect to="/landing" />
   }
 }
 

@@ -22,7 +22,7 @@ const BioTextbox = props => {
         id="outlined-multiline-static"
         label="Enter your Bio"
         defaultValue={props.current}
-        fullWidth="true"
+        fullWidth={true}
         multiline
         rows="10"
         variant="outlined"
