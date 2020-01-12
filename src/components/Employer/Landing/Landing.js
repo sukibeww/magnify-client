@@ -50,6 +50,66 @@ const DesktopLanding = () => {
             </div>
           </div>
         </section>
+
+        <footer id="footer">
+          <div class="inner">
+            <div class="content">
+              <section>
+                <h3>Maginify</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+                  in temporibus nulla error quidem distinctio enim, esse cumque
+                  corrupti modi mollitia praesentium reprehenderit quaerat quis
+                  debitis nam quo nihil. Doloribus.
+                </p>
+                <p> Address : 1/1 aa Melbourne 3000</p>
+              </section>
+              <section>
+                <h4>Navigate</h4>
+                <ul class="alt">
+                  <li>
+                    <a href="#">Vacancies</a>
+                  </li>
+                  <li>
+                    <a href="#">Invite</a>
+                  </li>
+                  <li>
+                    <a href="#">Public</a>
+                  </li>
+                  <li>
+                    <a href="#">Email us</a>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h4>Social</h4>
+                <ul class="plain">
+                  <li>
+                    <a href="#">
+                      <i class="icon fa-twitter">&nbsp;</i>Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="icon fa-facebook">&nbsp;</i>Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="icon fa-instagram">&nbsp;</i>Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="icon fa-github">&nbsp;</i>Github
+                    </a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <div class="end">--- Magnify Copyright --</div>
+          </div>
+        </footer>
       </LandingWrapper>
     </>
   )
