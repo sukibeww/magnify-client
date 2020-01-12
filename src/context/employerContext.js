@@ -5,15 +5,15 @@ import { linkedin_logout } from './helper/employer'
 export const EmployerContext = createContext()
 
 const EmployerContextProvider = props => {
-  const defaultUser = {
-    email: undefined,
-    displayName: '',
-    photos: null,
-    category: [],
-    bio: undefined,
-    survey: {},
-    current: {}
-  }
+  // const defaultUser = {
+  //   email: undefined,
+  //   displayName: '',
+  //   photos: null,
+  //   category: [],
+  //   bio: undefined,
+  //   survey: {},
+  //   current: {}
+  // }
   let history = useHistory()
   const [user, setUser] = useState(props.user)
 
@@ -23,14 +23,14 @@ const EmployerContextProvider = props => {
     history.push('/')
   }
 
-  useEffect(() => {
-    // async function fetchData() {
-    //   const user = await getProfile()
-    //   if (user) setUser(user)
-    // }
-    // fetchData()
-    if (user) setUser(props.user)
-  }, [])
+  // useEffect(() => {
+  //   // async function fetchData() {
+  //   //   const user = await getProfile()
+  //   //   if (user) setUser(user)
+  //   // }
+  //   // fetchData()
+  //   if (user) setUser(props.user)
+  // }, [])
 
   useEffect(() => {
     if (user) {
