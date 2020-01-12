@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { MediaContext } from '../../../context/mediaContext'
+import { CreateOutlined, PersonOutline, MailOutline } from '@material-ui/icons'
 import './Landing.css'
+
 const LandingWrapper = styled.div`
-  display: grid;
   min-height: 100vh;
-  width: 100%;
+  max-width: 100vw;
+  font-size: 1rem;
 `
 
 const DesktopLanding = () => {
@@ -17,15 +19,36 @@ const DesktopLanding = () => {
         <section id="banner">
           <div class="inner">
             <h1>Magnify</h1>
-            <p>Because Your mentality is more important than your skill</p>
+            <p>
+              The app that rates job candidates and show the salary they want
+            </p>
           </div>
-          {/* <video
-            autoplay
-            loop
-            muted
-            playsinline
-            src="./manify.mp4"
-          ></video> */}
+        </section>
+        <section id="site-details">
+          <h1>Magnify Logic</h1>
+          <p>
+            let your employee took the survey and we turn it to score that
+            indicate ...
+          </p>
+          <div class="flex-wrapper">
+            <div class="grid">
+              <div>
+                <CreateOutlined />
+                <span>Create Vacancie</span>
+                <div id="vacan" class="image"></div>
+              </div>
+              <div>
+                <MailOutline />
+                <span> Invite Employee to do the Survey</span>
+                <div id="survey" class="image"></div>
+              </div>
+              <div>
+                <PersonOutline />
+                <span> Recruit Public</span>
+                <div id="public" class="image"></div>
+              </div>
+            </div>
+          </div>
         </section>
       </LandingWrapper>
     </>
