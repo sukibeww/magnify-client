@@ -3,6 +3,11 @@ import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { MediaContext } from '../../context/mediaContext'
 import { EmployeeContext } from '../../context/employeeContext'
+import { 
+  Chip,
+  Avatar
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import styled from 'styled-components'
 import EditButton from '../Button/EditButton'
 
@@ -50,13 +55,13 @@ const Subheader = styled.h2`
   margin-top: 1.5vh;
 `
 
-const Categories = styled.h3`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-
-  font-weight: 400;
-  opacity: 0.5;
-  color: #283593;
+const Categories = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  opacity: 0.8;
+  max-width: 30vw;
+  flex-wrap: wrap;
 `
 
 const Bio = styled.p`
@@ -74,7 +79,14 @@ const AbsoluteWrapper = styled.div`
   overflow: visible;
 `
 
+const useStyles = makeStyles(theme => ({
+  chip: {
+    margin: "0 0.5vw"
+  }
+})) 
+
 const EmployeeProfile = () => {
+  const classes = useStyles()
   const { media } = useContext(MediaContext)
   const { user } = useContext(EmployeeContext)
   if (user.email) {
@@ -94,7 +106,19 @@ const EmployeeProfile = () => {
           <DisplayName>{user.displayName}</DisplayName>
           <Email>{user.email}</Email>
           <Subheader>Industry Category</Subheader>
-          <Categories>{user.category.join(' ')}</Categories>
+            <Categories>
+              {user.category.map((category) =>{
+              return(
+                <Chip
+                  className={classes.chip}
+                  avatar={<Avatar>{category.charAt(0)}</Avatar>}
+                  label={category}
+                  clickable
+                  color="primary"
+                />
+              )
+            })}
+            </Categories>
           <Bio>{user.bio}</Bio>
         </ProfileWrapper>
       </>

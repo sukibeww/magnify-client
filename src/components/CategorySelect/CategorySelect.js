@@ -1,4 +1,5 @@
 import React, { useState , useRef , useEffect } from 'react'
+import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
 import {
   FormControl,
@@ -6,7 +7,9 @@ import {
   Select,
   MenuItem,
   Checkbox,
-  ListItemText
+  ListItemText,
+  Chip,
+  Avatar
 } from '@material-ui/core'
 
 const industries = [
@@ -31,6 +34,15 @@ const industries = [
   "Electronics" 
 ]
 
+const Categories = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  opacity: 0.8;
+  max-width: 30vw;
+  flex-wrap: wrap;
+`
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -44,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   chip: {
-    margin: 2,
+    margin: "0 0.5vw"
   },
   noLabel: {
     marginTop: theme.spacing(3),
@@ -109,7 +121,19 @@ const CategorySelect = (props) => {
           ))}
         </Select>
       </FormControl>
-      {categories && <h3 className={classes.selectedCategory}>{categories.join(" ")}</h3> }
+      <Categories>
+        {categories.map((category) => {
+          return(
+            <Chip
+              className={classes.chip}
+              avatar={<Avatar>{category.charAt(0)}</Avatar>}
+              label={category}
+              clickable
+              color="primary"
+            />
+          )
+        })}
+      </Categories>
     </> 
   )
 }
