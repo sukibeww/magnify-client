@@ -10,7 +10,7 @@ import EmployeeProfile from '../components/EmployeeProfile/EmployeeProfile'
 import { MediaContext } from '../context/mediaContext'
 import RegistrationPage from '../components/Register/RegistrationPage'
 import EmployeeProfileEdit from '../components/EmployeeProfile/EmployeeProfileEdit'
-import VacanciesList from '../components/Vacancy/VacanciesList/VacanciesList'
+import VacanciesList from '../components/Employee/VacancyList/VacancyList'
 import VacancyForm from '../components/Vacancy/VacancyForm/VacancyForm'
 import VacancyInfo from '../components/Vacancy/VacancyInfo/VacancyInfo'
 

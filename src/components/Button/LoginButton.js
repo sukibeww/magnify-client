@@ -24,7 +24,7 @@ const LoginButton = props => {
       margin: '0 5px',
       color: fill
     }
-  }))
+  })) 
   const classes = useStyles()
   return (
     <Button
