@@ -28,8 +28,16 @@ const getProfile = async () => {
   }
 }
 
+const isRegistered = user => {
+  if (!user.companyName) {
+    return false
+  }
+  return true
+}
+
 module.exports = {
   linkedin_login,
   linkedin_logout,
-  getProfile
+  getProfile,
+  isRegistered
 }

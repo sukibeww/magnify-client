@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { linkedin_logout } from './helper/employer'
+import { linkedin_logout , isRegistered } from './helper/employer'
 
 export const EmployerContext = createContext()
 
@@ -16,6 +16,7 @@ const EmployerContextProvider = props => {
   // }
   let history = useHistory()
   const [user, setUser] = useState(props.user)
+  const [redirectToRegistration, setRedirectToRegistration] = useState(false)
 
   const handleLogout = () => {
     linkedin_logout()
@@ -32,11 +33,27 @@ const EmployerContextProvider = props => {
   //   if (user) setUser(props.user)
   // }, [])
 
+  // useEffect(() => {
+  //   if (user) {
+  //     history.push('/landing')
+  //   }
+  // }, [user, history])
+
   useEffect(() => {
     if (user) {
-      history.push('/landing')
+      const redirectAfterLogin = () => {
+        setRedirectToRegistration(() => {
+          return isRegistered(user)
+        })
+        if (user) {
+          redirectToRegistration
+            ? history.push('/landing')
+            : history.push('/register')
+        }
+      }
+      redirectAfterLogin()
     }
-  }, [user, history])
+  }, [user, redirectToRegistration, history])
 
   return (
     <EmployerContext.Provider
