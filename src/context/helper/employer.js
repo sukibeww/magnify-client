@@ -28,6 +28,20 @@ const getProfile = async () => {
   }
 }
 
+
+const updateEmployer = async editedEmployer => {
+  const resp = fetch('http://localhost:3000/employer/update', {
+    method: 'PUT',
+    body: JSON.stringify(editedEmployer),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
+
 const isRegistered = user => {
   if (!user.companyName) {
     return false
@@ -39,5 +53,6 @@ module.exports = {
   linkedin_login,
   linkedin_logout,
   getProfile,
-  isRegistered
+  isRegistered,
+  updateEmployer
 }
