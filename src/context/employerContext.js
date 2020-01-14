@@ -42,7 +42,8 @@ const EmployerContextProvider = props => {
     <EmployerContext.Provider
       value={{
         user,
-        handleLogout
+        handleLogout,
+        setUser
       }}
     >
       {props.children}
