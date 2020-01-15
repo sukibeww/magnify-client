@@ -18,7 +18,7 @@ const DesktopLanding = () => {
     <>
       <LandingWrapper data-testid="landing-wrapper">
         <section id="banner">
-          <div class="inner">
+          <div className="inner">
             <h1>Magnify</h1>
             <p>
               The app that rates job candidates and show the salary they want
@@ -31,30 +31,30 @@ const DesktopLanding = () => {
             let your employee took the survey and we turn it to score that
             indicate ...
           </p>
-          <div class="flex-wrapper">
-            <div class="grid">
+          <div className="flex-wrapper">
+            <div className="grid">
               <div>
                 <CreateOutlined />
                 <span>Create Vacancie</span>
-                <div id="vacan" class="image"></div>
+                <div id="vacan" className="image"></div>
               </div>
               <div>
                 <MailOutline />
                 <span> Invite Employee to do the Survey</span>
-                <div id="survey" class="image"></div>
+                <div id="survey" className="image"></div>
               </div>
               <div>
                 <PersonOutline />
                 <span> Recruit Public</span>
-                <div id="public" class="image"></div>
+                <div id="public" className="image"></div>
               </div>
             </div>
           </div>
         </section>
 
         <footer id="footer">
-          <div class="inner">
-            <div class="content">
+          <div className="inner">
+            <div className="content">
               <section>
                 <h3>Maginify</h3>
                 <p>
@@ -67,48 +67,48 @@ const DesktopLanding = () => {
               </section>
               <section>
                 <h4>Navigate</h4>
-                <ul class="alt">
+                <ul className="alt">
                   <li>
-                    <Link>Vacancies</Link>
+                    <Link to="/vacancy">Vacancies</Link>
                   </li>
                   <li>
-                    <Link>Invite</Link>
+                    <Link to="/delegates">Invite</Link>
                   </li>
                   <li>
-                    <Link>Public</Link>
+                    <Link to="/employee">Public</Link>
                   </li>
                   <li>
-                    <Link>Email us</Link>
+                    <Link to="/">Email us</Link>
                   </li>
                 </ul>
               </section>
               <section>
                 <h4>Social</h4>
-                <ul class="plain">
+                <ul className="plain">
                   <li>
-                    <Link>
-                      <i class="icon fa-twitter">&nbsp;</i>Twitter
+                    <Link to="/">
+                      <i className="icon fa-twitter">&nbsp;</i>Twitter
                     </Link>
                   </li>
                   <li>
-                    <Link>
-                      <i class="icon fa-facebook">&nbsp;</i>Facebook
+                    <Link to="/">
+                      <i className="icon fa-facebook">&nbsp;</i>Facebook
                     </Link>
                   </li>
                   <li>
-                    <Link>
-                      <i class="icon fa-instagram">&nbsp;</i>Instagram
+                    <Link to="/">
+                      <i className="icon fa-instagram">&nbsp;</i>Instagram
                     </Link>
                   </li>
                   <li>
-                    <Link>
-                      <i class="icon fa-github">&nbsp;</i>Github
+                    <Link to="/">
+                      <i className="icon fa-github">&nbsp;</i>Github
                     </Link>
                   </li>
                 </ul>
               </section>
             </div>
-            <div class="end">--- Magnify Copyright --</div>
+            <div className="end">--- Magnify Copyright --</div>
           </div>
         </footer>
       </LandingWrapper>

@@ -19,7 +19,7 @@ function AppEmployer(props) {
           user={props.user}
           setGlobalUser={props.setGlobalUser}
         >
-          {media ? <DesktopNavbar /> : <DrawerNavbar />}
+          {media ? <DesktopNavbar /> : <DrawerNavbar user={props.user} />}
           <Switch>
             <Route path="/landing" component={Landing}></Route>
             <Route path="/register" component={EmployerRegistration}></Route>

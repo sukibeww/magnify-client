@@ -177,14 +177,16 @@ const SurveyList = () => {
       case 'DONE':
         return (
           <>
-            <h1>You have already done the survey</h1>
-            <p>
-              The survey have been submit at :
-              {user.score ? dateDisplayed(Number(user.score.created)) : null}
-            </p>
-            <Link to="/result">
-              <Button color="inherit">See Result</Button>
-            </Link>
+            <div className="box">
+              <h1>You have already done the survey</h1>
+              <p>
+                The survey have been submit at :
+                {user.score ? dateDisplayed(Number(user.score.created)) : null}
+              </p>
+              <Link to="/result">
+                <Button color="inherit">See Result</Button>
+              </Link>
+            </div>
           </>
         )
       //fetch to see  the date of result and show information when they can redo the survey
