@@ -6,6 +6,7 @@ import Landing from '../components/Employer/Landing/Landing'
 import DesktopNavbar from '../components/Navbar/DesktopNavbar'
 import DrawerNavbar from '../components/Navbar/DrawerNavbar'
 import EmployerRegistration from '../components/Employer/Registration/EmployerRegistration'
+import Delegates from '../components/Employer/Delegates/Delegates'
 
 function AppEmployer(props) {
   const mediaContext = useContext(MediaContext)
@@ -21,6 +22,7 @@ function AppEmployer(props) {
           <Switch>
             <Route path="/landing" component={Landing}></Route>
             <Route path="/register" component={EmployerRegistration}></Route>
+            <Route path="/delegates" component={Delegates}></Route>
           </Switch>
         </EmployerContextProvider>
       ) : null}
