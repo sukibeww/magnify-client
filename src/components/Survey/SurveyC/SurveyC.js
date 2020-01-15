@@ -103,7 +103,7 @@ const SelectOptions = props => {
 
   useEffect(() => {
     if (result[count - 1].length > 3) {
-      result[count - 1].includes(undefined, null)
+      result[count - 1].includes(undefined) || result[count - 1].includes(null)
         ? setShowNext(false)
         : setShowNext(true)
     } else setShowNext(false)
@@ -115,7 +115,7 @@ const SelectOptions = props => {
     setResult(temp_result)
     setSelectedOption(select)
     if (result[count - 1].length > 3) {
-      result[count - 1].includes(undefined, null)
+      result[count - 1].includes(undefined) || result[count - 1].includes(null)
         ? setShowNext(false)
         : setShowNext(true)
     } else setShowNext(false)
