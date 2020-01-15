@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import {
   linkedin_logout,
   saveSurvey,
-  submitSurvey,
+  fetchSubmitSurvey,
   isRegistered,
   updateEmployee
 } from './helper/employee'
@@ -33,6 +33,13 @@ const EmployeeContextProvider = props => {
   const handleUpdate = editedEmployee => {
     setUser(() => editedEmployee)
     updateEmployee({ editedEmployee: user })
+  }
+
+  const submitSurvey = async survey => {
+    const update_score = await fetchSubmitSurvey(survey)
+    if (update_score) {
+      setUser({ ...user, update_score })
+    }
   }
 
   // useEffect(() => {

@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { MediaContext } from '../../../context/mediaContext'
+// import { MediaContext } from '../../../context/mediaContext'
 import { CreateOutlined, PersonOutline, MailOutline } from '@material-ui/icons'
 import './Landing.css'
+import { Link } from 'react-router-dom'
 
 const LandingWrapper = styled.div`
   min-height: 100vh;
@@ -11,8 +12,8 @@ const LandingWrapper = styled.div`
 `
 
 const DesktopLanding = () => {
-  const mediaContext = useContext(MediaContext)
-  const { media } = mediaContext
+  // const mediaContext = useContext(MediaContext)
+  // const { media } = mediaContext
   return (
     <>
       <LandingWrapper data-testid="landing-wrapper">
@@ -68,16 +69,16 @@ const DesktopLanding = () => {
                 <h4>Navigate</h4>
                 <ul class="alt">
                   <li>
-                    <a href="#">Vacancies</a>
+                    <Link>Vacancies</Link>
                   </li>
                   <li>
-                    <a href="#">Invite</a>
+                    <Link>Invite</Link>
                   </li>
                   <li>
-                    <a href="#">Public</a>
+                    <Link>Public</Link>
                   </li>
                   <li>
-                    <a href="#">Email us</a>
+                    <Link>Email us</Link>
                   </li>
                 </ul>
               </section>
@@ -85,24 +86,24 @@ const DesktopLanding = () => {
                 <h4>Social</h4>
                 <ul class="plain">
                   <li>
-                    <a href="#">
+                    <Link>
                       <i class="icon fa-twitter">&nbsp;</i>Twitter
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
+                    <Link>
                       <i class="icon fa-facebook">&nbsp;</i>Facebook
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
+                    <Link>
                       <i class="icon fa-instagram">&nbsp;</i>Instagram
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
+                    <Link>
                       <i class="icon fa-github">&nbsp;</i>Github
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </section>

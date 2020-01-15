@@ -39,7 +39,6 @@ function Home() {
 
   return (
     <>
-      {console.log(user)}
       <Router>
         {user.type !== 'Employer' ? (
           <AppEmployee user={user} setGlobalUser={setUser} />

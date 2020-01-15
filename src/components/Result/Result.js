@@ -50,11 +50,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 100vw;
   margin: 20px auto;
+  max-width: 100vw;
+  width: 90%;
+  padding: 4%;
   border: solid 3px #283593;
   border-radius: 10px;
-  padding: 5vh 5vh;
   background-color: whitesmoke;
 `
 
@@ -92,14 +93,12 @@ const Result = () => {
     if (result.length > 0) {
       return result.map(data => {
         return (
-          <div>
+          <div key={data.subject}>
             <h1>{data.score}</h1>
             <h3>{data.subject}</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              magni aliquid doloribus, sed fuga expedita maiores natus commodi
-              voluptatum laborum corrupti culpa id in eveniet quia distinctio
-              recusandae quaerat tenetur?
+              magni aliquid doloribus,
             </p>
           </div>
         )
@@ -113,7 +112,7 @@ const Result = () => {
         const cal =
           result.reduce((total, data) => {
             return total + data.score
-          }, result.length * 2) / result.length
+          }, 0) / result.length
         setTotalScore(cal)
       } else {
         setTotalScore(0)
@@ -127,33 +126,24 @@ const Result = () => {
   })
 
   useEffect(() => {
-    async function fetchData() {
-      const resp = await fetch('http://localhost:3000/employee/result', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Credentials': true
-        }
-      }).then(resp => resp.json())
-      resp.score
-        ? setResult([
-            { subject: 'kinetic', score: resp.score.kinetic },
-            { subject: 'productivity', score: resp.score.productivity },
-            { subject: 'visual', score: resp.score.visual },
-            { subject: 'optimism', score: resp.score.optimism },
-            { subject: 'social', score: resp.score.social }
-          ])
-        : setResult(undefined)
+    if (user.score.kinetic) {
+      setResult([
+        { subject: 'kinetic', score: user.score.kinetic },
+        { subject: 'productivity', score: user.score.productivity },
+        { subject: 'visual', score: user.score.visual },
+        { subject: 'optimism', score: user.score.optimism },
+        { subject: 'social', score: user.score.social }
+      ])
+    } else {
+      setResult([])
     }
-    fetchData()
-  }, [])
+  }, [user])
 
   if (user.email) {
     if (result.length > 0) {
       return (
         <>
-          <Wrapper media={media}>
+          <Wrapper media={media.toString()}>
             <StyledHeader>Profile Overview</StyledHeader>
             <Gauge totalScore={TotalScore}></Gauge>
             <RadarWrapper>
@@ -178,7 +168,7 @@ const Result = () => {
                 />
               </RadarChart>
             </RadarWrapper>
-            <div class="grid">{GenerateResult()}</div>
+            <div className="grid">{GenerateResult()}</div>
           </Wrapper>
         </>
       )
@@ -196,9 +186,8 @@ const Result = () => {
                   display: 'flex',
                   alignItems: 'center'
                 }}
-              >
-                <SurveyButton></SurveyButton>
-              </Link>
+              ></Link>
+              <SurveyButton />
             </Wrapper>
           </FallbackWrapper>
         </>

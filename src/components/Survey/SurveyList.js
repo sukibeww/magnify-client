@@ -79,6 +79,9 @@ const SurveyList = () => {
       setSection(user.current.current_section || 'A')
       dispatch(user.current.current_count || 'reset')
     }
+    if (user.score.kinetic) {
+      setSection('DONE')
+    }
   }, [user])
 
   const handleClick = () => {
@@ -92,11 +95,19 @@ const SurveyList = () => {
     setOpen(false)
   }
   const submit = () => {
-    submitSurvey({
+    saveSurvey({
       surveyA: resultA,
       surveyB: resultB,
       surveyC: resultC,
-      surveyD: resultD
+      surveyD: resultD,
+      count: 1,
+      section: 'A'
+    })
+    submitSurvey({
+      surveyA: Math.round(Math.random() * 100, 0),
+      surveyB: Math.round(Math.random() * 100, 0),
+      surveyC: Math.round(Math.random() * 100, 0),
+      surveyD: Math.round(Math.random() * 100, 0)
     })
   }
 
@@ -110,6 +121,11 @@ const SurveyList = () => {
       section
     })
     handleClick()
+  }
+
+  function dateDisplayed(timestamp) {
+    var date = new Date(timestamp)
+    return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear()
   }
 
   const currestSection = () => {
@@ -161,7 +177,11 @@ const SurveyList = () => {
       case 'DONE':
         return (
           <>
-            <h1>You have done the survey</h1>
+            <h1>You have already done the survey</h1>
+            <p>
+              The survey have been submit at :
+              {user.score ? dateDisplayed(Number(user.score.created)) : null}
+            </p>
             <Link to="/result">
               <Button color="inherit">See Result</Button>
             </Link>
@@ -233,7 +253,6 @@ const SurveyList = () => {
 
   return (
     <>
-      {console.log(user)}
       {user.email ? (
         <>
           {currestSection()}
