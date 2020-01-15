@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { linkedin_logout } from './helper/employer'
+import { linkedin_logout , isRegistered, updateEmployer } from './helper/employer'
 
 export const EmployerContext = createContext()
 
@@ -16,12 +16,19 @@ const EmployerContextProvider = props => {
   // }
   let history = useHistory()
   const [user, setUser] = useState(props.user)
+  const [redirectToRegistration, setRedirectToRegistration] = useState(false)
 
   const handleLogout = () => {
     linkedin_logout()
     props.setGlobalUser(false)
     history.push('/')
   }
+
+  const handleUpdate = editedEmployer => {
+    setUser(() => editedEmployer)
+    updateEmployer({ editedEmployer: user })
+  }
+
 
   // useEffect(() => {
   //   // async function fetchData() {
@@ -32,17 +39,35 @@ const EmployerContextProvider = props => {
   //   if (user) setUser(props.user)
   // }, [])
 
+  // useEffect(() => {
+  //   if (user) {
+  //     history.push('/landing')
+  //   }
+  // }, [user, history])
+
   useEffect(() => {
     if (user) {
-      history.push('/landing')
+      const redirectAfterLogin = () => {
+        setRedirectToRegistration(() => {
+          return isRegistered(user)
+        })
+        if (user) {
+          redirectToRegistration
+            ? history.push('/landing')
+            : history.push('/register')
+        }
+      }
+      redirectAfterLogin()
     }
-  }, [user, history])
+  }, [user, redirectToRegistration, history])
 
   return (
     <EmployerContext.Provider
       value={{
         user,
-        handleLogout
+        handleLogout,
+        setUser,
+        handleUpdate
       }}
     >
       {props.children}

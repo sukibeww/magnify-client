@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import AppEmployee from './AppEmployee.js'
 import AppEmployer from './AppEmployer.js'
 import LoginPage from '../components/Login/LoginPage'
 
 function Home() {
-  const defaultUser = {
-    email: undefined,
-    displayName: '',
-    photos: null
-  }
+  // const defaultUser = {
+  //   email: undefined,
+  //   displayName: '',
+  //   photos: null
+  // }
   const [user, setUser] = useState(false)
 
   const getProfile = async () => {

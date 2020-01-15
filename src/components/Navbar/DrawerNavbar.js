@@ -6,7 +6,6 @@ import {
   Toolbar,
   AppBar,
   Drawer,
-  Button,
   List,
   Divider,
   ListItem,

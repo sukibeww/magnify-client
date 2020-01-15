@@ -1,16 +1,10 @@
-import React, { useState, useRef, useEffect, useReducer } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   Button,
-  TextField,
-  MenuItem,
-  InputLabel,
-  Select,
-  FormControl,
-  makeStyles
+  TextField
 } from '@material-ui/core'
-import SelectInput from '@material-ui/core/Select/SelectInput'
 import SalarySelect from './Components/SalarySelect'
 import AvailablePositionsSelect from './Components/AvailablePositionsSelect'
 import ActivitySelect from './Components/ActivitySelect'
@@ -37,9 +31,6 @@ const StyledText = styled.p`
   height: auto;
   text-align: center;
 `
-const PlaceHolderText =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet, mi sed aliquet tempor, nulla velit ornare neque, sed imperdiet odio sem a ex.'
-////////-------------------------------------------------------------------------------------
 
 const StyledWrapper = styled.div`
   border: solid #283593;
@@ -55,18 +46,6 @@ const StyledWrapper = styled.div`
   max-width: max-content;
   padding: 5vh 3vw;
 `
-
-/* ========================================================================== */
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
-}))
 
 const VacancyForm = () => {
   return (

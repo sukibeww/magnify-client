@@ -1,16 +1,9 @@
-import React, { useState, useRef, useEffect, useReducer } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
-  Button,
-  TextField,
-  MenuItem,
-  InputLabel,
-  Select,
-  FormControl,
-  makeStyles
+  Button
 } from '@material-ui/core'
-import SelectInput from '@material-ui/core/Select/SelectInput'
 import CompanyInfo from './Components/CompanyInfo'
 
 const HeaderWrapper = styled.div`
@@ -50,18 +43,6 @@ const StyledWrapper = styled.div`
   max-width: max-content;
   padding: 5vh 3vw;
 `
-
-/* ========================================================================== */
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
-}))
 
 const VacancyInfo = () => {
   return (

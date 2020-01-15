@@ -6,7 +6,6 @@ import {
   FormControl,
   makeStyles
 } from '@material-ui/core'
-import SelectInput from '@material-ui/core/Select/SelectInput'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
