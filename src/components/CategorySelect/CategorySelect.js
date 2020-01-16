@@ -1,4 +1,4 @@
-import React, { useState , useRef , useEffect } from 'react'
+import React, { useState , useRef , useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -11,6 +11,7 @@ import {
   Chip,
   Avatar
 } from '@material-ui/core'
+import { MediaContext } from '../../context/mediaContext';
 
 const industries = [
   "Aerospace",
@@ -39,7 +40,7 @@ const Categories = styled.div`
   justify-content: center;
   flex-direction: row;
   opacity: 0.8;
-  max-width: 30vw;
+  max-width: ${(props) => props.media ? "40vw" : "inherit"};
   flex-wrap: wrap;
 `
 
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   chip: {
-    margin: "0 0.5vw"
+    margin: "0.5vw 0.5vw"
   },
   noLabel: {
     marginTop: theme.spacing(3),
@@ -87,6 +88,8 @@ const CategorySelect = (props) => {
   const inputLabel = useRef(null);
   const [categories, setCategories] = useState(props.current || []);
   const [labelWidth, setLabelWidth] = useState(0);
+  const mediaContext = useContext(MediaContext)
+  const { media } = mediaContext
 
   useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -121,7 +124,7 @@ const CategorySelect = (props) => {
           ))}
         </Select>
       </FormControl>
-      <Categories>
+      <Categories media={media}>
         {categories.map((category) => {
           return(
             <Chip
