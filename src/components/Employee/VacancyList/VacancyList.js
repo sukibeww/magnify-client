@@ -33,11 +33,11 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5vh 2vw;
+  margin: ${(props) => props.media ? "5vh 25vw" : "5vh 2vw"} ;
   border-radius: 10px;
   height: auto;
-  width: ${(props) => props.media ? "40vw" : "90vw"};
-  min-width: 320px;
+  width: ${(props) => props.media ? "70vw" : "90vw"};
+  min-width: 40vw;
   max-width: max-content;
   padding: 5vh 3vw;
 `
@@ -60,7 +60,7 @@ const columns = [
   {
     id: 'industry',
     label: 'Industry',
-    align: 'right',
+    align: 'center',
     format: value => value.toFixed(2),
   },
   {

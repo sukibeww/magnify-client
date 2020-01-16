@@ -20,7 +20,7 @@ const EmployerContextProvider = props => {
 
   const handleLogout = () => {
     linkedin_logout()
-    props.setGlobalUser(false)
+    props.setGlobalUser(false)  
     history.push('/')
   }
 
