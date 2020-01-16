@@ -11,20 +11,23 @@ export default function Vacancy() {
         title: 'Industry',
         field: 'Industry',
         lookup: { 1: 'Technology', 2: 'Developer' }
-      }
+      },
+      { title: 'Status', field: 'status' , lookup: {1: "Open", 2: "Closed"}}
     ],
     data: [
       {
         company: 'MYOB',
         vacancy: 'Accountant',
         salary: '30000-70000',
-        Industry: 2
+        Industry: 2,
+        status: 1
       },
       {
         company: 'Coder Academy',
         vacancy: 'Teacher',
         salary: '70000-90000',
-        Industry: 1
+        Industry: 1,
+        status: 2
       }
     ]
   })

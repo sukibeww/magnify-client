@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Typography,
@@ -19,8 +19,11 @@ import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import People from '@material-ui/icons/People'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
-// import { EmployeeContext } from '../../context/employeeContext'
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import GroupIcon from '@material-ui/icons/Group';
 import { Link } from 'react-router-dom'
+import { EmployeeContext } from '../../context/employeeContext'
+import { EmployerContext } from '../../context/employerContext'
 
 const useStyles = makeStyles({
   root: {
@@ -32,12 +35,12 @@ const useStyles = makeStyles({
     flexGrow: 1
   },
   list: {
-    width: '50vw',
+    width: '75vw',
     height: '100vh'
   },
   banner: {
     height: '20vh',
-    backgroundColor: 'purple'
+    backgroundColor: '#283593'
   },
   navWrapper: {
     display: 'flex',
@@ -55,9 +58,15 @@ const useStyles = makeStyles({
 })
 
 const DrawerNavbar = props => {
-  const user = props.user
-  const { handleLogout } = props.user
-
+  const employeeContext = useContext(EmployeeContext)
+  const employerContext = useContext(EmployerContext)
+  let logout;
+  if(employeeContext){
+    logout = employeeContext.handleLogout 
+  }
+  else{
+    logout = employerContext.handleLogout 
+  }
   const classes = useStyles()
   const [drawer, setdrawer] = useState({
     left: false
@@ -73,176 +82,177 @@ const DrawerNavbar = props => {
     setdrawer({ ...drawer, [side]: open })
   }
 
-  const sideList_employee = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <div className={classes.banner}></div>
-      <List className={classes.navigation}>
-        <Link to="/survey" style={{ color: 'inherit', textDecoration: 'none' }}>
-          <ListItem button key="Survey" data-testid="test-survey">
-            <ListItemIcon>
-              <Assignment />
-            </ListItemIcon>
-            <ListItemText primary="Survey" />
-          </ListItem>
-        </Link>
-        <Link to="/result" style={{ color: 'inherit', textDecoration: 'none' }}>
-          <ListItem button key="Result" data-testid="test-result">
-            <ListItemIcon>
-              <AssignmentTurnedIn />
-            </ListItemIcon>
-            <ListItemText primary="Result" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/interview"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
-          <ListItem button key="Interview" data-testid="test-interview">
-            <ListItemIcon>
-              <People />
-            </ListItemIcon>
-            <ListItemText primary="Interview" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/vacancy"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
-          <ListItem button key="Vacancy" data-testid="test-vacancy">
-            <ListItemIcon>
-              <MeetingRoom />
-            </ListItemIcon>
-            <ListItemText primary="Vacancy" />
-          </ListItem>
-        </Link>
-      </List>
-      <Divider />
-      <List>
-        <Link
-          to="/profile"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
+  const sideList_employee = side => {
+    return(
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer("left", false)}
+        onKeyDown={toggleDrawer("left", false)}
+      >
+        <div className={classes.banner}></div>
+        <List className={classes.navigation}>
+          <Link to="/survey" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <ListItem button key="Survey" data-testid="test-survey">
+              <ListItemIcon>
+                <Assignment />
+              </ListItemIcon>
+              <ListItemText primary="Survey" />
+            </ListItem>
+          </Link>
+          <Link to="/result" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <ListItem button key="Result" data-testid="test-result">
+              <ListItemIcon>
+                <AssignmentTurnedIn />
+              </ListItemIcon>
+              <ListItemText primary="Result" />
+            </ListItem>
+          </Link>
+          <Link
+            to="/interview"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem button key="Interview" data-testid="test-interview">
+              <ListItemIcon>
+                <People />
+              </ListItemIcon>
+              <ListItemText primary="Interview" />
+            </ListItem>
+          </Link>
+          <Link
+            to="/vacancy"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem button key="Vacancy" data-testid="test-vacancy">
+              <ListItemIcon>
+                <MeetingRoom />
+              </ListItemIcon>
+              <ListItemText primary="Vacancy" />
+            </ListItem>
+          </Link>
+        </List>
+        <Divider />
+        <List>
+          <Link
+            to="/profile"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem
+              button
+              key="Account Settings"
+              data-testid="test-account-settings"
+            >
+              <ListItemIcon>
+                <AccountCircle />
+              </ListItemIcon>
+              <ListItemText primary="Account Settings" />
+            </ListItem>
+          </Link>
           <ListItem
             button
-            key="Account Settings"
-            data-testid="test-account-settings"
+            data-testid="test-logout"
+            key="Log Out"
+            onClick={logout}
           >
             <ListItemIcon>
-              <AccountCircle />
+              <ExitToApp />
             </ListItemIcon>
-            <ListItemText primary="Account Settings" />
+            <ListItemText primary="Log Out" />
           </ListItem>
-        </Link>
-        <ListItem
-          button
-          data-testid="test-logout"
-          key="Log Out"
-          onClick={handleLogout}
-        >
-          <ListItemIcon>
-            <ExitToApp />
-          </ListItemIcon>
-          <ListItemText primary="Log Out" />
-        </ListItem>
-      </List>
-    </div>
-  )
+        </List>
+      </div>
+    )
+  }
 
-  const sideList_employer = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <div className={classes.banner}></div>
-      <List className={classes.navigation}>
-        <Link
-          to="/vacancy"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
-          <ListItem button key="Vacancy" data-testid="test-vacancy">
-            <ListItemIcon>
-              <Assignment />
-            </ListItemIcon>
-            <ListItemText primary="Vacancy" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/delegates"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
-          <ListItem button key="Delegates" data-testid="test-delegates">
-            <ListItemIcon>
-              <AssignmentTurnedIn />
-            </ListItemIcon>
-            <ListItemText primary="Delegates" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/employee"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
-          <ListItem button key="Employee" data-testid="test-employee">
-            <ListItemIcon>
-              <MeetingRoom />
-            </ListItemIcon>
-            <ListItemText primary="Employee" />
-          </ListItem>
-        </Link>
-      </List>
-      <Divider />
-      <List>
-        <Link
-          to="/profile"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
+  const sideList_employer = side => {
+    return(
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer("left", false)}
+        onKeyDown={toggleDrawer("left", false)}
+      >
+        <div className={classes.banner}></div>
+        <List className={classes.navigation}>
+          <Link
+            to="/vacancy"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem button key="Vacancy" data-testid="test-vacancy">
+              <ListItemIcon>
+                <Assignment />
+              </ListItemIcon>
+              <ListItemText primary="Vacancy" />
+            </ListItem>
+          </Link>
+          <Link
+            to="/delegates"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem button key="Delegates" data-testid="test-delegates">
+              <ListItemIcon>
+                <GroupAddIcon />
+              </ListItemIcon>
+              <ListItemText primary="Delegates" />
+            </ListItem>
+          </Link>
+          <Link
+            to="/employee"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem button key="Employee" data-testid="test-employee">
+              <ListItemIcon>
+                <GroupIcon />
+              </ListItemIcon>
+              <ListItemText primary="Employee" />
+            </ListItem>
+          </Link>
+        </List>
+        <Divider />
+        <List>
+          <Link
+            to="/profile"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem
+              button
+              key="Account Settings"
+              data-testid="test-account-settings"
+            >
+              <ListItemIcon>
+                <AccountCircle />
+              </ListItemIcon>
+              <ListItemText primary="Account Settings" />
+            </ListItem>
+          </Link>
           <ListItem
             button
-            key="Account Settings"
-            data-testid="test-account-settings"
+            data-testid="test-logout"
+            key="Log Out"
+            onClick={logout}
           >
             <ListItemIcon>
-              <AccountCircle />
+              <ExitToApp />
             </ListItemIcon>
-            <ListItemText primary="Account Settings" />
+            <ListItemText primary="Log Out" />
           </ListItem>
-        </Link>
-        <ListItem
-          button
-          data-testid="test-logout"
-          key="Log Out"
-          onClick={handleLogout}
-        >
-          <ListItemIcon>
-            <ExitToApp />
-          </ListItemIcon>
-          <ListItemText primary="Log Out" />
-        </ListItem>
-      </List>
-    </div>
-  )
-
+        </List>
+      </div>
+    )
+  }
   return (
     <>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          {user.email && (
-            <IconButton
-              edge="start"
-              onClick={toggleDrawer('left', true)}
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
+          <IconButton
+            edge="start"
+            onClick={toggleDrawer('left', true)}
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
           <Link
             to="/landing"
             style={{ color: 'inherit', textDecoration: 'none' }}
@@ -259,10 +269,9 @@ const DrawerNavbar = props => {
         onClose={toggleDrawer('left', false)}
         className={classes.drawer}
       >
-        {console.log(user.type)}
-        {user.type === 'Employer'
-          ? sideList_employer('left')
-          : sideList_employee('left')}
+        {employeeContext
+          ? sideList_employer()
+          : sideList_employee()}
       </Drawer>
     </>
   )
