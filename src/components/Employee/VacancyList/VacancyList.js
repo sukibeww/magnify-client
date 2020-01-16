@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components'
 import ApplyButton from '../../Button/ApplyButton'
@@ -12,6 +12,7 @@ import {
   TablePagination, 
   Checkbox,
   TableRow } from '@material-ui/core'
+import { MediaContext } from '../../../context/mediaContext';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -32,42 +33,39 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5vh auto;
+  margin: 5vh 2vw;
   border-radius: 10px;
   height: auto;
-  width: 70%;
+  width: ${(props) => props.media ? "40vw" : "90vw"};
   min-width: 320px;
   max-width: max-content;
   padding: 5vh 3vw;
 `
 
 const columns = [
-  { id: 'company_name', label: 'Company Name', minWidth: 150 },
+  { id: 'company_name', label: 'Company Name'},
   {
     id: 'vacancy_name',
     label: 'Vacancy',
-    minWidth: 170,
     align: 'right',
     format: value => value.toLocaleString(),
   },
   {
     id: 'salary',
     label: 'Salary',
-    minWidth: 170,
-    align: 'right',
+    align: 'center',
+    minWidth: "150px",
     format: value => value.toLocaleString(),
   },
   {
     id: 'industry',
     label: 'Industry',
-    minWidth: 170,
     align: 'right',
     format: value => value.toFixed(2),
   },
   {
     id: 'apply',
     label: 'Apply',
-    minWidth: 80,
     align: 'right',
     format: value => value.toFixed(2),
   },
@@ -102,7 +100,6 @@ const useStyles = makeStyles({
   container: {
     maxHeight: 550,
     minHeight: 550,
-    overflowX: "hidden"
   },
 });
 
@@ -111,6 +108,8 @@ const VacanciesList = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [selected, setSelected] = useState([])
+  const mediaContext = useContext(MediaContext)
+  const { media } = mediaContext
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -143,7 +142,7 @@ const VacanciesList = () => {
 
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper media={media}>
         <HeaderWrapper>
           <StyledHeader>Vacancies List</StyledHeader>
         </HeaderWrapper>
@@ -212,7 +211,7 @@ const VacanciesList = () => {
             />
           </Paper>
           <ApplyButton/>
-      </StyledWrapper>
+        </StyledWrapper>
     </>
   )
 }

@@ -120,7 +120,7 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
-            to="/vacancy"
+            to="/vacancies"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
             <ListItem button key="Vacancy" data-testid="test-vacancy">
@@ -270,8 +270,8 @@ const DrawerNavbar = props => {
         className={classes.drawer}
       >
         {employeeContext
-          ? sideList_employer()
-          : sideList_employee()}
+          ? sideList_employee()
+          : sideList_employer()}
       </Drawer>
     </>
   )
