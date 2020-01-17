@@ -93,7 +93,7 @@ const SelectOptions = props => {
     setLabelWidth(inputLabel.current.offsetWidth)
   }, [])
 
-  const { count, index, result, setResult, setShowNext } = props
+  const { count, index, result, setResult, setShowNext, updateCurrent } = props
   const defaultOption = ''
   const [selectedOption, setSelectedOption] = useState(defaultOption)
 
@@ -112,6 +112,7 @@ const SelectOptions = props => {
   const saveResult = async select => {
     const temp_result = result
     temp_result[count - 1][index] = select
+    updateCurrent("C", count)
     setResult(temp_result)
     setSelectedOption(select)
     if (result[count - 1].length > 3) {

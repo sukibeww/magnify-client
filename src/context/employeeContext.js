@@ -41,6 +41,15 @@ const EmployeeContextProvider = props => {
       setUser({ ...user, update_score })
     }
   }
+  
+  const updateCurrent = async (section, page) => {
+    setUser((prevState) => {
+      const newUser = prevState
+      newUser.current.current_count = page
+      newUser.current.current_section = section
+      return newUser
+    })
+  }
 
   // useEffect(() => {
   //   // async function fetchData() {
@@ -74,7 +83,8 @@ const EmployeeContextProvider = props => {
         handleLogout,
         saveSurvey,
         submitSurvey,
-        handleUpdate
+        handleUpdate,
+        updateCurrent
       }}
     >
       {props.children}

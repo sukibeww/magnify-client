@@ -89,6 +89,7 @@ const EmployeeProfile = () => {
   const classes = useStyles()
   const { media } = useContext(MediaContext)
   const { user } = useContext(EmployeeContext)
+  console.log(user)
   if (user.email) {
     return (
       <>

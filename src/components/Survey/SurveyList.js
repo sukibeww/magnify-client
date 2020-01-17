@@ -60,7 +60,7 @@ const SurveyList = () => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const employeeContext = useContext(EmployeeContext)
-  const { user, saveSurvey, submitSurvey } = employeeContext
+  const { user, saveSurvey, submitSurvey, updateCurrent } = employeeContext
   const [resultA, setResultA] = useState([])
   const [resultB, setResultB] = useState([])
   const [resultC, setResultC] = useState([])
@@ -133,6 +133,7 @@ const SurveyList = () => {
       case 'A':
         return (
           <SurveyA
+            updateCurrent={updateCurrent}
             setSection={setSection}
             result={resultA}
             setResult={setResultA}
@@ -143,6 +144,7 @@ const SurveyList = () => {
       case 'B':
         return (
           <SurveyB
+            updateCurrent={updateCurrent}
             setSection={setSection}
             result={resultB}
             setResult={setResultB}
@@ -153,6 +155,7 @@ const SurveyList = () => {
       case 'C':
         return (
           <SurveyC
+            updateCurrent={updateCurrent}
             setSection={setSection}
             result={resultC}
             setResult={setResultC}
@@ -163,6 +166,7 @@ const SurveyList = () => {
       case 'D':
         return (
           <SurveyD
+            updateCurrent={updateCurrent}
             setSection={setSection}
             result={resultD}
             setResult={setResultD}
