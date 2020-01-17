@@ -3,19 +3,21 @@ import MaterialTable from 'material-table';
 import styled from 'styled-components'
 import GeneralButton from '../../Button/GeneralButton';
 import { EmployerContext } from '../../../context/employerContext';
+import { MediaContext } from '../../../context/mediaContext';
 
 const StyledWrapper = styled.div`
   border: solid #283593;
-  margin: 5vh auto;
+  margin: ${(props) => props.media ? "5vw auto" : "5vh 2vw"};
   border-radius: 10px;
   max-width: max-content;
   padding: 5vh 3vw;
-  margin: 3vw;
   overflow: scroll;
 `
 
 const Delegates = () => {
   const employerContext = useContext(EmployerContext)
+  const mediaContext = useContext(MediaContext)
+  const { media } = mediaContext
   const { user, getDelegates } = employerContext
   const [selected, setSelected] = useState([])
   const [data, setData] = useState([]);
@@ -31,6 +33,7 @@ const Delegates = () => {
       const delegates = await getDelegates("Computer")
       const optimisedDelegates = delegates.map((delegate) => {
         delegate.category = delegate.category.join()
+        delegate.rating = delegate.score.rating
         return delegate
       })
       console.log(optimisedDelegates)
@@ -41,7 +44,7 @@ const Delegates = () => {
 
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper media={media}>
         <MaterialTable
           title="Delegates"
           columns={columns}
