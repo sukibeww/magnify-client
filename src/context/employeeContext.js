@@ -36,9 +36,9 @@ const EmployeeContextProvider = props => {
   }
 
   const submitSurvey = async survey => {
-    const update_score = await fetchSubmitSurvey(survey)
-    if (update_score) {
-      setUser({ ...user, update_score })
+    const score = await fetchSubmitSurvey(survey)
+    if (score) {
+      setUser({ ...user, score })
     }
   }
   
