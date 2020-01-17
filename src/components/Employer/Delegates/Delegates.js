@@ -18,7 +18,7 @@ const Delegates = () => {
   const employerContext = useContext(EmployerContext)
   const mediaContext = useContext(MediaContext)
   const { media } = mediaContext
-  const { user, getDelegates } = employerContext
+  const { user, getAllDelegates } = employerContext
   const [selected, setSelected] = useState([])
   const [data, setData] = useState([]);
   const columns = [
@@ -30,7 +30,7 @@ const Delegates = () => {
   console.log(user)
   useEffect(() => {
     const fetchDelegates = async() => {
-      const delegates = await getDelegates("Computer")
+      const delegates = await getAllDelegates()
       const optimisedDelegates = delegates.map((delegate) => {
         delegate.category = delegate.category.join()
         delegate.rating = delegate.score.rating
@@ -40,7 +40,7 @@ const Delegates = () => {
       setData(optimisedDelegates)
     }
     fetchDelegates()
-  }, [getDelegates])
+  }, [getAllDelegates])
 
   return (
     <>
