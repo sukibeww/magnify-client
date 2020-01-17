@@ -109,17 +109,6 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
-            to="/interview"
-            style={{ color: 'inherit', textDecoration: 'none' }}
-          >
-            <ListItem button key="Interview" data-testid="test-interview">
-              <ListItemIcon>
-                <People />
-              </ListItemIcon>
-              <ListItemText primary="Interview" />
-            </ListItem>
-          </Link>
-          <Link
             to="/vacancies"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >

@@ -147,7 +147,7 @@ const SelectOptions = props => {
 
 const SurveyC = props => {
   const classes = useStyles()
-  const { setSection, result, setResult, count, dispatch } = props
+  const { setSection, result, setResult, count, dispatch, updateCurrent } = props
   const [showNext, setShowNext] = useState(false)
   if (!result[count - 1]) result[count - 1] = []
   const totalQuestion = survey[0]['C']['questions'].length
@@ -169,6 +169,7 @@ const SurveyC = props => {
           <StyledOption>{currentQuestion['options'][index]}</StyledOption>
           <FormControl className={classes.formControl} variant="outlined">
             <SelectOptions
+              updateCurrent={updateCurrent}
               count={count}
               index={index}
               result={result}
