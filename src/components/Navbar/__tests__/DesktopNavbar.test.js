@@ -1,43 +1,41 @@
-import React from 'react';
-import { render, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import React from "react";
+import { getByTestId, render } from "@testing-library/react";
 import DesktopNavbar from '../DesktopNavbar';
+import { EmployeeContext } from "../../../context/employeeContext";
+import { EmployerContext } from "../../../context/employerContext"
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
-test("Login button should only visible when the user is not logged in", ()=>{
-  const { getByText } = render(<DesktopNavbar />)
-  expect(getByText("Login")).toBeInTheDocument();
-})
+describe('<DesktopNavbar /> context based conditional rendering', () => {
+  test("it should render employee navbar", () => {
+    const history = createMemoryHistory()
+    const user = { name: "Giorgio" }; 
+    const { container } = render(
+      <Router history={history}>
+        <EmployeeContext.Provider value={user}>
+          <DesktopNavbar />
+        </EmployeeContext.Provider>
+      </Router>
+    );
+    expect(getByTestId(container, 'employee-navbar')).not.toBeNull()
+    expect(getByTestId(container, 'navigation-survey')).not.toBeNull()
+    expect(getByTestId(container, 'navigation-result')).not.toBeNull()
+    expect(getByTestId(container, 'navigation-vacancies')).not.toBeNull()
+  });
 
-test("Log out button should only visible when the user is logged in", ()=>{
-  const { getByText } = render(<DesktopNavbar />)
-  fireEvent.click(getByText("Login"));
-  expect(getByText("Log out")).toBeInTheDocument();
-})
-
-test("Survey menu item should not be visible when the user is not logged in", () => {
-  const { queryByText, getByText } = render(<DesktopNavbar />)
-  expect(queryByText("Survey")).not.toBeInTheDocument();
-  fireEvent.click(getByText("Login"));
-  expect(getByText("Survey")).toBeInTheDocument();
-})
-
-test("Result menu item should not be visible when the user is not logged in", () => {
-  const { queryByText, getByText } = render(<DesktopNavbar />)
-  expect(queryByText("Result")).not.toBeInTheDocument();
-  fireEvent.click(getByText("Login"));
-  expect(getByText("Result")).toBeInTheDocument();
-})
-
-test("Interview menu item should not be visible when the user is not logged in", () => {
-  const { queryByText, getByText } = render(<DesktopNavbar />)
-  expect(queryByText("Interview")).not.toBeInTheDocument();
-  fireEvent.click(getByText("Login"));
-  expect(getByText("Interview")).toBeInTheDocument();
-})
-
-test("Vacancy menu item should not be visible when the user is not logged in", () => {
-  const { queryByText, getByText } = render(<DesktopNavbar />)
-  expect(queryByText("Vacancy")).not.toBeInTheDocument();
-  fireEvent.click(getByText("Login"));
-  expect(getByText("Vacancy")).toBeInTheDocument();
-})
+  test("it should render employer navbar", () => {
+    const history = createMemoryHistory()
+    const user = { name: "Giorgio" }; 
+    const { container } = render(
+      <Router history={history}>
+        <EmployerContext.Provider value={user}>
+          <DesktopNavbar />
+        </EmployerContext.Provider>
+      </Router>
+    );
+    expect(getByTestId(container, 'employer-navbar')).not.toBeNull()
+    expect(getByTestId(container, 'navigation-companyvacancies')).not.toBeNull()
+    expect(getByTestId(container, 'navigation-delegates')).not.toBeNull()
+    expect(getByTestId(container, 'navigation-employees')).not.toBeNull()
+  });
+});

@@ -27,7 +27,6 @@ const Delegates = () => {
     { title: 'Rating', field: 'rating' ,filtering: false},
     { title: 'Industry', field: 'category'},
   ]
-  console.log(user)
   useEffect(() => {
     const fetchDelegates = async() => {
       const delegates = await getAllDelegates()

@@ -9,7 +9,27 @@ export default function Vacancy() {
       {
         title: 'Industry',
         field: 'Industry',
-        lookup: { 1: 'Technology', 2: 'Developer' }
+        lookup: { 
+          1: 'Aerospace',
+          2: 'Transport',
+          3: 'Computer',
+          4: 'Telecommunication',
+          5: 'Agriculture',
+          6: 'Construction',
+          7: 'Education',
+          8: 'Pharmaceutical',
+          9: 'Food',
+          10: 'Health care',
+          11: 'Hospitality',
+          12: 'Entertainment',
+          13: 'News Media',
+          14: 'Energy',
+          15: 'Manufacturing',
+          16: 'Music',
+          17: 'Mining',
+          18: 'Worldwide web',
+          19: 'Electronics'
+        }
       },
       { title: 'Status', field: 'status' , lookup: {1: "Open", 2: "Closed"}}
     ],

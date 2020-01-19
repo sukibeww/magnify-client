@@ -142,7 +142,7 @@ const VacanciesList = () => {
 
   return (
     <>
-      <StyledWrapper media={media}>
+      <StyledWrapper media={media} data-testid="vacancylist-wrapper">
         <HeaderWrapper>
           <StyledHeader>Vacancies List</StyledHeader>
         </HeaderWrapper>

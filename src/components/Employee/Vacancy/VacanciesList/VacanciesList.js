@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
 const VacanciesList = () => {
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper data-testid="vacancylist-wrapper">
         <HeaderWrapper>
           <StyledHeader>Vacancies List</StyledHeader>
           <StyledWrapper>

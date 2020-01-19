@@ -1,20 +1,12 @@
-import React, { createContext, useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import { linkedin_logout , isRegistered, updateEmployer , getDelegates } from './helper/employer'
+import { useHistory } from 'react-router-dom'
 
 export const EmployerContext = createContext()
 
 const EmployerContextProvider = props => {
-  // const defaultUser = {
-  //   email: undefined,
-  //   displayName: '',
-  //   photos: null,
-  //   category: [],
-  //   bio: undefined,
-  //   survey: {},
-  //   current: {}
-  // }
   let history = useHistory()
+  // let history = props.history
   const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
 
@@ -79,5 +71,7 @@ const EmployerContextProvider = props => {
     </EmployerContext.Provider>
   )
 }
+
+export const useEmployerContext = () => useContext(EmployerContext)
 
 export default EmployerContextProvider

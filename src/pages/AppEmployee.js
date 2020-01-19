@@ -20,13 +20,13 @@ function AppEmployee(props) {
   return (
     <Router>
       {props.user ? (
-        <EmployeeContextProvider
-          user={props.user}
-          setGlobalUser={props.setGlobalUser}
-        >
-          {media ? <DesktopNavbar /> : <DrawerNavbar />}
-          <Switch>
-            <Route path="/landing" render={props => <Landing />}></Route>
+        <Switch>
+          <EmployeeContextProvider
+            user={props.user}
+            setGlobalUser={props.setGlobalUser}
+          >
+            {media ? <DesktopNavbar /> : <DrawerNavbar />}
+            <Route path="/landing"component={Landing}></Route>
             <Route path="/survey" component={SurveyList}></Route>
             <Route path="/result" component={Result}></Route>
             <Route exact path="/register" component={RegistrationPage}></Route>
@@ -40,8 +40,8 @@ function AppEmployee(props) {
             <Route exact path="/vacancies/add" component={VacancyForm}></Route>
             <Route exact path="/vacancies/edit" component={VacancyForm}></Route>
             <Route exact path="/vacancies/info" component={VacancyInfo}></Route>
-          </Switch>
-        </EmployeeContextProvider>
+          </EmployeeContextProvider>
+        </Switch>
       ) : null}
     </Router>
   )
