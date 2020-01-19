@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Typography,
@@ -19,7 +19,7 @@ import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import People from '@material-ui/icons/People'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
-import { EmployeeContext } from '../../context/employeeContext'
+// import { EmployeeContext } from '../../context/employeeContext'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
@@ -54,9 +54,9 @@ const useStyles = makeStyles({
   }
 })
 
-const DrawerNavbar = () => {
-  const employeeContext = useContext(EmployeeContext)
-  const { user, handleLogout } = employeeContext
+const DrawerNavbar = props => {
+  const user = props.user
+  const { handleLogout } = props.user
 
   const classes = useStyles()
   const [drawer, setdrawer] = useState({
@@ -73,7 +73,7 @@ const DrawerNavbar = () => {
     setdrawer({ ...drawer, [side]: open })
   }
 
-  const sideList = side => (
+  const sideList_employee = side => (
     <div
       className={classes.list}
       role="presentation"
@@ -153,6 +153,81 @@ const DrawerNavbar = () => {
     </div>
   )
 
+  const sideList_employer = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <div className={classes.banner}></div>
+      <List className={classes.navigation}>
+        <Link
+          to="/vacancy"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          <ListItem button key="Vacancy" data-testid="test-vacancy">
+            <ListItemIcon>
+              <Assignment />
+            </ListItemIcon>
+            <ListItemText primary="Vacancy" />
+          </ListItem>
+        </Link>
+        <Link
+          to="/delegates"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          <ListItem button key="Delegates" data-testid="test-delegates">
+            <ListItemIcon>
+              <AssignmentTurnedIn />
+            </ListItemIcon>
+            <ListItemText primary="Delegates" />
+          </ListItem>
+        </Link>
+        <Link
+          to="/employee"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          <ListItem button key="Employee" data-testid="test-employee">
+            <ListItemIcon>
+              <MeetingRoom />
+            </ListItemIcon>
+            <ListItemText primary="Employee" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        <Link
+          to="/profile"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          <ListItem
+            button
+            key="Account Settings"
+            data-testid="test-account-settings"
+          >
+            <ListItemIcon>
+              <AccountCircle />
+            </ListItemIcon>
+            <ListItemText primary="Account Settings" />
+          </ListItem>
+        </Link>
+        <ListItem
+          button
+          data-testid="test-logout"
+          key="Log Out"
+          onClick={handleLogout}
+        >
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="Log Out" />
+        </ListItem>
+      </List>
+    </div>
+  )
+
   return (
     <>
       <AppBar position="static" className={classes.root}>
@@ -184,7 +259,10 @@ const DrawerNavbar = () => {
         onClose={toggleDrawer('left', false)}
         className={classes.drawer}
       >
-        {sideList('left')}
+        {console.log(user.type)}
+        {user.type === 'Employer'
+          ? sideList_employer('left')
+          : sideList_employee('left')}
       </Drawer>
     </>
   )
