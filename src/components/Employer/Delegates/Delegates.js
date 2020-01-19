@@ -43,7 +43,7 @@ const Delegates = () => {
 
   return (
     <>
-      <StyledWrapper media={media}>
+      <StyledWrapper data-testid="delegates-table" media={media}>
         <MaterialTable
           title="Delegates"
           columns={columns}
@@ -54,7 +54,7 @@ const Delegates = () => {
           }}
           onSelectionChange={(rows) => setSelected(rows)}
         />
-        <GeneralButton label="Invite"/>
+        <GeneralButton label="Invite" testid="delegates-invite"/>
       </StyledWrapper>
     </>
   );
