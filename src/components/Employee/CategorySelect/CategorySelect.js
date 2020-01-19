@@ -102,7 +102,7 @@ const CategorySelect = (props) => {
 
   return(
     <>
-      <FormControl className={classes.formControl} variant="outlined">  
+      <FormControl data-testid="profile-category-select" className={classes.formControl} variant="outlined">  
         <InputLabel ref={inputLabel} id="category-select-label">Industry Categories</InputLabel>
         <Select
           labelWidth={labelWidth}
@@ -125,9 +125,10 @@ const CategorySelect = (props) => {
         </Select>
       </FormControl>
       <Categories media={media}>
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           return(
             <Chip
+              key={`category-${index}`}
               className={classes.chip}
               avatar={<Avatar>{category.charAt(0)}</Avatar>}
               label={category}

@@ -81,9 +81,9 @@ const EmployeeProfileEdit = () => {
             <CloseIcon/>
           </Link>
         </AbsoluteWrapper>
-        <ProfilePicture src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
-        <DisplayName>{user.displayName}</DisplayName>
-        <Email>{user.email}</Email>
+        <ProfilePicture data-testid="profile-picture" src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
+        <DisplayName data-testid="profile-name">{user.displayName}</DisplayName>
+        <Email data-testid="profile-email">{user.email}</Email>
         <CategorySelect current={user.category} handleChange={setCategory}></CategorySelect>
         <BioTextbox media={media ? media.toString() : null} current={user.bio} handleChange={setBiography}></BioTextbox>
         <SaveButton handleClick={handleClick}/>

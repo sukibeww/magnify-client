@@ -18,6 +18,7 @@ const SaveButton = props => {
   const classes = useStyles()
   return (
     <Fab
+      data-testid="save-button"
       onClick={props.handleClick}
       className={classes.button}
     >

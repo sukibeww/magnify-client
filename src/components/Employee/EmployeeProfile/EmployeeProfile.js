@@ -96,7 +96,7 @@ const EmployeeProfile = () => {
         <ProfileWrapper media={media ? media.toString() : null}>
           <AbsoluteWrapper>
             <Link to="/profile/edit">
-              <EditButton data-testid="edit-button"/>
+              <EditButton/>
             </Link>
           </AbsoluteWrapper>
           <ProfilePicture
