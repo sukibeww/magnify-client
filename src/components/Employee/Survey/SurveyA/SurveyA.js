@@ -79,7 +79,6 @@ const SurveyA = props => {
   const [selectedValue, setSelectedValue] = useState(defaultSelect)
   const totalQuestion = survey[0]['A']['questions'].length
   let currentQuestion = survey[0]['A']['questions'][count - 1]
-  let currentQuestion = props.currentQuestion || survey[0]['A']['questions'][count - 1]
   const description = survey[0]['A']['description']
   useEffect(() => {
     setSelectedValue(result[count - 1] || defaultSelect)
@@ -105,6 +104,7 @@ const SurveyA = props => {
 
   return (
     <>
+      <StyledWrapper>
         <HeaderWrapper>
           <StyledHeader>Section A</StyledHeader>
           <StyledSubheader>Question {count}</StyledSubheader>
