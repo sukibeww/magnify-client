@@ -96,21 +96,23 @@ const EmployeeProfile = () => {
         <ProfileWrapper media={media ? media.toString() : null}>
           <AbsoluteWrapper>
             <Link to="/profile/edit">
-              <EditButton />
+              <EditButton data-testid="edit-button"/>
             </Link>
           </AbsoluteWrapper>
           <ProfilePicture
+            data-testid="profile-picture"
             src={user.photos}
             alt="profile-pic"
             media={media ? media.toString() : null}
           />
-          <DisplayName>{user.displayName}</DisplayName>
-          <Email>{user.email}</Email>
+          <DisplayName data-testid="profile-name">{user.displayName}</DisplayName>
+          <Email data-testid="profile-email">{user.email}</Email>
           <Subheader>Industry Category</Subheader>
-            <Categories media={media}>
-              {user.category.map((category) =>{
+            <Categories media={media} data-testid="profile-industries">
+              {user.category.map((category, index) =>{
               return(
                 <Chip
+                  key={`category-${index}`}
                   className={classes.chip}
                   avatar={<Avatar>{category.charAt(0)}</Avatar>}
                   label={category}
@@ -120,7 +122,7 @@ const EmployeeProfile = () => {
               )
             })}
             </Categories>
-          <Bio>{user.bio}</Bio>
+          <Bio data-testid="profile-bio">{user.bio}</Bio>
         </ProfileWrapper>
       </>
     )
