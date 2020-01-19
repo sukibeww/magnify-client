@@ -1,20 +1,18 @@
 import React, { useState, useContext, useEffect, useReducer } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import SaveIcon from '@material-ui/icons/Save'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import CloseIcon from '@material-ui/icons/Close'
 import styled from 'styled-components'
 import { green } from '@material-ui/core/colors'
 import { makeStyles } from '@material-ui/core/styles'
-import { Fab, Snackbar, IconButton, SnackbarContent } from '@material-ui/core'
+import { Button ,Fab, Snackbar, IconButton, SnackbarContent } from '@material-ui/core'
 import SurveyA from './SurveyA'
 import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
 import SurveyD from './SurveyD'
 import { EmployeeContext } from '../../../context/employeeContext'
 import SurveyStepper from './SurveyStepper/SurveyStepper'
-import { Button } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 
 const FabWrapper = styled.div`
   display: flex;
@@ -128,7 +126,7 @@ const SurveyList = () => {
     return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear()
   }
 
-  const currestSection = () => {
+  const currentSection = () => {
     switch (section) {
       case 'A':
         return (
@@ -200,7 +198,7 @@ const SurveyList = () => {
   }
   const progressBar = () => {
     return (
-      <FabWrapper>
+      <FabWrapper >
         <SurveyStepper
           section={section}
           dispatch={dispatch}
@@ -211,6 +209,7 @@ const SurveyList = () => {
           resultD={resultD}
         />
         <Fab
+          data-testid="survey-save-button"
           aria-label="join-us"
           color="secondary"
           onClick={() => {
@@ -226,6 +225,7 @@ const SurveyList = () => {
   const snackBar = () => {
     return (
       <Snackbar
+        data-testid="survey-snack-bar"
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left'
@@ -261,7 +261,7 @@ const SurveyList = () => {
     <>
       {user.email ? (
         <>
-          {currestSection()}
+          {currentSection()}
           {section !== 'DONE' ? progressBar() : null}
           {section !== 'DONE' ? snackBar() : null}
         </>

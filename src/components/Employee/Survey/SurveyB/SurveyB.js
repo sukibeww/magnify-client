@@ -104,7 +104,7 @@ const SurveyB = props => {
 
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper data-testid="survey-b">
         <HeaderWrapper>
           <StyledHeader>Section B</StyledHeader>
           <StyledSubheader>Question {count}</StyledSubheader>
