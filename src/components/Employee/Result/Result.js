@@ -1,12 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { MediaContext } from '../../context/mediaContext'
-import { EmployeeContext } from '../../context/employeeContext'
-import styled from 'styled-components'
-import { Redirect } from 'react-router-dom'
-import Gauge from './Gauge'
-import { Link } from 'react-router-dom'
-import './result.css'
-
 import {
   Radar,
   RadarChart,
@@ -14,7 +6,16 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis
 } from 'recharts'
-import SurveyButton from '../Button/SurveyButton'
+import styled from 'styled-components'
+import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Gauge from './Gauge'
+import { MediaContext } from '../../../context/mediaContext'
+import { EmployeeContext } from '../../../context/employeeContext'
+import SurveyButton from '../../Button/SurveyButton'
+import './result.css'
+
+
 
 const data = [
   {

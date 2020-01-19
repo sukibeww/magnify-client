@@ -1,27 +1,26 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import AccordionLanding from './AccordionLanding/AccodionLanding'
-import { MediaContext } from '../../context/mediaContext'
+import { MediaContext } from '../../../context/mediaContext'
 
 const LandingWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: column;
-  background-image: url(${require('./images/mobile-bg.png')});
+  flex-direction: row;
+  background-image: url(${require('./images/desktop-bg.png')});
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 95vh;
   width: 100%;
-  padding-top: 5vh;
 `
 
 const StyledLogo = styled.img`
-  width: 50vw;
-  height: 50vw;
+  width: 35vw;
+  height: 35vw;
 `
 
-const MobileLanding = () => {
+const DesktopLanding = () => {
   const mediaContext = useContext(MediaContext)
   const { media } = mediaContext
   return (
@@ -37,4 +36,4 @@ const MobileLanding = () => {
   )
 }
 
-export default MobileLanding
+export default DesktopLanding

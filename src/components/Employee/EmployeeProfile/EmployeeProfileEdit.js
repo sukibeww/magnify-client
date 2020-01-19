@@ -2,11 +2,11 @@ import React, { useContext , useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
-import { MediaContext }  from '../../context/mediaContext'
-import { EmployeeContext } from '../../context/employeeContext'
+import { MediaContext }  from '../../../context/mediaContext'
+import { EmployeeContext } from '../../../context/employeeContext'
 import CategorySelect from '../CategorySelect/CategorySelect'
-import BioTextbox from '../TextBoxes/BioTextbox'
-import SaveButton from '../Button/SaveButton'
+import BioTextbox from '../../TextBoxes/BioTextbox'
+import SaveButton from '../../Button/SaveButton'
 import CloseIcon from '@material-ui/icons/Close';
 
 const ProfileWrapper = styled.div`

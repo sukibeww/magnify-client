@@ -4,7 +4,6 @@ import MaterialTable from 'material-table'
 export default function Vacancy() {
   const [state, setState] = React.useState({
     columns: [
-      { title: 'Company', field: 'company' },
       { title: 'Vacancy', field: 'vacancy' },
       { title: 'Salary', field: 'salary' }, //type: 'numeric'
       {
@@ -16,14 +15,12 @@ export default function Vacancy() {
     ],
     data: [
       {
-        company: 'MYOB',
         vacancy: 'Accountant',
         salary: '30000-70000',
         Industry: 2,
         status: 1
       },
       {
-        company: 'Coder Academy',
         vacancy: 'Teacher',
         salary: '70000-90000',
         Industry: 1,

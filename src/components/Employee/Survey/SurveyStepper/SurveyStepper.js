@@ -4,7 +4,7 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepButton from '@material-ui/core/StepButton'
 import StepConnector from '@material-ui/core/StepConnector'
-import { MediaContext } from '../../../context/mediaContext'
+import { MediaContext } from '../../../../context/mediaContext'
 import styled from 'styled-components'
 
 const StepperWrapper = styled.div`

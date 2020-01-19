@@ -11,7 +11,7 @@ import {
   Chip,
   Avatar
 } from '@material-ui/core'
-import { MediaContext } from '../../context/mediaContext';
+import { MediaContext } from '../../../context/mediaContext';
 
 const industries = [
   "Aerospace",

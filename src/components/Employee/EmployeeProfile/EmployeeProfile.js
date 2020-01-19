@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { MediaContext } from '../../context/mediaContext'
-import { EmployeeContext } from '../../context/employeeContext'
+import { MediaContext } from '../../../context/mediaContext'
+import { EmployeeContext } from '../../../context/employeeContext'
 import { 
   Chip,
   Avatar
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import styled from 'styled-components'
-import EditButton from '../Button/EditButton'
+import EditButton from '../../Button/EditButton'
 
 const ProfileWrapper = styled.div`
   display: flex;

@@ -1,10 +1,10 @@
 import React, { useContext , useState } from 'react'
-import { MediaContext }  from '../../context/mediaContext'
+import { MediaContext }  from '../../../context/mediaContext'
 import styled from 'styled-components'
 import CategorySelect from '../CategorySelect/CategorySelect'
-import SaveButton from '../Button/SaveButton'
-import BioTextbox from '../TextBoxes/BioTextbox'
-import { EmployeeContext } from '../../context/employeeContext'
+import SaveButton from '../../Button/SaveButton'
+import BioTextbox from '../../TextBoxes/BioTextbox'
+import { EmployeeContext } from '../../../context/employeeContext'
 import { useHistory } from "react-router-dom";
 
 const RegisterationBackground = styled.div`

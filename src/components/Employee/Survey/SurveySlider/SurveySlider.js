@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Slider from '@material-ui/core/Slider'
-import { MediaContext } from '../../../context/mediaContext'
+import { MediaContext } from '../../../../context/mediaContext'
 import styled from 'styled-components'
 
 const SliderWrapper = styled.div`

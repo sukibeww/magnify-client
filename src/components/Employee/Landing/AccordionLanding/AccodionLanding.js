@@ -4,7 +4,7 @@ import AccordionLandingItem from './AccodionLandingItem'
 import Fab from '@material-ui/core/Fab'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { Link } from 'react-router-dom'
-import { MediaContext } from '../../../context/mediaContext'
+import { MediaContext } from '../../../../context/mediaContext'
 
 const AccordionWrapper = styled.ul`
   list-style: none;
