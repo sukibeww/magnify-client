@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 
 const SurveyD = props => {
   const classes = useStyles()
-  const { setSection, result, setResult, count, dispatch } = props
+  const { setSection, result, setResult, count, dispatch , updateCurrent } = props
   const defaultSelect = ''
   const [selectedValue, setSelectedValue] = useState(defaultSelect)
   const totalQuestion = survey[0]['D']['questions'].length
@@ -88,6 +88,7 @@ const SurveyD = props => {
     const temp_result = result
     temp_result[count - 1] = select
     setResult(temp_result)
+    updateCurrent("D" , count)
     setSelectedValue(select)
   }
 

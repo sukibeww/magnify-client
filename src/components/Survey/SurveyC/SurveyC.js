@@ -93,7 +93,7 @@ const SelectOptions = props => {
     setLabelWidth(inputLabel.current.offsetWidth)
   }, [])
 
-  const { count, index, result, setResult, setShowNext } = props
+  const { count, index, result, setResult, setShowNext, updateCurrent } = props
   const defaultOption = ''
   const [selectedOption, setSelectedOption] = useState(defaultOption)
 
@@ -112,6 +112,7 @@ const SelectOptions = props => {
   const saveResult = async select => {
     const temp_result = result
     temp_result[count - 1][index] = select
+    updateCurrent("C", count)
     setResult(temp_result)
     setSelectedOption(select)
     if (result[count - 1].length > 3) {
@@ -146,7 +147,7 @@ const SelectOptions = props => {
 
 const SurveyC = props => {
   const classes = useStyles()
-  const { setSection, result, setResult, count, dispatch } = props
+  const { setSection, result, setResult, count, dispatch, updateCurrent } = props
   const [showNext, setShowNext] = useState(false)
   if (!result[count - 1]) result[count - 1] = []
   const totalQuestion = survey[0]['C']['questions'].length
@@ -168,6 +169,7 @@ const SurveyC = props => {
           <StyledOption>{currentQuestion['options'][index]}</StyledOption>
           <FormControl className={classes.formControl} variant="outlined">
             <SelectOptions
+              updateCurrent={updateCurrent}
               count={count}
               index={index}
               result={result}

@@ -42,9 +42,9 @@ const updateEmployer = async editedEmployer => {
   return resp
 }
 
-const getDelegatesByCategory = async category => {
+const getDelegates = async() => {
   try {
-    const employees = await fetch(`http://localhost:3000/employee/${category}`, {
+    const employees = await fetch(`http://localhost:3000/employee/delegates`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -70,5 +70,5 @@ module.exports = {
   getProfile,
   isRegistered,
   updateEmployer,
-  getDelegatesByCategory
+  getDelegates
 }

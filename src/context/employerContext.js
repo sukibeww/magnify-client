@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { linkedin_logout , isRegistered, updateEmployer , getDelegatesByCategory } from './helper/employer'
+import { linkedin_logout , isRegistered, updateEmployer , getDelegates } from './helper/employer'
 
 export const EmployerContext = createContext()
 
@@ -20,7 +20,7 @@ const EmployerContextProvider = props => {
 
   const handleLogout = () => {
     linkedin_logout()
-    props.setGlobalUser(false)
+    props.setGlobalUser(false)  
     history.push('/')
   }
 
@@ -29,8 +29,8 @@ const EmployerContextProvider = props => {
     updateEmployer({ editedEmployer: user })
   }
 
-  const getDelegates = async (category) => {
-    const result = await getDelegatesByCategory(category)
+  const getAllDelegates = async () => {
+    const result = await getDelegates()
     return result
   }
 
@@ -72,7 +72,7 @@ const EmployerContextProvider = props => {
         handleLogout,
         setUser,
         handleUpdate,
-        getDelegates
+        getAllDelegates
       }}
     >
       {props.children}

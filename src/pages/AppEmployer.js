@@ -6,7 +6,7 @@ import Landing from '../components/Employer/Landing/Landing'
 import DesktopNavbar from '../components/Navbar/DesktopNavbar'
 import DrawerNavbar from '../components/Navbar/DrawerNavbar'
 import EmployerRegistration from '../components/Employer/Registration/EmployerRegistration'
-import Vacancy from '../components/Employer/Vacancy/vacancy'
+import Vacancy from '../components/Employer/Vacancy/Vacancy'
 import Delegates from '../components/Employer/Delegates/Delegates'
 import Stripe from '../components/Employer/Stripe/stripe.js'
 

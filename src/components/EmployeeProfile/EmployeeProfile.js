@@ -60,7 +60,7 @@ const Categories = styled.div`
   justify-content: center;
   flex-direction: row;
   opacity: 0.8;
-  max-width: 30vw;
+  max-width: ${(props) => props.media ? "40vw" : "inherit"};
   flex-wrap: wrap;
 `
 
@@ -81,7 +81,7 @@ const AbsoluteWrapper = styled.div`
 
 const useStyles = makeStyles(theme => ({
   chip: {
-    margin: "0 0.5vw"
+    margin: "0.5vw 0.5vw"
   }
 })) 
 
@@ -89,6 +89,7 @@ const EmployeeProfile = () => {
   const classes = useStyles()
   const { media } = useContext(MediaContext)
   const { user } = useContext(EmployeeContext)
+  console.log(user)
   if (user.email) {
     return (
       <>
@@ -106,7 +107,7 @@ const EmployeeProfile = () => {
           <DisplayName>{user.displayName}</DisplayName>
           <Email>{user.email}</Email>
           <Subheader>Industry Category</Subheader>
-            <Categories>
+            <Categories media={media}>
               {user.category.map((category) =>{
               return(
                 <Chip

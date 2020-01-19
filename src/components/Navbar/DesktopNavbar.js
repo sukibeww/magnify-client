@@ -100,23 +100,6 @@ const DesktopNavbar = () => {
                   className={classes.navButton}
                 >
                   <Link
-                    to="/interview"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Button color="inherit">Interview</Button>
-                  </Link>
-                </Badge>
-                <Badge
-                  variant="dot"
-                  color="secondary"
-                  className={classes.navButton}
-                >
-                  <Link
                     to="/vacancies"
                     style={{
                       textDecoration: 'none',
