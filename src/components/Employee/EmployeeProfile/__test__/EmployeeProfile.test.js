@@ -7,7 +7,7 @@ import { MediaContext } from "../../../../context/mediaContext";
 import { EmployeeContext } from "../../../../context/employeeContext";
 
 describe('<EmployeeProfile /> basic rendering', () => {
-  test("it should render employee navbar", () => {
+  test("it should render employee profile with edit button", () => {
     const history = createMemoryHistory()
     //dummy info
     const user = {

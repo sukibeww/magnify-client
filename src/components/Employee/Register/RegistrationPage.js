@@ -59,8 +59,8 @@ const RegistrationPage = (props) => {
   }
   return (
     <>
-      <RegisterationBackground>
-        <RegistrationFormWrapper media={media ? media.toString() : null}>
+      <RegisterationBackground data-testid="register-form">
+        <RegistrationFormWrapper  media={media ? media.toString() : null}>
           <RegisterHeader>Register</RegisterHeader>
           <CategorySelect handleChange={setCategory}/>
           <BioTextbox handleChange={setBiography}/>

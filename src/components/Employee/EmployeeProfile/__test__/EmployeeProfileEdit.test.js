@@ -6,8 +6,8 @@ import EmployeeProfileEdit from '../EmployeeProfileEdit';
 import { MediaContext } from "../../../../context/mediaContext";
 import { EmployeeContext } from "../../../../context/employeeContext";
 
-describe('<EmployeeProfile /> basic rendering', () => {
-  test("it should render employee navbar", () => {
+describe('<EmployeeProfileEdit /> basic rendering', () => {
+  test("it should render employee profile edit form", () => {
     const history = createMemoryHistory()
     //dummy info
     const user = {
