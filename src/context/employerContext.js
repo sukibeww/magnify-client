@@ -1,26 +1,18 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
+import { linkedin_logout , isRegistered, updateEmployer , getDelegates } from './helper/employer'
 import { useHistory } from 'react-router-dom'
-import { linkedin_logout , isRegistered, updateEmployer } from './helper/employer'
 
 export const EmployerContext = createContext()
 
 const EmployerContextProvider = props => {
-  // const defaultUser = {
-  //   email: undefined,
-  //   displayName: '',
-  //   photos: null,
-  //   category: [],
-  //   bio: undefined,
-  //   survey: {},
-  //   current: {}
-  // }
   let history = useHistory()
+  // let history = props.history
   const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
 
   const handleLogout = () => {
     linkedin_logout()
-    props.setGlobalUser(false)
+    props.setGlobalUser(false)  
     history.push('/')
   }
 
@@ -29,6 +21,10 @@ const EmployerContextProvider = props => {
     updateEmployer({ editedEmployer: user })
   }
 
+  const getAllDelegates = async () => {
+    const result = await getDelegates()
+    return result
+  }
 
   // useEffect(() => {
   //   // async function fetchData() {
@@ -67,12 +63,15 @@ const EmployerContextProvider = props => {
         user,
         handleLogout,
         setUser,
-        handleUpdate
+        handleUpdate,
+        getAllDelegates
       }}
     >
       {props.children}
     </EmployerContext.Provider>
   )
 }
+
+export const useEmployerContext = () => useContext(EmployerContext)
 
 export default EmployerContextProvider

@@ -42,10 +42,10 @@ const DesktopNavbar = () => {
   const classes = useStyles()
   useTheme()
   if(employeeContext){
-    const { user, handleLogout } = employeeContext
+    const { handleLogout } = employeeContext
     return (
       <>
-        <AppBar position="static" className={classes.root}>
+        <AppBar position="static" className={classes.root} data-testid="employee-navbar">
           <Toolbar>
             <Link
               to="/landing"
@@ -58,7 +58,6 @@ const DesktopNavbar = () => {
                 Magnify
               </Typography>
             </Link>
-            {user.email && (
               <div className={classes.navWrapper}>
                 <Badge
                   variant="dot"
@@ -66,6 +65,7 @@ const DesktopNavbar = () => {
                   className={classes.navButton}
                 >
                   <Link
+                    data-testid="navigation-survey"
                     to="/survey"
                     style={{
                       textDecoration: 'none',
@@ -83,6 +83,7 @@ const DesktopNavbar = () => {
                   className={classes.navButton}
                 >
                   <Link
+                    data-testid="navigation-result"
                     to="/result"
                     style={{
                       textDecoration: 'none',
@@ -100,23 +101,7 @@ const DesktopNavbar = () => {
                   className={classes.navButton}
                 >
                   <Link
-                    to="/interview"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Button color="inherit">Interview</Button>
-                  </Link>
-                </Badge>
-                <Badge
-                  variant="dot"
-                  color="secondary"
-                  className={classes.navButton}
-                >
-                  <Link
+                    data-testid="navigation-vacancies"
                     to="/vacancies"
                     style={{
                       textDecoration: 'none',
@@ -136,7 +121,9 @@ const DesktopNavbar = () => {
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>
-                <Link to="/profile" style={{ color: 'white' }}>
+                <Link 
+                  to="/profile" 
+                  style={{ color: 'white' }}>
                   <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
@@ -146,21 +133,22 @@ const DesktopNavbar = () => {
                     <AccountCircle />
                   </IconButton>
                 </Link>
-                <Button onClick={handleLogout} color="inherit">
+                <Button 
+                onClick={handleLogout} 
+                color="inherit">
                   Log out
                 </Button>
               </div>
-            )}
           </Toolbar>
         </AppBar>
       </>
     )
   }
   else{
-    const { user, handleLogout } = employerContext
+    const { handleLogout } = employerContext
     return(
       <>
-      <AppBar position="static" className={classes.root}>
+      <AppBar position="static" className={classes.root} data-testid="employer-navbar">
         <Toolbar>
           <Link
             to="/landing"
@@ -173,7 +161,6 @@ const DesktopNavbar = () => {
               Magnify
             </Typography>
           </Link>
-          {user.email && (
             <div className={classes.navWrapper}>
               <Badge
                 variant="dot"
@@ -181,6 +168,7 @@ const DesktopNavbar = () => {
                 className={classes.navButton}
               >
                 <Link
+                  data-testid="navigation-companyvacancies"
                   to="/vacancy"
                   style={{
                     textDecoration: 'none',
@@ -198,6 +186,7 @@ const DesktopNavbar = () => {
                 className={classes.navButton}
               >
                 <Link
+                  data-testid="navigation-delegates"
                   to="/delegates"
                   style={{
                     textDecoration: 'none',
@@ -215,6 +204,7 @@ const DesktopNavbar = () => {
                 className={classes.navButton}
               >
                 <Link
+                  data-testid="navigation-employees"
                   to="/employees"
                   style={{
                     textDecoration: 'none',
@@ -248,7 +238,6 @@ const DesktopNavbar = () => {
                 Log out
               </Button>
             </div>
-          )}
         </Toolbar>
       </AppBar>
     </>

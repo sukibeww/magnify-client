@@ -18,7 +18,10 @@ const getProfile = async () => {
         'Access-Control-Allow-Credentials': true
       }
     }).then(resp => resp.json())
-    return user
+    if (user) {
+      return user
+    }
+    return false
   } catch (error) {
     return false
   }
@@ -44,7 +47,7 @@ const saveSurvey = async survey => {
   return resp
 }
 
-const submitSurvey = async survey => {
+const fetchSubmitSurvey = async survey => {
   const resp = await fetch('http://localhost:3000/employee/result', {
     method: 'POST',
     body: JSON.stringify(survey),
@@ -53,7 +56,7 @@ const submitSurvey = async survey => {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': true
     }
-  })
+  }).then(resp => resp.json())
   return resp
 }
 
@@ -74,7 +77,7 @@ module.exports = {
   linkedin_logout,
   getProfile,
   saveSurvey,
-  submitSurvey,
+  fetchSubmitSurvey,
   isRegistered,
   updateEmployee
 }

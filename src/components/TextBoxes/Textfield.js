@@ -11,8 +11,7 @@ const Textfield = props => {
       onChange={handleChange}
       id="outlined-size-normal"
       variant="outlined"
-      fullWidth="true"
-      defaultValue={props.defaultValue}
+      fullWidth={true}
     />
   )
 }

@@ -42,6 +42,21 @@ const updateEmployer = async editedEmployer => {
   return resp
 }
 
+const getDelegates = async() => {
+  try {
+    const employees = await fetch(`http://localhost:3000/employee/delegates`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true
+      }
+    }).then(resp => resp.json())
+    return employees
+  } catch (error) {
+    return error
+  }
+}
+
 const isRegistered = user => {
   if (!user.companyName) {
     return false
@@ -54,5 +69,6 @@ module.exports = {
   linkedin_logout,
   getProfile,
   isRegistered,
-  updateEmployer
+  updateEmployer,
+  getDelegates
 }

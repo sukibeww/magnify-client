@@ -5,11 +5,6 @@ import AppEmployer from './AppEmployer.js'
 import LoginPage from '../components/Login/LoginPage'
 
 function Home() {
-  // const defaultUser = {
-  //   email: undefined,
-  //   displayName: '',
-  //   photos: null
-  // }
   const [user, setUser] = useState(false)
 
   const getProfile = async () => {
@@ -39,7 +34,6 @@ function Home() {
 
   return (
     <>
-      {console.log(user)}
       <Router>
         {user.type !== 'Employer' ? (
           <AppEmployee user={user} setGlobalUser={setUser} />

@@ -1,9 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
   linkedin_logout,
   saveSurvey,
-  submitSurvey,
+  fetchSubmitSurvey,
   isRegistered,
   updateEmployee
 } from './helper/employee'
@@ -11,19 +11,10 @@ import {
 export const EmployeeContext = createContext()
 
 const EmployeeContextProvider = props => {
-  // const defaultUser = {
-  //   email: undefined,
-  //   displayName: '',
-  //   photos: null,
-  //   category: [],
-  //   bio: undefined,
-  //   survey: {},
-  //   current: {}
-  // }
   let history = useHistory()
   const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
-
+  // let history = props.history
   const handleLogout = () => {
     linkedin_logout()
     props.setGlobalUser(false)
@@ -31,8 +22,24 @@ const EmployeeContextProvider = props => {
   }
 
   const handleUpdate = editedEmployee => {
-    setUser(() => editedEmployee)
+    setUser(() => editedEmployee) 
     updateEmployee({ editedEmployee: user })
+  }
+
+  const submitSurvey = async survey => {
+    const score = await fetchSubmitSurvey(survey)
+    if (score) {
+      setUser({ ...user, score })
+    }
+  }
+  
+  const updateCurrent = async (section, page) => {
+    setUser((prevState) => {
+      const newUser = prevState
+      newUser.current.current_count = page
+      newUser.current.current_section = section
+      return newUser
+    })
   }
 
   // useEffect(() => {
@@ -67,12 +74,15 @@ const EmployeeContextProvider = props => {
         handleLogout,
         saveSurvey,
         submitSurvey,
-        handleUpdate
+        handleUpdate,
+        updateCurrent
       }}
     >
       {props.children}
     </EmployeeContext.Provider>
   )
 }
+
+export const useEmployeeContext = () => useContext(EmployeeContext)
 
 export default EmployeeContextProvider
