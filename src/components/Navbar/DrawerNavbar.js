@@ -17,7 +17,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import ExitToApp from '@material-ui/icons/ExitToApp'
 import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
-import People from '@material-ui/icons/People'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import GroupIcon from '@material-ui/icons/Group';
@@ -85,6 +84,7 @@ const DrawerNavbar = props => {
   const sideList_employee = side => {
     return(
       <div
+        data-testid="employee-navbar"
         className={classes.list}
         role="presentation"
         onClick={toggleDrawer("left", false)}
@@ -92,15 +92,15 @@ const DrawerNavbar = props => {
       >
         <div className={classes.banner}></div>
         <List className={classes.navigation}>
-          <Link to="/survey" style={{ color: 'inherit', textDecoration: 'none' }}>
-            <ListItem button key="Survey" data-testid="test-survey">
+          <Link data-testid="navigation-survey" to="/survey" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <ListItem  button key="Survey" data-testid="test-survey">
               <ListItemIcon>
                 <Assignment />
               </ListItemIcon>
               <ListItemText primary="Survey" />
             </ListItem>
           </Link>
-          <Link to="/result" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <Link data-testid="navigation-result" to="/result" style={{ color: 'inherit', textDecoration: 'none' }}>
             <ListItem button key="Result" data-testid="test-result">
               <ListItemIcon>
                 <AssignmentTurnedIn />
@@ -109,6 +109,7 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
+            data-testid="navigation-vacancies"
             to="/vacancies"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
@@ -156,6 +157,7 @@ const DrawerNavbar = props => {
   const sideList_employer = side => {
     return(
       <div
+        data-testid="employer-navbar"
         className={classes.list}
         role="presentation"
         onClick={toggleDrawer("left", false)}
@@ -164,6 +166,7 @@ const DrawerNavbar = props => {
         <div className={classes.banner}></div>
         <List className={classes.navigation}>
           <Link
+            data-testid="navigation-companyvacancies"
             to="/vacancy"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
@@ -175,6 +178,7 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
+            data-testid="navigation-delegates"
             to="/delegates"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
@@ -186,6 +190,7 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
+            data-testid="navigation-employees"
             to="/employee"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
@@ -239,6 +244,7 @@ const DrawerNavbar = props => {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            data-testid="navigation-menu"
           >
             <MenuIcon />
           </IconButton>

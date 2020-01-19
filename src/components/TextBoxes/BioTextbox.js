@@ -18,6 +18,7 @@ const BioTextbox = props => {
   return (
     <>
       <TextField
+        data-testid="profile-biotextbox"
         className={classes.formControl}
         id="outlined-multiline-static"
         label="Enter your Bio"

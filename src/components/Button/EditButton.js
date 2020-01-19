@@ -19,6 +19,7 @@ const EditButton = props => {
     <Fab
       onClick={props.handleClick}
       className={classes.button}
+      data-testid="edit-button"
     >
       <EditIcon color="primary"/>
     </Fab>

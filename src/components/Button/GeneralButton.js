@@ -11,7 +11,7 @@ const GeneralButton = props => {
   }))
   const classes = useStyles()
   return (
-    <Button variant="contained" color="secondary" className={classes.button} onClick={props.handleClick}>
+    <Button data-testid={props.testid} variant="contained" color="secondary" className={classes.button} onClick={props.handleClick}>
       {props.label}
     </Button>
   )

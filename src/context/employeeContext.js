@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
   linkedin_logout,
@@ -11,19 +11,10 @@ import {
 export const EmployeeContext = createContext()
 
 const EmployeeContextProvider = props => {
-  // const defaultUser = {
-  //   email: undefined,
-  //   displayName: '',
-  //   photos: null,
-  //   category: [],
-  //   bio: undefined,
-  //   survey: {},
-  //   current: {}
-  // }
   let history = useHistory()
   const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
-
+  // let history = props.history
   const handleLogout = () => {
     linkedin_logout()
     props.setGlobalUser(false)
@@ -31,7 +22,7 @@ const EmployeeContextProvider = props => {
   }
 
   const handleUpdate = editedEmployee => {
-    setUser(() => editedEmployee)
+    setUser(() => editedEmployee) 
     updateEmployee({ editedEmployee: user })
   }
 
@@ -91,5 +82,7 @@ const EmployeeContextProvider = props => {
     </EmployeeContext.Provider>
   )
 }
+
+export const useEmployeeContext = () => useContext(EmployeeContext)
 
 export default EmployeeContextProvider
