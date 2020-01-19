@@ -31,7 +31,8 @@ function AppEmployer(props) {
             <Route path="/employees" component={Stripe}></Route>
             <Route exact path="/profile" component={EmployerProfile}></Route>
             <Route
-              exactpath="/profile/edit"
+              exact
+              path="/profile/edit"
               component={EmployerProfileEdit}
             ></Route>
           </EmployerContextProvider>
