@@ -28,19 +28,21 @@ const Delegates = () => {
     { title: 'Industry', field: 'category'},
   ]
   useEffect(() => {
-    const fetchDelegates = async() => {
+    let optimisedDelegates;
+    const fetchDelegates = async(optimisedDelegates) => {
       const delegates = await getAllDelegates()
-      const optimisedDelegates = delegates.map((delegate) => {
+      optimisedDelegates = delegates.map((delegate) => {
         delegate.category = delegate.category.join()
         delegate.rating = delegate.score.rating
         return delegate
       })
-      console.log(optimisedDelegates)
-      setData(optimisedDelegates)
+      return(optimisedDelegates)
     }
-    fetchDelegates()
-  }, [getAllDelegates])
-
+    fetchDelegates(optimisedDelegates).then((data) => {
+      setData(data)
+    })
+  }, [])
+  
   return (
     <>
       <StyledWrapper data-testid="delegates-table" media={media}>

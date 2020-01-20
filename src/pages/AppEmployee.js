@@ -11,8 +11,6 @@ import { MediaContext } from '../context/mediaContext'
 import RegistrationPage from '../components/Employee/Register/RegistrationPage'
 import EmployeeProfileEdit from '../components/Employee/EmployeeProfile/EmployeeProfileEdit'
 import VacanciesList from '../components/Employee/VacancyList/VacancyList'
-import VacancyForm from '../components/Employee/Vacancy/VacancyForm/VacancyForm'
-import VacancyInfo from '../components/Employee/Vacancy/VacancyInfo/VacancyInfo'
 
 function AppEmployee(props) {
   const mediaContext = useContext(MediaContext)
@@ -37,9 +35,6 @@ function AppEmployee(props) {
               component={EmployeeProfileEdit}
             ></Route>
             <Route exact path="/vacancies" component={VacanciesList}></Route>
-            <Route exact path="/vacancies/add" component={VacancyForm}></Route>
-            <Route exact path="/vacancies/edit" component={VacancyForm}></Route>
-            <Route exact path="/vacancies/info" component={VacancyInfo}></Route>
           </EmployeeContextProvider>
         </Switch>
       ) : null}
