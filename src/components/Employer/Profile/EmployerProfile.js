@@ -24,16 +24,35 @@ const ProfilePicture = styled.img`
   color: #283593;
   border: solid 10px #28359380;
 `
-const CompanyName = styled.h1`
+const AbsoluteWrapper = styled.div`
+  justify-self: flex-start;
+  align-self: flex-end;
+  height: 0;
+  overflow: visible;
+`
+const LittleHeader = styled.h2`
+  display: flex;
+  justify-content: left;
+  align-items: center;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  font-size: 0.7em;
   margin: 0;
-  margin-top: 3vh;
-  font-weight: 400;
-  color: #283593;
+  font-weight: 40;
+  color: #ffa726;
+`
+const Info = styled.h3`
+  font-family: 'Roboto', sans-serif;
+  text-align center;
+  font-size: 0.9em;
+  margin: 0;
+  font-weight: 300;
+  color: #000000;
+  opacity: 0.5;
 `
 const Flexing = styled.h3`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   width: 100%;
@@ -43,70 +62,20 @@ const Flexing = styled.h3`
   font-weight: 400;
   color: #283593;
 `
-const DisplayName = styled.h3`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 60%;
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  margin-top: 3vh;
-  font-weight: 400;
-  color: #283593;
-`
-
-const Email = styled.h3`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  font-weight: 300;
-  color: #000000;
-  opacity: 0.5;
-`
-const CompanyAddress = styled.h1`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  margin-top: 3vh;
-  font-weight: 400;
-  color: #283593;
-`
-const Subheader = styled.h2`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  font-weight: 400;
-  color: #ffa726;
-  margin-top: 1.5vh;
-`
-const Categories = styled.h3`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  font-weight: 400;
-  opacity: 0.5;
-  color: #283593;
-`
-const Bio = styled.p`
-  color: #283593;
-  font-family: 'Roboto', sans-serif;
-  margin-top: 1.5vh;
-  font-weight: 300;
-  text-align: center;
-`
-const AbsoluteWrapper = styled.div`
-  justify-self: flex-start;
-  align-self: flex-end;
-  height: 0;
-  overflow: visible;
-`
-const UserWrapper = styled.div`
+const RepWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border: solid 3px #283593;
   border-radius: 10px;
-  padding: 5vh 5vw;
-  min-height: Auto;
+  border-color: lightgray;
+  padding: 3vh 3vw;
+  min-height: auto;
+  max-width: 90%;
+  margin: 3vh;
 `
+
 const EmployerProfile = () => {
   const { media } = useContext(MediaContext)
   const { user } = useContext(EmployerContext)
@@ -123,31 +92,32 @@ const EmployerProfile = () => {
             src="https://img.icons8.com/dusk/64/000000/city.png"
             alt="Company"
           />
-          <UserWrapper>
+          <RepWrapper>
             <Flexing>
-              <Subheader>Company rep:</Subheader>
-              <DisplayName>{user.displayName}</DisplayName>
+              <LittleHeader>Company rep:</LittleHeader>
+              <Info>{user.displayName}</Info>
             </Flexing>
             <Flexing>
-              <Subheader>Email:</Subheader>
-              <Email> {user.email}</Email>
+              <LittleHeader>Email:</LittleHeader>
+              <Info> {user.email}</Info>
             </Flexing>
-          </UserWrapper>
+          </RepWrapper>
+
           <Flexing>
-            <Subheader>Company Name:</Subheader>
-            <CompanyName>{user.companyName}</CompanyName>
+            <LittleHeader>Company Name:</LittleHeader>
+            <Info>{user.companyName}</Info>
           </Flexing>
           <Flexing>
-            <Subheader>Company Address:</Subheader>
-            <CompanyAddress>{user.address}</CompanyAddress>
+            <LittleHeader>Company Address:</LittleHeader>
+            <Info>{user.address}</Info>
           </Flexing>
           <Flexing>
-            <Subheader>Company Bio:</Subheader>
-            <CompanyAddress>{user.bio}</CompanyAddress>
+            <LittleHeader>Company Description:</LittleHeader>
+            <Info>{user.companyDescription}</Info>
           </Flexing>
           <Flexing>
-            <Subheader>Credit Card Info</Subheader>
-            <Bio>{user.creditCardInfo}</Bio>
+            <LittleHeader>Credit Card Info</LittleHeader>
+            <Info>{user.creditCardInfo}</Info>
           </Flexing>
         </ProfileWrapper>
       </>

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { MediaContext } from '../../../context/mediaContext'
 import { EmployerContext } from '../../../context/employerContext'
-import SaveButton from '../../Button/SaveButton'
+import SaveButton from '../../Button/GeneralButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Textfield from '../../TextBoxes/Textfield'
 
@@ -17,6 +17,7 @@ const ProfileWrapper = styled.div`
   border: solid 3px #283593;
   border-radius: 10px;
   padding: 5vh 5vw;
+  margin: 3vh;
 `
 const CompanyProfilePicture = styled.img`
   border-radius: 100%;
@@ -24,20 +25,6 @@ const CompanyProfilePicture = styled.img`
   height: ${props => (props.media ? '30vh' : '20vh')};
   color: #283593;
   border: solid 10px #28359380;
-`
-const DisplayName = styled.h3`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  margin-top: 3vh;
-  font-weight: 400;
-  color: #283593;
-`
-const Email = styled.h3`
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  font-weight: 300;
-  color: #000000;
-  opacity: 0.5;
 `
 const AbsoluteWrapper = styled.div`
   justify-self: flex-start;
@@ -50,18 +37,6 @@ const AbsoluteWrapper = styled.div`
     opacity: 1;
   }
 `
-const Flexing = styled.h3`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  margin-top: 3vh;
-  font-weight: 400;
-  color: #283593;
-`
 const TextfieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,17 +45,52 @@ const TextfieldWrapper = styled.div`
   height: 40vh;
   min-width: 35vw;
 `
+/* =================================Flexing time================================ */
 const LittleHeader = styled.h2`
   display: flex;
   justify-content: left;
   align-items: center;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
   font-size: 2.5vh;
   margin: 0;
   font-weight: 40;
   color: #ffa726;
 `
-/* =================================Flexing time================================ */
+const Info = styled.h3`
+  font-family: 'Roboto', sans-serif;
+  text-align center;
+  font-size: 0.9em;
+  margin: 0;
+  font-weight: 300;
+  color: #000000;
+  opacity: 0.5;
+`
+
+const Flexing = styled.h3`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  margin: 1.5vh;
+  font-weight: 400;
+  color: #283593;
+`
+const RepWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 3px #283593;
+  border-radius: 10px;
+  border-color: lightgray;
+  padding: 3vh 3vw;
+  min-height: auto;
+  max-width: 90%;
+  margin: 3vh;
+`
 
 const UserWrapper = styled.div`
   display: flex;
@@ -100,15 +110,13 @@ const EmployerProfileEdit = () => {
   const [companyName, setCompanyName] = useState(user.companyName)
   const [companyAddress, setCompanyAddress] = useState(user.address)
   const [description, setDescription] = useState(user.companyDescription)
-  const [creditCardInfo, setCreditCardInfo] = useState(user.creditCardInfo)
-
+  console.log(user.companyName)
   let history = useHistory()
   const handleClick = () => {
     const editedUser = user
     editedUser.companyName = companyName
     editedUser.address = companyAddress
     editedUser.companyDescription = description
-    editedUser.creditCardInfo = creditCardInfo
 
     handleUpdate(editedUser)
     history.push('/profile')
@@ -128,16 +136,16 @@ const EmployerProfileEdit = () => {
         />
 
         {/* =================================Flexing time================================ */}
-        <UserWrapper>
+        <RepWrapper>
           <Flexing>
             <LittleHeader>Company rep:</LittleHeader>
-            <DisplayName>{user.displayName}</DisplayName>
+            <Info>{user.displayName}</Info>
           </Flexing>
           <Flexing>
             <LittleHeader>Email:</LittleHeader>
-            <Email> {user.email}</Email>
+            <Info> {user.email}</Info>
           </Flexing>
-        </UserWrapper>
+        </RepWrapper>
         {/* =================================Flexing time================================ */}
 
         <TextfieldWrapper>
@@ -145,25 +153,23 @@ const EmployerProfileEdit = () => {
             label="Company Name"
             handleChange={setCompanyName}
             defaultValue={user.companyName}
+            size="small"
           />
           <Textfield
             label="Company Address"
             handleChange={setCompanyAddress}
             defaultValue={user.address}
+            size="small"
           />
           <Textfield
             label="Company Description"
             handleChange={setDescription}
             defaultValue={user.companyDescription}
-          />
-          <Textfield
-            label="Credit Card Info"
-            handleChange={setCreditCardInfo}
-            defaultValue={user.creditCardInfo}
+            size="small"
           />
         </TextfieldWrapper>
 
-        <SaveButton handleClick={handleClick} />
+        <SaveButton label={'Save'} handleClick={handleClick} />
       </ProfileWrapper>
     </>
   )
