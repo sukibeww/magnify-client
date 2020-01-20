@@ -28,13 +28,11 @@ const StyledHeader = styled.h1`
 `
 
 const StyledWrapper = styled.div`
-  border: solid #283593;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${(props) => props.media ? "5vh 25vw" : "5vh 2vw"} ;
-  border-radius: 10px;
+  margin: ${(props) => props.media ? "0vh 25vw" : "0vh 2vw"} ;
   height: auto;
   width: ${(props) => props.media ? "70vw" : "90vw"};
   min-width: 40vw;
@@ -101,6 +99,13 @@ const useStyles = makeStyles({
     maxHeight: 550,
     minHeight: 550,
   },
+  mainContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "3vh 3vw"
+  }
 });
 
 const VacanciesList = () => {
@@ -143,6 +148,7 @@ const VacanciesList = () => {
   return (
     <>
       <StyledWrapper media={media} data-testid="vacancylist-wrapper">
+        <Paper className={classes.mainContainer}>
         <HeaderWrapper>
           <StyledHeader>Vacancies List</StyledHeader>
         </HeaderWrapper>
@@ -211,6 +217,7 @@ const VacanciesList = () => {
             />
           </Paper>
           <ApplyButton/>
+        </Paper>
         </StyledWrapper>
     </>
   )

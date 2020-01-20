@@ -6,11 +6,7 @@ import { EmployerContext } from '../../../context/employerContext';
 import { MediaContext } from '../../../context/mediaContext';
 
 const StyledWrapper = styled.div`
-  border: solid #283593;
-  margin: ${(props) => props.media ? "5vw auto" : "5vh 2vw"};
-  border-radius: 10px;
-  max-width: max-content;
-  padding: 5vh 3vw;
+  padding: ${(props) => props.media ? "5vh 15vw" : "5vw 2vw"};
   overflow: scroll;
 `
 
@@ -52,11 +48,12 @@ const Delegates = () => {
           data={data}
           options={{
             selection: true,
-            filtering: true
+            filtering: true,
+            pageSize: 10
           }}
           onSelectionChange={(rows) => setSelected(rows)}
         />
-        <GeneralButton label="Invite" testid="delegates-invite"/>
+        <GeneralButton label="Invite" testid="delegates-invite" />
       </StyledWrapper>
     </>
   );
