@@ -45,7 +45,6 @@ const TextfieldWrapper = styled.div`
   height: 40vh;
   min-width: 35vw;
 `
-/* =================================Flexing time================================ */
 const LittleHeader = styled.h2`
   display: flex;
   justify-content: left;
@@ -91,19 +90,6 @@ const RepWrapper = styled.div`
   max-width: 90%;
   margin: 3vh;
 `
-
-const UserWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border: solid 3px #283593;
-  border-radius: 10px;
-  padding: 5vh 5vw;
-  min-height: Auto;
-`
-/* =================================Flexing time================================ */
-
 const EmployerProfileEdit = () => {
   const { media } = useContext(MediaContext)
   const { user, handleUpdate } = useContext(EmployerContext)
@@ -135,7 +121,6 @@ const EmployerProfileEdit = () => {
           alt="Company"
         />
 
-        {/* =================================Flexing time================================ */}
         <RepWrapper>
           <Flexing>
             <LittleHeader>Company rep:</LittleHeader>
@@ -146,7 +131,6 @@ const EmployerProfileEdit = () => {
             <Info> {user.email}</Info>
           </Flexing>
         </RepWrapper>
-        {/* =================================Flexing time================================ */}
 
         <TextfieldWrapper>
           <Textfield
