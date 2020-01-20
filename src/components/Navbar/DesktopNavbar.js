@@ -41,11 +41,15 @@ const DesktopNavbar = () => {
   const employerContext = useContext(EmployerContext)
   const classes = useStyles()
   useTheme()
-  if(employeeContext){
+  if (employeeContext) {
     const { handleLogout } = employeeContext
     return (
       <>
-        <AppBar position="static" className={classes.root} data-testid="employee-navbar">
+        <AppBar
+          position="static"
+          className={classes.root}
+          data-testid="employee-navbar"
+        >
           <Toolbar>
             <Link
               to="/landing"
@@ -58,61 +62,62 @@ const DesktopNavbar = () => {
                 Magnify
               </Typography>
             </Link>
-              <div className={classes.navWrapper}>
-                <Badge
-                  variant="dot"
-                  color="secondary"
-                  className={classes.navButton}
+            <div className={classes.navWrapper}>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Link
+                  data-testid="navigation-survey"
+                  to="/survey"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
                 >
-                  <Link
-                    data-testid="navigation-survey"
-                    to="/survey"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Button color="inherit">Survey</Button>
-                  </Link>
-                </Badge>
-                <Badge
-                  variant="dot"
-                  color="secondary"
-                  className={classes.navButton}
+                  <Button color="inherit">Survey</Button>
+                </Link>
+              </Badge>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Link
+                  data-testid="navigation-result"
+                  to="/result"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
                 >
-                  <Link
-                    data-testid="navigation-result"
-                    to="/result"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Button color="inherit">Result</Button>
-                  </Link>
-                </Badge>
-                <Badge
-                  variant="dot"
-                  color="secondary"
-                  className={classes.navButton}
+                  <Button color="inherit">Result</Button>
+                </Link>
+              </Badge>
+              <Badge
+                variant="dot"
+                color="secondary"
+                className={classes.navButton}
+              >
+                <Link
+                  data-testid="navigation-vacancies"
+                  to="/vacancies"
+                  style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
                 >
-                  <Link
-                    data-testid="navigation-vacancies"
-                    to="/vacancies"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Button color="inherit">Vacancy</Button>
-                  </Link>
-                </Badge>
+                  <Button color="inherit">Vacancy</Button>
+                </Link>
+              </Badge>
+              <Link to="/notifications" style={{ color: 'white' }}>
                 <IconButton
                   aria-label="show 17 new notifications"
                   color="inherit"
@@ -121,46 +126,46 @@ const DesktopNavbar = () => {
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>
-                <Link 
-                  to="/profile" 
-                  style={{ color: 'white' }}>
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
-                </Link>
-                <Button 
-                onClick={handleLogout} 
-                color="inherit">
-                  Log out
-                </Button>
-              </div>
+              </Link>
+              <Link to="/profile" style={{ color: 'white' }}>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Link>
+              <Button onClick={handleLogout} color="inherit">
+                Log out
+              </Button>
+            </div>
           </Toolbar>
         </AppBar>
       </>
     )
-  }
-  else{
+  } else {
     const { handleLogout } = employerContext
-    return(
+    return (
       <>
-      <AppBar position="static" className={classes.root} data-testid="employer-navbar">
-        <Toolbar>
-          <Link
-            to="/landing"
-            style={{
-              textDecoration: 'none',
-              color: 'white'
-            }}
-          >
-            <Typography variant="h6" className={classes.title}>
-              Magnify
-            </Typography>
-          </Link>
+        <AppBar
+          position="static"
+          className={classes.root}
+          data-testid="employer-navbar"
+        >
+          <Toolbar>
+            <Link
+              to="/landing"
+              style={{
+                textDecoration: 'none',
+                color: 'white'
+              }}
+            >
+              <Typography variant="h6" className={classes.title}>
+                Magnify
+              </Typography>
+            </Link>
             <div className={classes.navWrapper}>
               <Badge
                 variant="dot"
@@ -216,14 +221,17 @@ const DesktopNavbar = () => {
                   <Button color="inherit">Employees</Button>
                 </Link>
               </Badge>
-              <IconButton
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge variant="dot" color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              <Link to="/notifications" style={{ color: 'white' }}>
+                <IconButton
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge variant="dot" color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+
               <Link to="/profile" style={{ color: 'white' }}>
                 <IconButton
                   aria-label="account of current user"
@@ -238,12 +246,11 @@ const DesktopNavbar = () => {
                 Log out
               </Button>
             </div>
-        </Toolbar>
-      </AppBar>
-    </>
+          </Toolbar>
+        </AppBar>
+      </>
     )
   }
-  
 }
 
 export default DesktopNavbar

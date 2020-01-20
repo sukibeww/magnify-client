@@ -9,6 +9,7 @@ import EmployerRegistration from '../components/Employer/Registration/EmployerRe
 import Vacancy from '../components/Employer/Vacancy/Vacancy'
 import Delegates from '../components/Employer/Delegates/Delegates'
 import Stripe from '../components/Employer/Stripe/stripe.js'
+import Notifications from '../components/Notifications/Notifications'
 
 function AppEmployer(props) {
   const mediaContext = useContext(MediaContext)
@@ -27,6 +28,7 @@ function AppEmployer(props) {
             <Route path="/vacancy" component={Vacancy}></Route>
             <Route path="/delegates" component={Delegates}></Route>
             <Route path="/employees" component={Stripe}></Route>
+            <Route path="/notifications" component={Notifications}></Route>
           </EmployerContextProvider>
         </Switch>
       ) : null}
