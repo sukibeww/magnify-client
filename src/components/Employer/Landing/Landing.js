@@ -33,21 +33,28 @@ const DesktopLanding = () => {
           </p>
           <div className="flex-wrapper">
             <div className="grid">
-              <div>
-                <CreateOutlined />
-                <span>Create Vacancie</span>
-                <div id="vacan" className="image"></div>
-              </div>
-              <div>
-                <MailOutline />
-                <span> Invite Employee to do the Survey</span>
-                <div id="survey" className="image"></div>
-              </div>
-              <div>
-                <PersonOutline />
-                <span> Recruit Public</span>
-                <div id="public" className="image"></div>
-              </div>
+              <Link to="/vacancy">
+                <div>
+                  <CreateOutlined />
+                  <span>Create Vacancie</span>
+                  <div id="vacan" className="image"></div>
+                </div>
+              </Link>
+              <Link to="/delegates">
+                <div>
+                  <MailOutline />
+                  <span> Invite Employee to do the Survey</span>
+                  <div id="survey" className="image"></div>
+                </div>
+              </Link>
+              <Link to="/employee">
+                <div>
+                  <PersonOutline />
+                  <span> Recruit Public</span>
+
+                  <div id="public" className="image"></div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
