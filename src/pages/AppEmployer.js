@@ -10,6 +10,8 @@ import Vacancy from '../components/Employer/Vacancy/Vacancy'
 import Delegates from '../components/Employer/Delegates/Delegates'
 import Stripe from '../components/Employer/Stripe/stripe.js'
 import { makeStyles } from '@material-ui/core'
+import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
+import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
 
 const useStyles = makeStyles({
   container: {
@@ -21,7 +23,6 @@ const useStyles = makeStyles({
     `
   }
 })
-
 function AppEmployer(props) {
   const classes = useStyles()
   const mediaContext = useContext(MediaContext)
@@ -35,13 +36,17 @@ function AppEmployer(props) {
             setGlobalUser={props.setGlobalUser}
           >
             {media ? <DesktopNavbar /> : <DrawerNavbar user={props.user} />}
-            <div className={classes.container}>
-              <Route path="/landing" component={Landing}></Route>
-              <Route path="/register" component={EmployerRegistration}></Route>
-              <Route path="/vacancy" component={Vacancy}></Route>
-              <Route path="/delegates" component={Delegates}></Route>
-              <Route path="/employees" component={Stripe}></Route>
-            </div>
+            <Route path="/landing" component={Landing}></Route>
+            <Route path="/register" component={EmployerRegistration}></Route>
+            <Route path="/vacancy" component={Vacancy}></Route>
+            <Route path="/delegates" component={Delegates}></Route>
+            <Route path="/employees" component={Stripe}></Route>
+            <Route exact path="/profile" component={EmployerProfile}></Route>
+            <Route
+              exact
+              path="/profile/edit"
+              component={EmployerProfileEdit}
+            ></Route>
           </EmployerContextProvider>
         </Switch>
       ) : null}

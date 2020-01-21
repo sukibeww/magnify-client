@@ -12,6 +12,8 @@ const Textfield = props => {
       id="outlined-size-normal"
       variant="outlined"
       fullWidth={true}
+      defaultValue={props.defaultValue}
+      size={props.size}
     />
   )
 }
