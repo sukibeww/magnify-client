@@ -9,7 +9,7 @@ export default function Vacancy() {
       {
         title: 'Industry',
         field: 'Industry',
-        lookup: { 
+        lookup: {
           1: 'Aerospace',
           2: 'Transport',
           3: 'Computer',
@@ -31,7 +31,7 @@ export default function Vacancy() {
           19: 'Electronics'
         }
       },
-      { title: 'Status', field: 'status' , lookup: {1: "Open", 2: "Closed"}}
+      { title: 'Status', field: 'status', lookup: { 1: 'Open', 2: 'Closed' } }
     ],
     data: [
       {

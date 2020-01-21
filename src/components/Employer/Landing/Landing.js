@@ -34,7 +34,7 @@ const DesktopLanding = () => {
           <div className="flex-wrapper">
             <div className="grid">
               <div>
-                <Link to="/vacancy">
+                <Link class="none" to="/vacancy">
                   <CreateOutlined />
                   <span>Create Vacancie</span>
                   <div id="vacan" className="image"></div>
@@ -42,7 +42,7 @@ const DesktopLanding = () => {
               </div>
 
               <div>
-                <Link to="/delegates">
+                <Link class="none" to="/delegates">
                   <MailOutline />
                   <span> Invite Employee to do the Survey</span>
                   <div id="survey" className="image"></div>
@@ -50,7 +50,7 @@ const DesktopLanding = () => {
               </div>
 
               <div>
-                <Link to="/employee">
+                <Link class="none" to="/employee">
                   <PersonOutline />
                   <span> Recruit Public</span>
 

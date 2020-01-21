@@ -33,3 +33,8 @@ code {
   font-size: 1.5em;
   line-height: 0;
 }
+
+.none {
+  text-decoration: none;
+  color: inherit;
+}
