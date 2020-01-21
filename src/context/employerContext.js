@@ -29,7 +29,6 @@ const EmployerContextProvider = props => {
 
   const getAllVacanciesOfCompany = async (companyId) => {
     const result = await getVacanciesOfCompany(user._id)
-    console.log(result)
     setCompanyVacancies(()=> result)
     return result
   }
