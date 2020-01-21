@@ -36,17 +36,19 @@ function AppEmployer(props) {
             setGlobalUser={props.setGlobalUser}
           >
             {media ? <DesktopNavbar /> : <DrawerNavbar user={props.user} />}
-            <Route path="/landing" component={Landing}></Route>
-            <Route path="/register" component={EmployerRegistration}></Route>
-            <Route path="/vacancy" component={Vacancy}></Route>
-            <Route path="/delegates" component={Delegates}></Route>
-            <Route path="/employees" component={Stripe}></Route>
-            <Route exact path="/profile" component={EmployerProfile}></Route>
-            <Route
-              exact
-              path="/profile/edit"
-              component={EmployerProfileEdit}
-            ></Route>
+            <div className={classes.container}>
+              <Route path="/landing" component={Landing}></Route>
+              <Route path="/register" component={EmployerRegistration}></Route>
+              <Route path="/vacancy" component={Vacancy}></Route>
+              <Route path="/delegates" component={Delegates}></Route>
+              <Route path="/employees" component={Stripe}></Route>
+              <Route exact path="/profile" component={EmployerProfile}></Route>
+              <Route
+                exact
+                path="/profile/edit"
+                component={EmployerProfileEdit}
+              ></Route>
+            </div>
           </EmployerContextProvider>
         </Switch>
       ) : null}

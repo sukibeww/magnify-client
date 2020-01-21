@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useForceUpdate} from 'react'
+import React, {useContext, useState } from 'react'
 import MaterialTable from 'material-table'
 import { EmployerContext } from '../../../context/employerContext'
 
