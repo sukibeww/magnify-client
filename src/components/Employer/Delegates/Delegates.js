@@ -6,11 +6,7 @@ import { EmployerContext } from '../../../context/employerContext';
 import { MediaContext } from '../../../context/mediaContext';
 
 const StyledWrapper = styled.div`
-  border: solid #283593;
-  margin: ${(props) => props.media ? "5vw auto" : "5vh 2vw"};
-  border-radius: 10px;
-  max-width: max-content;
-  padding: 5vh 3vw;
+  padding: ${(props) => props.media ? "5vh 15vw" : "5vw 2vw"};
   overflow: scroll;
 `
 
@@ -28,19 +24,21 @@ const Delegates = () => {
     { title: 'Industry', field: 'category'},
   ]
   useEffect(() => {
-    const fetchDelegates = async() => {
+    let optimisedDelegates;
+    const fetchDelegates = async(optimisedDelegates) => {
       const delegates = await getAllDelegates()
-      const optimisedDelegates = delegates.map((delegate) => {
+      optimisedDelegates = delegates.map((delegate) => {
         delegate.category = delegate.category.join()
         delegate.rating = delegate.score.rating
         return delegate
       })
-      console.log(optimisedDelegates)
-      setData(optimisedDelegates)
+      return(optimisedDelegates)
     }
-    fetchDelegates()
-  }, [getAllDelegates])
-
+    fetchDelegates(optimisedDelegates).then((data) => {
+      setData(data)
+    })
+  }, [])
+  
   return (
     <>
       <StyledWrapper data-testid="delegates-table" media={media}>
@@ -50,11 +48,12 @@ const Delegates = () => {
           data={data}
           options={{
             selection: true,
-            filtering: true
+            filtering: true,
+            pageSize: 10
           }}
           onSelectionChange={(rows) => setSelected(rows)}
         />
-        <GeneralButton label="Invite" testid="delegates-invite"/>
+        <GeneralButton label="Invite" testid="delegates-invite" />
       </StyledWrapper>
     </>
   );

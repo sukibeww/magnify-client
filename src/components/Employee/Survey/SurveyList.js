@@ -6,7 +6,13 @@ import CloseIcon from '@material-ui/icons/Close'
 import styled from 'styled-components'
 import { green } from '@material-ui/core/colors'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button ,Fab, Snackbar, IconButton, SnackbarContent } from '@material-ui/core'
+import {
+  Button,
+  Fab,
+  Snackbar,
+  IconButton,
+  SnackbarContent
+} from '@material-ui/core'
 import SurveyA from './SurveyA'
 import SurveyB from './SurveyB'
 import SurveyC from './SurveyC'
@@ -67,18 +73,21 @@ const SurveyList = () => {
   const [count, dispatch] = useReducer(count_reducer, 1)
 
   useEffect(() => {
-    if (user.survey) {
-      setResultA(user.survey.surveyA || [])
-      setResultB(user.survey.surveyB || [])
-      setResultC(user.survey.surveyC || [])
-      setResultD(user.survey.surveyD || [])
-    }
-    if (user.current) {
-      setSection(user.current.current_section || 'A')
-      dispatch(user.current.current_count || 'reset')
-    }
+    console.log('here')
+    console.log(user)
     if (user.score.kinetic) {
       setSection('DONE')
+    } else {
+      if (user.survey) {
+        setResultA(user.survey.surveyA || [])
+        setResultB(user.survey.surveyB || [])
+        setResultC(user.survey.surveyC || [])
+        setResultD(user.survey.surveyD || [])
+      }
+      if (user.current) {
+        setSection(user.current.current_section || 'A')
+        dispatch(user.current.current_count || 'reset')
+      }
     }
   }, [user])
 
@@ -175,7 +184,7 @@ const SurveyList = () => {
       case 'END':
         submit()
         setSection('DONE')
-        return <Redirect to="/result" />
+        return null
       case 'DONE':
         return (
           <>
@@ -198,7 +207,7 @@ const SurveyList = () => {
   }
   const progressBar = () => {
     return (
-      <FabWrapper >
+      <FabWrapper>
         <SurveyStepper
           section={section}
           dispatch={dispatch}
