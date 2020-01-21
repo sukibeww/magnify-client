@@ -55,6 +55,18 @@ const createVacancy = async newVacancy => {
   return resp
 }
 
+const deleteVacancy = async vacancyId => {
+  const resp = fetch(`http://localhost:3000/vacancies/${vacancyId}`, {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
+
 
 const getDelegates = async() => {
   try {
@@ -101,5 +113,6 @@ module.exports = {
   updateEmployer,
   getDelegates,
   createVacancy,
-  getVacanciesOfCompany
+  getVacanciesOfCompany,
+  deleteVacancy
 }
