@@ -12,13 +12,13 @@ import Stripe from '../components/Employer/Stripe/stripe.js'
 import { makeStyles } from '@material-ui/core'
 import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
 import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
-
+import Success from '../components/Employer/Delegates/Success'
 const useStyles = makeStyles({
   container: {
-    minHeight: "95vh",
-    width: "100%",
-    backgroundColor: "#ffffff",
-    overflow: "scroll",
+    minHeight: '95vh',
+    width: '100%',
+    backgroundColor: '#ffffff',
+    overflow: 'scroll',
     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%236d6deb' fill-opacity='0.07'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
     `
   }
@@ -48,6 +48,7 @@ function AppEmployer(props) {
                 path="/profile/edit"
                 component={EmployerProfileEdit}
               ></Route>
+              <Route path="/email/success" component={Success}></Route>
             </div>
           </EmployerContextProvider>
         </Switch>

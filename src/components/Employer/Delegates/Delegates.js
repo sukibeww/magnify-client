@@ -4,19 +4,22 @@ import styled from 'styled-components'
 import GeneralButton from '../../Button/GeneralButton'
 import { EmployerContext } from '../../../context/employerContext'
 import { MediaContext } from '../../../context/mediaContext'
+import { withRouter } from 'react-router-dom'
+import loader from './loader.gif'
 
 const StyledWrapper = styled.div`
   padding: ${props => (props.media ? '5vh 15vw' : '5vw 2vw')};
   overflow: scroll;
 `
 
-const Delegates = () => {
+const Delegates = props => {
   const employerContext = useContext(EmployerContext)
   const mediaContext = useContext(MediaContext)
   const { media } = mediaContext.toString()
   const { user, getAllDelegates } = employerContext
   const [selected, setSelected] = useState([])
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
   const columns = [
     { title: 'Name', field: 'displayName', filtering: false },
     { title: 'Email', field: 'email', filtering: false },
@@ -39,26 +42,34 @@ const Delegates = () => {
   }, [user.email, getAllDelegates])
 
   const inviteEmail = async () => {
+    setLoading(true)
     if (selected.length > 0) {
       const email_list = selected.map(user => {
         return user.email
       })
-      const resp = fetch('http://localhost:3000/email', {
-        method: 'get',
-        // body: JSON.stringify(editedEmployee),
+      const emailSend = { email: email_list }
+      const resp = await fetch('http://localhost:3000/email', {
+        method: 'POST',
+        body: JSON.stringify(emailSend),
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Credentials': true
         }
       })
-      return resp
+      setLoading(false)
+      if (resp) {
+        return props.history.push({
+          pathname: '/email/success',
+          state: { email: email_list }
+        })
+      }
     }
   }
 
   return (
     <>
-      {user.email ? (
+      {!loading ? (
         <StyledWrapper data-testid="delegates-table" media={media}>
           <MaterialTable
             title="Delegates"
@@ -69,7 +80,9 @@ const Delegates = () => {
               filtering: true,
               pageSize: 10
             }}
-            onSelectionChange={rows => setSelected(rows)}
+            onSelectionChange={rows => {
+              setSelected(rows)
+            }}
           />
           <GeneralButton
             label="Invite"
@@ -78,10 +91,15 @@ const Delegates = () => {
           />
         </StyledWrapper>
       ) : (
-        'loading'
+        <div class="box">
+          <h1>Sending an email</h1>
+          <br />
+          <img src={loader} alt="loader" />
+          <p class="mute">please wait for a moment...</p>
+        </div>
       )}
     </>
   )
 }
 
-export default Delegates
+export default withRouter(Delegates)

@@ -38,3 +38,7 @@ code {
   text-decoration: none;
   color: inherit;
 }
+
+.mute {
+  color: lightgray;
+}
