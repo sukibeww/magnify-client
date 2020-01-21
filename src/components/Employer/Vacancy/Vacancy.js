@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useForceUpdate} from 'react'
+import React, {useContext, useState } from 'react'
 import MaterialTable from 'material-table'
 import { EmployerContext } from '../../../context/employerContext'
 
@@ -32,7 +32,7 @@ const columns = [
 
 const Vacancy = (props) => {
   const employerContext = useContext(EmployerContext)
-  const { user, createNewVacancy, companyVacancies, getAllVacanciesOfCompany} = employerContext
+  const { updateVacancyById, user, createNewVacancy, companyVacancies, getAllVacanciesOfCompany, deleteVacancyById} = employerContext
   const [ vacancies, setVacancies ] = useState({
     data: companyVacancies,
     resolve: () =>{}, 
@@ -42,20 +42,35 @@ const Vacancy = (props) => {
   
   const onRowDelete = oldData =>
     new Promise((resolve, reject) => {
-      const { data } = vacancies;
-      const updatedAt = new Date();
-      const index = data.indexOf(oldData);
-      data.splice(index, 1);
-      setVacancies({ ...vacancies, data, resolve, updatedAt });
+      setTimeout(async() => {
+        deleteVacancyById(oldData._id)
+        const result = await getAllVacanciesOfCompany()
+        resolve()
+        setVacancies((prevState)=> {
+          const newState = prevState
+          prevState.data = result
+          return {...newState}
+        })
+      }, 1000)
   });
 
   const onRowUpdate = (newData, oldData) =>
     new Promise((resolve, reject) => {
-      const { data } = vacancies;
-      const updatedAt = new Date();
-      const index = data.indexOf(oldData);
-      data[index] = newData;
-      setVacancies({ ...vacancies, data, resolve, updatedAt });
+      setTimeout(async() => {
+        oldData.title = newData.title
+        oldData.salary = newData.salary 
+        oldData.industry = newData.industry
+        oldData.isOpen = newData.isOpen
+        oldData.description = newData.description
+        updateVacancyById(oldData)
+        const result = await getAllVacanciesOfCompany()
+        resolve()
+        setVacancies((prevState)=> {
+          const newState = prevState
+          prevState.data = result
+          return {...newState}
+        })
+      }, 1000)
     });
 
 
