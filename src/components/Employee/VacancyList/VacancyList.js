@@ -1,217 +1,148 @@
 import React, { useState ,useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import MaterialTable from 'material-table';
 import styled from 'styled-components'
-import ApplyButton from '../../Button/ApplyButton'
-import { 
-  Paper,
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableContainer, 
-  TableHead,  
-  TablePagination, 
-  Checkbox,
-  TableRow } from '@material-ui/core'
+import GeneralButton from '../../Button/GeneralButton';
 import { MediaContext } from '../../../context/mediaContext';
 
-const HeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 3vh;
-`
-const StyledHeader = styled.h1`
-  color: #283593;
-  font-size: 2em;
-  line-height: 0;
-`
-
 const StyledWrapper = styled.div`
-  border: solid #283593;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: ${(props) => props.media ? "5vh 25vw" : "5vh 2vw"} ;
-  border-radius: 10px;
-  height: auto;
-  width: ${(props) => props.media ? "70vw" : "90vw"};
-  min-width: 40vw;
-  max-width: max-content;
-  padding: 5vh 3vw;
+  padding: ${(props) => props.media ? "5vh 15vw" : "5vw 2vw"};
+  overflow: scroll;
 `
 
-const columns = [
-  { id: 'company_name', label: 'Company Name'},
-  {
-    id: 'vacancy_name',
-    label: 'Vacancy',
-    align: 'right',
-    format: value => value.toLocaleString(),
-  },
-  {
-    id: 'salary',
-    label: 'Salary',
-    align: 'center',
-    minWidth: "150px",
-    format: value => value.toLocaleString(),
-  },
-  {
-    id: 'industry',
-    label: 'Industry',
-    align: 'center',
-    format: value => value.toFixed(2),
-  },
-  {
-    id: 'apply',
-    label: 'Apply',
-    align: 'right',
-    format: value => value.toFixed(2),
-  },
-];
+// Title, description, creator, salary, industry, applicants, isOpen
 
-function createData(company_name, vacancy_name, salary, industry, id) {
-  return { company_name, vacancy_name, salary, industry, id };
-}
-
-const rows = [
-  createData('MYOB', 'Developer', "10000 - 50000", 'Information Technology', 1),
-  createData('MYOB', 'Developer', "10000 - 50000", 'Information Technology', 2),
-  createData('MYOB', 'Developer', "10000 - 50000", 'Information Technology', 3),
-  createData('Mantel', 'Developer', "10000 - 50000", 'Information Technology', 4),
-  createData('Mantel', 'Developer', "10000 - 50000", 'Information Technology', 5),
-  createData('Mantel', 'Developer', "10000 - 50000", 'Information Technology', 6),
-  createData('NAB', 'Developer', "10000 - 50000", 'Information Technology', 7),
-  createData('NAB', 'Developer', "10000 - 50000", 'Information Technology', 8),
-  createData('NAB', 'Developer', "10000 - 50000", 'Information Technology', 9),
-  createData('JB-HiFi', 'Developer', "10000 - 50000", 'Information Technology', 10),
-  createData('JB-HiFi', 'Developer', "10000 - 50000", 'Information Technology', 11),
-  createData('JB-HiFi', 'Developer', "10000 - 50000", 'Information Technology', 12),
-  createData('Fresho', 'Developer', "10000 - 50000", 'Information Technology', 13),
-  createData('Fresho', 'Developer', "10000 - 50000", 'Information Technology', 14),
-  createData('Fresho', 'Developer', "10000 - 50000", 'Information Technology', 15),
-];
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
+const dummy = [
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
   },
-  container: {
-    maxHeight: 550,
-    minHeight: 550,
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
   },
-});
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  },
+  {
+    title: "Developer",
+    description: "React, Express, Database, IT stuff",
+    creator: "BOYM",
+    salary: "30000-50000",
+    industry: "Information Technology",
+    isOpen: "true"
+  }
+]
 
 const VacanciesList = () => {
-  const classes = useStyles();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [selected, setSelected] = useState([])
   const mediaContext = useContext(MediaContext)
+  const [selected, setSelected] = useState([])
+  const [data, setData] = useState(dummy);
   const { media } = mediaContext
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = event => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  const isSelected = id => selected.indexOf(id) !== -1;
-
-  const handleClick = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-    setSelected(newSelected);
-  };
-
+  const columns = [
+    { title: 'Title', field: 'title'},
+    { title: 'Company', field: 'creator'},
+    { title: 'Salary', field: 'salary'},
+    { title: 'Industry', field: 'industry', lookup: { 
+      1: 'Aerospace',
+      2: 'Transport',
+      3: 'Computer',
+      4: 'Telecommunication',
+      5: 'Agriculture',
+      6: 'Construction',
+      7: 'Education',
+      8: 'Pharmaceutical',
+      9: 'Food',
+      10: 'Health care',
+      11: 'Hospitality',
+      12: 'Entertainment',
+      13: 'News Media',
+      14: 'Energy',
+      15: 'Manufacturing',
+      16: 'Music',
+      17: 'Mining',
+      18: 'Worldwide web',
+      19: 'Electronics'
+    }},
+    { title: 'Status', field: 'isOpen'},
+    { title: 'Description', field: 'description'}
+  ]
+  
   return (
     <>
-      <StyledWrapper media={media} data-testid="vacancylist-wrapper">
-        <HeaderWrapper>
-          <StyledHeader>Vacancies List</StyledHeader>
-        </HeaderWrapper>
-        <Paper className={classes.root}>
-            <TableContainer className={classes.container}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    {columns.map(column => (
-                      <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{ minWidth: column.minWidth }}
-                      >
-                        {column.label}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
-                    const isItemSelected = isSelected(row.id);
-                    return (
-                      <TableRow 
-                      hover 
-                      role="checkbox" 
-                      tabIndex={-1} 
-                      key={row.code}
-                      selected={isItemSelected}
-                      onClick={event => handleClick(event, row.id)}
-                      >
-                        {columns.map(column => {
-                          const value = row[column.id];
-                          if(column.id === 'apply'){
-                            return(
-                              <TableCell key={column.id} align={column.align}>
-                                <Checkbox
-                                  value={row.id}
-                                  checked={isItemSelected}
-                                  inputProps={{ 'aria-label': `${row.vacancy_name}` }}
-                                />
-                              </TableCell>
-                            )
-                          }
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number' ? column.format(value) : value}
-                            </TableCell>
-                          );
-                        })}
-                        
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
-          </Paper>
-          <ApplyButton/>
-        </StyledWrapper>
+      <StyledWrapper data-testid="vacancy-table" media={media}>
+        <MaterialTable
+          title="Vacancy List"
+          columns={columns}
+          data={data}
+          options={{
+            selection: true,
+            pageSize: 10
+          }}
+          onSelectionChange={(rows) => setSelected(rows)}
+        />
+        <GeneralButton label="Apply" testid="apply-button" />
+      </StyledWrapper>
     </>
   )
 }

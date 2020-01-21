@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { linkedin_logout , isRegistered, updateEmployer , getDelegates } from './helper/employer'
+import { linkedin_logout , isRegistered, updateEmployer , getDelegates, createVacancy, getVacanciesOfCompany } from './helper/employer'
 import { useHistory } from 'react-router-dom'
 
 export const EmployerContext = createContext()
@@ -9,6 +9,7 @@ const EmployerContextProvider = props => {
   // let history = props.history
   const [user, setUser] = useState(props.user)
   const [redirectToRegistration, setRedirectToRegistration] = useState(false)
+  const [companyVacancies, setCompanyVacancies] = useState([])
 
   const handleLogout = () => {
     linkedin_logout()
@@ -24,6 +25,18 @@ const EmployerContextProvider = props => {
   const getAllDelegates = async () => {
     const result = await getDelegates()
     return result
+  }
+
+  const getAllVacanciesOfCompany = async (companyId) => {
+    const result = await getVacanciesOfCompany(user._id)
+    setCompanyVacancies(()=> result)
+    return result
+  }
+
+  const createNewVacancy = async (newVacancy) => {
+    const vacancy = await createVacancy({newVacancy: newVacancy})
+    getAllVacanciesOfCompany()
+    return vacancy
   }
 
   // useEffect(() => {
@@ -43,6 +56,7 @@ const EmployerContextProvider = props => {
 
   useEffect(() => {
     if (user) {
+      getAllVacanciesOfCompany()
       const redirectAfterLogin = () => {
         setRedirectToRegistration(() => {
           return isRegistered(user)
@@ -61,10 +75,13 @@ const EmployerContextProvider = props => {
     <EmployerContext.Provider
       value={{
         user,
+        companyVacancies,
         handleLogout,
         setUser,
         handleUpdate,
-        getAllDelegates
+        getAllDelegates,
+        createNewVacancy,
+        getAllVacanciesOfCompany
       }}
     >
       {props.children}

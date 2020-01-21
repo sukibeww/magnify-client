@@ -50,8 +50,6 @@ const EmployerRegistration = (props) => {
   let history = useHistory()
   const handleClick = () => {
     const editedUser = user
-    console.log(companyName)
-    console.log(address)
     if(companyName.length && address.length){
       editedUser.companyName = companyName
       editedUser.address = address
