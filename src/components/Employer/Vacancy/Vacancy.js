@@ -1,6 +1,8 @@
 import React, {useContext, useState } from 'react'
 import MaterialTable from 'material-table'
 import { EmployerContext } from '../../../context/employerContext'
+import {Radio, RadioGroup} from '@material-ui/core';
+import { lightGreen } from '@material-ui/core/colors';
 
 const columns = [
   { title: 'Title', field: 'title'},
@@ -39,6 +41,7 @@ const Vacancy = (props) => {
     updatedAt: new Date(),
     columns: columns
   })
+  const [ selected, setSelected ] = useState({})
   
   const onRowDelete = oldData =>
     new Promise((resolve, reject) => {
@@ -53,6 +56,27 @@ const Vacancy = (props) => {
         })
       }, 1000)
   });
+
+  const handleSelect = async (event) => {
+    await document.querySelector('input[type=radio]:checked').removeAttribute('checked')
+    // allRadio.forEach((radio) => {
+    //   console.log(radio.checked)
+    // })
+    console.log(event.target.value)
+    if(event.target.value){
+      setSelected(event.target.value)
+    }
+  }
+  const handleClick = async (event) => {
+    await document.querySelector('input[type=radio]:checked').removeAttribute('checked')
+    // allRadio.forEach((radio) => {
+    //   console.log(radio.checked)
+    // })
+    console.log(event.target.value)
+    if(event.target.value){
+      setSelected(event.target.value)
+    }
+  }
 
   const onRowUpdate = (newData, oldData) =>
     new Promise((resolve, reject) => {
@@ -92,21 +116,33 @@ const Vacancy = (props) => {
 
   return (
     <div className="container">
-      <MaterialTable
-        title="Vacancy"
-        columns={vacancies.columns}
-        data={vacancies.data}
-        options={{
-          pageSize: 10
-        }}
-        editable={{
-          isEditable: rowData => true,
-          isDeletable: rowData => true,
-          onRowAdd: onRowAdd,
-          onRowUpdate: onRowUpdate,
-          onRowDelete: onRowDelete
-        }}
-      />
+      <RadioGroup value={selected}>
+        <MaterialTable
+          title="Vacancy"
+          columns={vacancies.columns}
+          data={vacancies.data}
+          options={{
+            pageSize: 10
+          }}
+          actions={[
+            {
+              icon: <Radio className="radiobutton" onChange={handleSelect} onClick={handleClick}/>,
+              tooltip: 'Select Vacancy',  
+              onClick: async (event, rowData) => {
+                console.log(rowData)
+                await setSelected(()=> {return {...rowData}})
+              }
+            }
+          ]}
+          editable={{
+            isEditable: rowData => true,
+            isDeletable: rowData => true,
+            onRowAdd: onRowAdd,
+            onRowUpdate: onRowUpdate,
+            onRowDelete: onRowDelete
+          }}
+        />
+      </RadioGroup>
     </div>
   )
 }
