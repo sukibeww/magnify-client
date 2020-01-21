@@ -1,13 +1,13 @@
-import React , { useState, useContext, useEffect } from 'react';
-import MaterialTable from 'material-table';
+import React, { useState, useContext, useEffect } from 'react'
+import MaterialTable from 'material-table'
 import styled from 'styled-components'
-import GeneralButton from '../../Button/GeneralButton';
-import { EmployerContext } from '../../../context/employerContext';
-import { MediaContext } from '../../../context/mediaContext';
+import GeneralButton from '../../Button/GeneralButton'
+import { EmployerContext } from '../../../context/employerContext'
+import { MediaContext } from '../../../context/mediaContext'
 
 const StyledWrapper = styled.div`
   border: solid #283593;
-  margin: ${(props) => props.media ? "5vw auto" : "5vh 2vw"};
+  margin: ${props => (props.media ? '5vw auto' : '5vh 2vw')};
   border-radius: 10px;
   max-width: max-content;
   padding: 5vh 3vw;
@@ -20,17 +20,17 @@ const Delegates = () => {
   const { media } = mediaContext
   const { user, getAllDelegates } = employerContext
   const [selected, setSelected] = useState([])
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
   const columns = [
-    { title: 'Name', field: 'displayName' ,filtering: false},
-    { title: 'Email', field: 'email',filtering: false },
-    { title: 'Rating', field: 'rating' ,filtering: false},
-    { title: 'Industry', field: 'category'},
+    { title: 'Name', field: 'displayName', filtering: false },
+    { title: 'Email', field: 'email', filtering: false },
+    { title: 'Rating', field: 'rating', filtering: false },
+    { title: 'Industry', field: 'category' }
   ]
   useEffect(() => {
-    const fetchDelegates = async() => {
+    const fetchDelegates = async () => {
       const delegates = await getAllDelegates()
-      const optimisedDelegates = delegates.map((delegate) => {
+      const optimisedDelegates = delegates.map(delegate => {
         delegate.category = delegate.category.join()
         delegate.rating = delegate.score.rating
         return delegate
@@ -52,12 +52,12 @@ const Delegates = () => {
             selection: true,
             filtering: true
           }}
-          onSelectionChange={(rows) => setSelected(rows)}
+          onSelectionChange={rows => setSelected(rows)}
         />
-        <GeneralButton label="Invite" testid="delegates-invite"/>
+        <GeneralButton label="Invite" testid="delegates-invite" />
       </StyledWrapper>
     </>
-  );
+  )
 }
 
 export default Delegates
