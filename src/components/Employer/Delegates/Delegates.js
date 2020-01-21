@@ -27,6 +27,7 @@ const Delegates = () => {
           src={rowData.photos}
         />
       ),
+      filtering: false
     },
     { title: 'Name', field: 'displayName' ,filtering: false},
     { title: 'Email', field: 'email',filtering: false },

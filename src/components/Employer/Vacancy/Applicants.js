@@ -36,16 +36,14 @@ const Applicants = (props) => {
   const [ applicants, setApplicants ] = useState(dummy)
 
   return (
-    <div className="container">
-      <MaterialTable
-        title="Applicants"
-        columns={columns}
-        data={applicants}
-        options={{
-          pageSize: 5
-        }}
-      />
-    </div>
+    <MaterialTable
+      title="Applicants"
+      columns={columns}
+      data={applicants}
+      options={{
+        pageSize: 5
+      }}
+    />
   )
 }
 

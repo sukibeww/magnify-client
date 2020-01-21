@@ -3,6 +3,14 @@ import MaterialTable from 'material-table'
 import { EmployerContext } from '../../../context/employerContext'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import Applicants from './Applicants';
+import VacancyEmployee from './VacancyEmployee';
+import styled from 'styled-components'
+import { MediaContext } from '../../../context/mediaContext';
+
+const StyledWrapper = styled.div`
+  padding: ${(props) => props.media ? "10vh 15vw" : "5vw 2vw"};
+  overflow: scroll;
+`
 
 const columns = [
   { title: 'Title', field: 'title'},
@@ -34,6 +42,8 @@ const columns = [
 
 const Vacancy = (props) => {
   const employerContext = useContext(EmployerContext)
+  const mediaContext = useContext(MediaContext)
+  const {media} = mediaContext
   const { updateVacancyById, user, createNewVacancy, companyVacancies, getAllVacanciesOfCompany, deleteVacancyById} = employerContext
   const [ vacancies, setVacancies ] = useState({
     data: companyVacancies,
@@ -94,7 +104,7 @@ const Vacancy = (props) => {
     });
 
   return (
-    <div className="container">
+    <StyledWrapper media={media}>
       <MaterialTable
         title="Vacancy"
         columns={vacancies.columns}
@@ -121,7 +131,8 @@ const Vacancy = (props) => {
         }}
       />
       {selected && <Applicants applicants={selected.applicants}/>}
-    </div>
+      {selected && <VacancyEmployee employee={selected.employees}/>}
+    </StyledWrapper>
   )
 }
 
