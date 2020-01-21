@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { linkedin_logout , isRegistered, updateEmployer , getDelegates, createVacancy, getVacanciesOfCompany, deleteVacancy } from './helper/employer'
+import { linkedin_logout , isRegistered, updateEmployer , getDelegates, createVacancy, getVacanciesOfCompany, deleteVacancy, updateVacancy } from './helper/employer'
 import { useHistory } from 'react-router-dom'
 
 export const EmployerContext = createContext()
@@ -43,6 +43,11 @@ const EmployerContextProvider = props => {
     const response = await deleteVacancy(vacancyId)
     return response
   }
+  
+  const updateVacancyById = async (updatedVacancy) => {
+    const response = await updateVacancy(updatedVacancy)
+    return response
+  } 
 
   // useEffect(() => {
   //   // async function fetchData() {
@@ -87,7 +92,8 @@ const EmployerContextProvider = props => {
         getAllDelegates,
         createNewVacancy,
         getAllVacanciesOfCompany,
-        deleteVacancyById
+        deleteVacancyById,
+        updateVacancyById
       }}
     >
       {props.children}

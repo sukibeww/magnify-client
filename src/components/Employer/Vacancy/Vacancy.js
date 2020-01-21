@@ -32,7 +32,7 @@ const columns = [
 
 const Vacancy = (props) => {
   const employerContext = useContext(EmployerContext)
-  const { user, createNewVacancy, companyVacancies, getAllVacanciesOfCompany, deleteVacancyById} = employerContext
+  const { updateVacancyById, user, createNewVacancy, companyVacancies, getAllVacanciesOfCompany, deleteVacancyById} = employerContext
   const [ vacancies, setVacancies ] = useState({
     data: companyVacancies,
     resolve: () =>{}, 
@@ -56,11 +56,21 @@ const Vacancy = (props) => {
 
   const onRowUpdate = (newData, oldData) =>
     new Promise((resolve, reject) => {
-      const { data } = vacancies;
-      const updatedAt = new Date();
-      const index = data.indexOf(oldData);
-      data[index] = newData;
-      setVacancies({ ...vacancies, data, resolve, updatedAt });
+      setTimeout(async() => {
+        oldData.title = newData.title
+        oldData.salary = newData.salary 
+        oldData.industry = newData.industry
+        oldData.isOpen = newData.isOpen
+        oldData.description = newData.description
+        updateVacancyById(oldData)
+        const result = await getAllVacanciesOfCompany()
+        resolve()
+        setVacancies((prevState)=> {
+          const newState = prevState
+          prevState.data = result
+          return {...newState}
+        })
+      }, 1000)
     });
 
 
