@@ -1,9 +1,11 @@
+import URL from '../../../config'
+
 const linkedin_login = () => {
-  window.open('http://localhost:3000/auth/linkedin/login/employer', '_self')
+  window.open(URL + '/auth/linkedin/login/employer', '_self')
 }
 
 const linkedin_logout = async () => {
-  await fetch('http://localhost:3000/logout', {
+  await fetch(URL + '/logout', {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +17,7 @@ const linkedin_logout = async () => {
 
 const getProfile = async () => {
   try {
-    const user = await fetch('http://localhost:3000/login', {
+    const user = await fetch(URL + '/login', {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -28,9 +30,8 @@ const getProfile = async () => {
   }
 }
 
-
 const updateEmployer = async editedEmployer => {
-  const resp = fetch('http://localhost:3000/employer/update', {
+  const resp = fetch(URL + '/employer/update', {
     method: 'PUT',
     body: JSON.stringify(editedEmployer),
     credentials: 'include',
@@ -43,7 +44,7 @@ const updateEmployer = async editedEmployer => {
 }
 
 const createVacancy = async newVacancy => {
-  const resp = fetch('http://localhost:3000/vacancies', {
+  const resp = fetch(URL + '/vacancies', {
     method: 'POST',
     body: JSON.stringify(newVacancy),
     credentials: 'include',
@@ -56,7 +57,7 @@ const createVacancy = async newVacancy => {
 }
 
 const deleteVacancy = async vacancyId => {
-  const resp = fetch(`http://localhost:3000/vacancies/${vacancyId}`, {
+  const resp = fetch(URL + `/vacancies/${vacancyId}`, {
     method: 'DELETE',
     credentials: 'include',
     headers: {
@@ -67,10 +68,9 @@ const deleteVacancy = async vacancyId => {
   return resp
 }
 
-
-const getDelegates = async() => {
+const getDelegates = async () => {
   try {
-    const employees = await fetch(`http://localhost:3000/employee/delegates`, {
+    const employees = await fetch(URL + `/employee/delegates`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -83,9 +83,9 @@ const getDelegates = async() => {
   }
 }
 
-const getVacanciesOfCompany = async (companyId) => {
+const getVacanciesOfCompany = async companyId => {
   try {
-    const vacancies = await fetch(`http://localhost:3000/vacancies/${companyId}`, {
+    const vacancies = await fetch(URL + `/vacancies/${companyId}`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -98,10 +98,9 @@ const getVacanciesOfCompany = async (companyId) => {
   }
 }
 
-
 const updateVacancy = async updatedVacancy => {
   console.log(updatedVacancy)
-  const resp = fetch(`http://localhost:3000/vacancies/${updatedVacancy._id}`, {
+  const resp = fetch(URL + `/vacancies/${updatedVacancy._id}`, {
     method: 'PUT',
     body: JSON.stringify(updatedVacancy),
     credentials: 'include',
