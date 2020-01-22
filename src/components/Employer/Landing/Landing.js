@@ -44,16 +44,15 @@ const DesktopLanding = () => {
               <div>
                 <Link className="none" to="/delegates">
                   <MailOutline />
-                  <span> Invite Employee to do the Survey</span>
+                  <span>Invitation</span>
                   <div id="survey" className="image"></div>
                 </Link>
               </div>
 
               <div>
-                <Link className="none" to="/employee">
+                <Link className="none" to="/premium">
                   <PersonOutline />
-                  <span> Recruit Public</span>
-
+                  <span>Premium</span>
                   <div id="public" className="image"></div>
                 </Link>
               </div>
@@ -84,7 +83,7 @@ const DesktopLanding = () => {
                     <Link to="/delegates">Invite</Link>
                   </li>
                   <li>
-                    <Link to="/employee">Public</Link>
+                    <Link to="/premium">Premium</Link>
                   </li>
                   <li>
                     <Link to="/">Email us</Link>

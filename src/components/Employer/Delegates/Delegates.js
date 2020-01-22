@@ -42,8 +42,8 @@ const Delegates = props => {
   }, [user.email, getAllDelegates])
 
   const inviteEmail = async () => {
-    setLoading(true)
     if (selected.length > 0) {
+      setLoading(true)
       const email_list = selected.map(user => {
         return user.email
       })

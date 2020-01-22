@@ -1,4 +1,4 @@
-import React, { useState ,useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Typography,
@@ -18,11 +18,12 @@ import ExitToApp from '@material-ui/icons/ExitToApp'
 import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import GroupIcon from '@material-ui/icons/Group';
+import GroupAddIcon from '@material-ui/icons/GroupAdd'
+import GroupIcon from '@material-ui/icons/Group'
 import { Link } from 'react-router-dom'
 import { EmployeeContext } from '../../context/employeeContext'
 import { EmployerContext } from '../../context/employerContext'
+import StarsIcon from '@material-ui/icons/Stars'
 
 const useStyles = makeStyles({
   root: {
@@ -59,12 +60,11 @@ const useStyles = makeStyles({
 const DrawerNavbar = props => {
   const employeeContext = useContext(EmployeeContext)
   const employerContext = useContext(EmployerContext)
-  let logout;
-  if(employeeContext){
-    logout = employeeContext.handleLogout 
-  }
-  else{
-    logout = employerContext.handleLogout 
+  let logout
+  if (employeeContext) {
+    logout = employeeContext.handleLogout
+  } else {
+    logout = employerContext.handleLogout
   }
   const classes = useStyles()
   const [drawer, setdrawer] = useState({
@@ -82,25 +82,33 @@ const DrawerNavbar = props => {
   }
 
   const sideList_employee = side => {
-    return(
+    return (
       <div
         data-testid="employee-navbar"
         className={classes.list}
         role="presentation"
-        onClick={toggleDrawer("left", false)}
-        onKeyDown={toggleDrawer("left", false)}
+        onClick={toggleDrawer('left', false)}
+        onKeyDown={toggleDrawer('left', false)}
       >
         <div className={classes.banner}></div>
         <List className={classes.navigation}>
-          <Link data-testid="navigation-survey" to="/survey" style={{ color: 'inherit', textDecoration: 'none' }}>
-            <ListItem  button key="Survey" data-testid="test-survey">
+          <Link
+            data-testid="navigation-survey"
+            to="/survey"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem button key="Survey" data-testid="test-survey">
               <ListItemIcon>
                 <Assignment />
               </ListItemIcon>
               <ListItemText primary="Survey" />
             </ListItem>
           </Link>
-          <Link data-testid="navigation-result" to="/result" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <Link
+            data-testid="navigation-result"
+            to="/result"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
             <ListItem button key="Result" data-testid="test-result">
               <ListItemIcon>
                 <AssignmentTurnedIn />
@@ -155,13 +163,13 @@ const DrawerNavbar = props => {
   }
 
   const sideList_employer = side => {
-    return(
+    return (
       <div
         data-testid="employer-navbar"
         className={classes.list}
         role="presentation"
-        onClick={toggleDrawer("left", false)}
-        onKeyDown={toggleDrawer("left", false)}
+        onClick={toggleDrawer('left', false)}
+        onKeyDown={toggleDrawer('left', false)}
       >
         <div className={classes.banner}></div>
         <List className={classes.navigation}>
@@ -190,15 +198,15 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
-            data-testid="navigation-employees"
-            to="/employee"
+            data-testid="navigation-premium"
+            to="/premium"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
-            <ListItem button key="Employee" data-testid="test-employee">
+            <ListItem button key="Premium" data-testid="test-premium">
               <ListItemIcon>
-                <GroupIcon />
+                <StarsIcon />
               </ListItemIcon>
-              <ListItemText primary="Employee" />
+              <ListItemText primary="Become Premium" />
             </ListItem>
           </Link>
         </List>
@@ -264,9 +272,7 @@ const DrawerNavbar = props => {
         onClose={toggleDrawer('left', false)}
         className={classes.drawer}
       >
-        {employeeContext
-          ? sideList_employee()
-          : sideList_employer()}
+        {employeeContext ? sideList_employee() : sideList_employer()}
       </Drawer>
     </>
   )

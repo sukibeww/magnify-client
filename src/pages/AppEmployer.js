@@ -41,7 +41,7 @@ function AppEmployer(props) {
               <Route path="/register" component={EmployerRegistration}></Route>
               <Route path="/vacancy" component={Vacancy}></Route>
               <Route path="/delegates" component={Delegates}></Route>
-              <Route path="/employees" component={Stripe}></Route>
+              <Route path="/premium" component={Stripe}></Route>
               <Route exact path="/profile" component={EmployerProfile}></Route>
               <Route
                 exact
