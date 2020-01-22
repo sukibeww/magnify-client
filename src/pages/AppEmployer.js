@@ -13,6 +13,7 @@ import Notifications from '../components/Notifications/Notifications'
 import { makeStyles } from '@material-ui/core'
 import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
 import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
+import Success from '../components/Employer/Delegates/Success'
 import FooterComponent from '../components/Footer/Footer'
 
 const useStyles = makeStyles({
@@ -44,13 +45,14 @@ function AppEmployer(props) {
               <Route path="/register" component={EmployerRegistration}></Route>
               <Route path="/vacancy" component={Vacancy}></Route>
               <Route path="/delegates" component={Delegates}></Route>
-              <Route path="/employees" component={Stripe}></Route>
+              <Route path="/premium" component={Stripe}></Route>
               <Route exact path="/profile" component={EmployerProfile}></Route>
               <Route
                 exact
                 path="/profile/edit"
                 component={EmployerProfileEdit}
               ></Route>
+              <Route path="/email/success" component={Success}></Route>
               <Route path="/notifications" component={Notifications}></Route>
               <FooterComponent />
             </div>

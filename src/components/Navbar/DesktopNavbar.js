@@ -13,6 +13,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import { EmployeeContext } from '../../context/employeeContext'
 import { Link } from 'react-router-dom'
 import { EmployerContext } from '../../context/employerContext'
+import StarsIcon from '@material-ui/icons/Stars'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -117,14 +118,22 @@ const DesktopNavbar = () => {
                   <Button color="inherit">Vacancy</Button>
                 </Link>
               </Badge>
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge variant="dot" color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
               <Link to="/notifications" style={{ color: 'white' }}>
                 <IconButton
-                  aria-label="show 17 new notifications"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
                   color="inherit"
                 >
-                  <Badge variant="dot" color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
+                  <AccountCircle />
                 </IconButton>
               </Link>
               <Link to="/profile" style={{ color: 'white' }}>
@@ -209,8 +218,8 @@ const DesktopNavbar = () => {
                 className={classes.navButton}
               >
                 <Link
-                  data-testid="navigation-employees"
-                  to="/employees"
+                  data-testid="navigation-premium"
+                  to="/premium"
                   style={{
                     textDecoration: 'none',
                     color: 'white',
@@ -218,7 +227,8 @@ const DesktopNavbar = () => {
                     alignItems: 'center'
                   }}
                 >
-                  <Button color="inherit">Employees</Button>
+                  <StarsIcon />
+                  <Button color="inherit">Become Premium</Button>
                 </Link>
               </Badge>
               <Link to="/notifications" style={{ color: 'white' }}>

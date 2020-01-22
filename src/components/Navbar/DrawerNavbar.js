@@ -25,6 +25,7 @@ import GroupIcon from '@material-ui/icons/Group'
 import { Link } from 'react-router-dom'
 import { EmployeeContext } from '../../context/employeeContext'
 import { EmployerContext } from '../../context/employerContext'
+import StarsIcon from '@material-ui/icons/Stars'
 
 const useStyles = makeStyles({
   root: {
@@ -214,15 +215,15 @@ const DrawerNavbar = props => {
             </ListItem>
           </Link>
           <Link
-            data-testid="navigation-employees"
-            to="/employees"
+            data-testid="navigation-premium"
+            to="/premium"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
-            <ListItem button key="Employee" data-testid="test-employee">
+            <ListItem button key="Premium" data-testid="test-premium">
               <ListItemIcon>
-                <GroupIcon />
+                <StarsIcon />
               </ListItemIcon>
-              <ListItemText primary="Employee" />
+              <ListItemText primary="Become Premium" />
             </ListItem>
           </Link>
         </List>

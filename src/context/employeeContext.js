@@ -22,34 +22,28 @@ const EmployeeContextProvider = props => {
   }
 
   const handleUpdate = editedEmployee => {
-    setUser(() => editedEmployee) 
+    setUser(() => editedEmployee)
     updateEmployee({ editedEmployee: user })
   }
 
   const submitSurvey = async survey => {
     const score = await fetchSubmitSurvey(survey)
     if (score) {
-      setUser({ ...user, score })
+      setUser(prevState => {
+        prevState.score = score.score
+        return { ...prevState }
+      })
     }
   }
-  
+
   const updateCurrent = async (section, page) => {
-    setUser((prevState) => {
+    setUser(prevState => {
       const newUser = prevState
       newUser.current.current_count = page
       newUser.current.current_section = section
       return newUser
     })
   }
-
-  // useEffect(() => {
-  //   // async function fetchData() {
-  //   //   const user = await getProfile()
-  //   //   if (user) setUser(user)
-  //   // }
-  //   // fetchData()
-  //   if (user) setUser(props.user)
-  // }, [])
 
   useEffect(() => {
     if (user) {
@@ -59,7 +53,9 @@ const EmployeeContextProvider = props => {
         })
         if (user.email) {
           redirectToRegistration
-            ? history.push('/landing')
+            ? user.score.rating
+              ? history.push('/result')
+              : history.push('/landing')
             : history.push('/register')
         }
       }

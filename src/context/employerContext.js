@@ -1,5 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { linkedin_logout , isRegistered, updateEmployer , getDelegates, createVacancy, getVacanciesOfCompany, deleteVacancy, updateVacancy } from './helper/employer'
+import {
+  linkedin_logout,
+  isRegistered,
+  updateEmployer,
+  getDelegates,
+  createVacancy,
+  getVacanciesOfCompany,
+  deleteVacancy,
+  updateVacancy
+} from './helper/employer'
 import { useHistory } from 'react-router-dom'
 
 export const EmployerContext = createContext()
@@ -13,7 +22,7 @@ const EmployerContextProvider = props => {
 
   const handleLogout = () => {
     linkedin_logout()
-    props.setGlobalUser(false)  
+    props.setGlobalUser(false)
     history.push('/')
   }
 
@@ -27,27 +36,27 @@ const EmployerContextProvider = props => {
     return result
   }
 
-  const getAllVacanciesOfCompany = async (companyId) => {
+  const getAllVacanciesOfCompany = async companyId => {
     const result = await getVacanciesOfCompany(user._id)
-    setCompanyVacancies(()=> result)
+    setCompanyVacancies(() => result)
     return result
   }
 
-  const createNewVacancy = async (newVacancy) => {
-    const vacancy = await createVacancy({newVacancy: newVacancy})
+  const createNewVacancy = async newVacancy => {
+    const vacancy = await createVacancy({ newVacancy: newVacancy })
     getAllVacanciesOfCompany()
     return vacancy
   }
 
-  const deleteVacancyById = async (vacancyId) => {
+  const deleteVacancyById = async vacancyId => {
     const response = await deleteVacancy(vacancyId)
     return response
   }
-  
-  const updateVacancyById = async (updatedVacancy) => {
+
+  const updateVacancyById = async updatedVacancy => {
     const response = await updateVacancy(updatedVacancy)
     return response
-  } 
+  }
 
   // useEffect(() => {
   //   // async function fetchData() {

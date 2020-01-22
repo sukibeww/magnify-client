@@ -17,7 +17,7 @@ class CheckoutForm extends Component {
     if (this.state.complete) return <h1>Purchase Complete</h1>
     return (
       <div>
-        <p>Want to See Public Profile? subscribe for 5$ a month</p>
+        <p>Become Premium Magnify User. subscribe just for 5$ a month</p>
         <CardElement required={true} />
         <Button
           style={{ margin: '20px' }}
