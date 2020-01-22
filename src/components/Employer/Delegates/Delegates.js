@@ -6,6 +6,7 @@ import { EmployerContext } from '../../../context/employerContext'
 import { MediaContext } from '../../../context/mediaContext'
 import { withRouter } from 'react-router-dom'
 import loader from './loader.gif'
+import Modal from './Modal'
 
 const StyledWrapper = styled.div`
   padding: ${props => (props.media ? '5vh 15vw' : '5vw 2vw')};
@@ -20,6 +21,14 @@ const Delegates = props => {
   const [selected, setSelected] = useState([])
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
+  let addressRef = React.useRef()
+  let dateRef = React.useRef()
+  const setAddress = ref => {
+    addressRef = ref
+  }
+  const setDate = ref => {
+    dateRef = ref
+  }
   const columns = [
     { title: 'Name', field: 'displayName', filtering: false },
     { title: 'Email', field: 'email', filtering: false },
@@ -42,12 +51,16 @@ const Delegates = props => {
   }, [user.email, getAllDelegates])
 
   const inviteEmail = async () => {
-    if (selected.length > 0) {
+    if (selected.length > 0 && addressRef.value && dateRef.value) {
       setLoading(true)
       const email_list = selected.map(user => {
         return user.email
       })
-      const emailSend = { email: email_list }
+      const emailSend = {
+        email: email_list,
+        address: addressRef.value,
+        date: dateRef.value
+      }
       const resp = await fetch('http://localhost:3000/email', {
         method: 'POST',
         body: JSON.stringify(emailSend),
@@ -84,18 +97,23 @@ const Delegates = props => {
               setSelected(rows)
             }}
           />
-          <GeneralButton
+          {/* <GeneralButton
             label="Invite"
             testid="delegates-invite"
             handleClick={inviteEmail}
+          /> */}
+          <Modal
+            handleClick={inviteEmail}
+            setAddress={setAddress}
+            setDate={setDate}
           />
         </StyledWrapper>
       ) : (
-        <div class="box">
+        <div className="box">
           <h1>Sending an email</h1>
           <br />
           <img src={loader} alt="loader" />
-          <p class="mute">please wait for a moment...</p>
+          <p className="mute">please wait for a moment...</p>
         </div>
       )}
     </>

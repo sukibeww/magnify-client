@@ -7,7 +7,7 @@ class Success extends Component {
     if (this.props.location.state) {
       return (
         <>
-          <div class="box">
+          <div className="box">
             <h1>Email Send</h1>
             <p>
               {this.props.location.state.email
