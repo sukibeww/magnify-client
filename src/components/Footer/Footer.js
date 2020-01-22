@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
+import { EmployerContext } from '../../context/employerContext'
 
 const Footer = styled.div`
   background-color: #111111;
@@ -86,82 +87,153 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const FooterComponent = () => {
-  // const mediaContext = useContext(MediaContext)
-  // const { media } = mediaContext
   const classes = useStyles()
-  return (
-    <Footer>
-      <>
-        <FooterContent>
-          <FooterContentSectionFirst>
-            <FooterH3>Maginify</FooterH3>
-            <p>
-              We pride ourselves in delivering a unique solution to the stigma
-              of the hiring process. Through our application we deliver a
-              psychological insight into a candidate's tendencies to enable you
-              the employer to hire the best person for the job. Our algorithm is
-              proven to accurately determine employable qualities of an
-              applicant and create a base percentage from the candidates
-              results, compared to scientifically proven ideal characteristics
-              of a top employee.
-            </p>
-            <p> Address : 1/1 aa Melbourne 3000</p>
-          </FooterContentSectionFirst>
-          <FooterContentSection>
-            <FooterH4>Navigate</FooterH4>
-            <ul>
-              <li>
-                <Link to="/vacancies" className={classes.footerLink}>
-                  Vacancies
-                </Link>
-              </li>
-              <li>
-                <Link to="/delegates" className={classes.footerLink}>
-                  Invite
-                </Link>
-              </li>
-              <li>
-                <Link to="/employee" className={classes.footerLink}>
-                  Public
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={classes.footerLink}>
-                  Email us
-                </Link>
-              </li>
-            </ul>
-          </FooterContentSection>
-          <FooterContentSectionLast>
-            <FooterH4>Social</FooterH4>
-            <ul className="plain">
-              <li>
-                <Link to="/" className={classes.footerLink}>
-                  <i className="icon fa-twitter">&nbsp;</i>Twitter
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={classes.footerLink}>
-                  <i className="icon fa-facebook">&nbsp;</i>Facebook
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={classes.footerLink}>
-                  <i className="icon fa-instagram">&nbsp;</i>Instagram
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={classes.footerLink}>
-                  <i className="icon fa-github">&nbsp;</i>Github
-                </Link>
-              </li>
-            </ul>
-          </FooterContentSectionLast>
-        </FooterContent>
-        <FooterEnd>--- Magnify Copyright --</FooterEnd>
-      </>
-    </Footer>
-  )
+  const employerContext = useContext(EmployerContext)
+  if (employerContext) {
+    return (
+      <Footer>
+        <>
+          <FooterContent>
+            <FooterContentSectionFirst>
+              <FooterH3>Maginify</FooterH3>
+              <p>
+                We pride ourselves in delivering a unique solution to the stigma
+                of the hiring process. Through our application we deliver a
+                psychological insight into a candidate's tendencies to enable
+                you the employer to hire the best person for the job. Our
+                algorithm is proven to accurately determine employable qualities
+                of an applicant and create a base percentage from the candidates
+                results, compared to scientifically proven ideal characteristics
+                of a top employee.
+              </p>
+              <p> Address : 1/1 aa Melbourne 3000</p>
+            </FooterContentSectionFirst>
+            <FooterContentSection>
+              <FooterH4>Navigate</FooterH4>
+              <ul>
+                <li>
+                  <Link to="/vacancies" className={classes.footerLink}>
+                    Vacancies
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/employee" className={classes.footerLink}>
+                    Public
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    Email us
+                  </Link>
+                </li>
+              </ul>
+            </FooterContentSection>
+            <FooterContentSectionLast>
+              <FooterH4>Social</FooterH4>
+              <ul className="plain">
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-twitter">&nbsp;</i>Twitter
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-facebook">&nbsp;</i>Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-instagram">&nbsp;</i>Instagram
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-github">&nbsp;</i>Github
+                  </Link>
+                </li>
+              </ul>
+            </FooterContentSectionLast>
+          </FooterContent>
+          <FooterEnd>--- Magnify Copyright --</FooterEnd>
+        </>
+      </Footer>
+    )
+    //   ==================================================================Employer context
+  } else {
+    return (
+      <Footer>
+        <>
+          <FooterContent>
+            <FooterContentSectionFirst>
+              <FooterH3>Magnify</FooterH3>
+              <p>
+                We pride ourselves in delivering a unique solution to the stigma
+                of the hiring process. Through our application we deliver a
+                psychological insight into a candidate's tendencies to enable
+                you the employer to hire the best person for the job. Our
+                algorithm is proven to accurately determine employable qualities
+                of an applicant and create a base percentage from the candidates
+                results, compared to scientifically proven ideal characteristics
+                of a top employee.
+              </p>
+              <p> Address : 1/1 aa Melbourne 3000</p>
+            </FooterContentSectionFirst>
+            <FooterContentSection>
+              <FooterH4>Navigate</FooterH4>
+              <ul>
+                <li>
+                  <Link to="/survey" className={classes.footerLink}>
+                    Survey
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/results" className={classes.footerLink}>
+                    Results
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/vacancy" className={classes.footerLink}>
+                    Vacancies
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/landing" className={classes.footerLink}>
+                    Email us
+                  </Link>
+                </li>
+              </ul>
+            </FooterContentSection>
+            <FooterContentSectionLast>
+              <FooterH4>Social</FooterH4>
+              <ul className="plain">
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-twitter">&nbsp;</i>Twitter
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-facebook">&nbsp;</i>Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-instagram">&nbsp;</i>Instagram
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className={classes.footerLink}>
+                    <i className="icon fa-github">&nbsp;</i>Github
+                  </Link>
+                </li>
+              </ul>
+            </FooterContentSectionLast>
+          </FooterContent>
+          <FooterEnd>--- Magnify Copyright --</FooterEnd>
+        </>
+      </Footer>
+    )
+  }
 }
 
 export default FooterComponent

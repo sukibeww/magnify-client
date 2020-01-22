@@ -13,6 +13,7 @@ import EmployeeProfileEdit from '../components/Employee/EmployeeProfile/Employee
 import VacanciesList from '../components/Employee/VacancyList/VacancyList'
 import VacancyForm from '../components/Employee/Vacancy/VacancyForm/VacancyForm'
 import VacancyInfo from '../components/Employee/Vacancy/VacancyInfo/VacancyInfo'
+import FooterComponent from '../components/Footer/Footer'
 
 function AppEmployee(props) {
   const mediaContext = useContext(MediaContext)
@@ -26,7 +27,7 @@ function AppEmployee(props) {
             setGlobalUser={props.setGlobalUser}
           >
             {media ? <DesktopNavbar /> : <DrawerNavbar />}
-            <Route path="/landing"component={Landing}></Route>
+            <Route path="/landing" component={Landing}></Route>
             <Route path="/survey" component={SurveyList}></Route>
             <Route path="/result" component={Result}></Route>
             <Route exact path="/register" component={RegistrationPage}></Route>
@@ -40,6 +41,7 @@ function AppEmployee(props) {
             <Route exact path="/vacancies/add" component={VacancyForm}></Route>
             <Route exact path="/vacancies/edit" component={VacancyForm}></Route>
             <Route exact path="/vacancies/info" component={VacancyInfo}></Route>
+            <FooterComponent />
           </EmployeeContextProvider>
         </Switch>
       ) : null}

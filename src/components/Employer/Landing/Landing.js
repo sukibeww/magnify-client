@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { CreateOutlined, PersonOutline, MailOutline } from '@material-ui/icons'
 import imgSurvey from './survey.jpeg'
 import imgVacancy from './images.jpeg'
-import imgPublic from './public.jpeg'
+import imgPublic from './public.jpg'
 import Footer from '../../Footer/Footer'
 import { Link } from 'react-router-dom'
 
@@ -114,9 +114,12 @@ const GridDiv = styled.div`
 const GridDivSpan = styled.div`
   position: absolute;
   display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   top: 5%;
   left: 12%;
+  z-index: 5;
 `
 const GridVacancie = styled.div`
   background-image: url(${imgVacancy});
@@ -126,7 +129,7 @@ const GridVacancie = styled.div`
   background-position-x: center;
   width: 120%;
   margin-left: -10px;
-  margin-top: 10px;
+  margin-top: 45px;
   height: 100%;
   opacity: 0.88;
   :hover {
@@ -135,7 +138,7 @@ const GridVacancie = styled.div`
     background-size: cover;
     width: 120%;
     margin-left: -20px;
-    margin-top: 0;
+    margin-top: 40px;
     height: 100%;
     opacity: 0.95;
     transition: margin 0.5s;
@@ -149,7 +152,7 @@ const GridSurvey = styled.div`
   background-position-x: center;
   width: 120%;
   margin-left: -10px;
-  margin-top: 10px;
+  margin-top: 45px;
   height: 100%;
   opacity: 0.88;
   :hover {
@@ -158,7 +161,7 @@ const GridSurvey = styled.div`
     background-size: cover;
     width: 120%;
     margin-left: -20px;
-    margin-top: 0;
+    margin-top: 40px;
     height: 100%;
     opacity: 0.95;
     transition: margin 0.5s;
@@ -172,7 +175,7 @@ const GridPublic = styled.div`
   background-position-x: center;
   width: 120%;
   margin-left: -10px;
-  margin-top: 10px;
+  margin-top: 45px;
   height: 100%;
   opacity: 0.88;
   :hover {
@@ -181,7 +184,7 @@ const GridPublic = styled.div`
     background-size: cover;
     width: 120%;
     margin-left: -20px;
-    margin-top: 0;
+    margin-top: 40px;
     height: 100%;
     opacity: 0.95;
     transition: margin 0.5s;
@@ -213,22 +216,29 @@ const DesktopLanding = () => {
           <FlexWrapper>
             <Grid>
               <GridDiv>
-                <CreateOutlined />
-                <GridDivSpan>Create Vacancy</GridDivSpan>
+                <GridDivSpan>
+                  <CreateOutlined />
+                  Create Vacancy
+                </GridDivSpan>
                 <Link to="/vacancy">
                   <GridVacancie />
                 </Link>
               </GridDiv>
               <GridDiv>
-                <MailOutline />
-                <GridDivSpan>Invite Employee to do the Survey</GridDivSpan>
-                <Link to="/survey">
+                <GridDivSpan>
+                  {' '}
+                  <MailOutline />
+                  Invite Employee to do the Survey
+                </GridDivSpan>
+                <Link to="/delegates">
                   <GridSurvey />
                 </Link>
               </GridDiv>
               <GridDiv>
-                <PersonOutline />
-                <GridDivSpan>Recruit Public</GridDivSpan>
+                <GridDivSpan>
+                  <PersonOutline />
+                  Recruit Public
+                </GridDivSpan>
                 <Link to="/delegates">
                   <GridPublic />
                 </Link>

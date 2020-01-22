@@ -131,7 +131,7 @@ const GridSurvey = styled.div`
   background-position-x: center;
   width: 120%;
   margin-left: -10px;
-  margin-top: 10px;
+  margin-top: 45px;
   height: 100%;
   opacity: 0.88;
   :hover {
@@ -140,7 +140,7 @@ const GridSurvey = styled.div`
     background-size: cover;
     width: 120%;
     margin-left: -20px;
-    margin-top: 0;
+    margin-top: 40px;
     height: 100%;
     opacity: 0.95;
     transition: margin 0.5s;
@@ -154,7 +154,7 @@ const GridResults = styled.div`
   background-position-x: center;
   width: 120%;
   margin-left: -10px;
-  margin-top: 10px;
+  margin-top: 45px;
   height: 100%;
   opacity: 0.88;
   :hover {
@@ -163,7 +163,7 @@ const GridResults = styled.div`
     background-size: cover;
     width: 120%;
     margin-left: -20px;
-    margin-top: 0;
+    margin-top: 40px;
     height: 100%;
     opacity: 0.95;
     transition: margin 0.5s;
@@ -177,7 +177,7 @@ const GridVacancy = styled.div`
   background-position-x: center;
   width: 120%;
   margin-left: -10px;
-  margin-top: 10px;
+  margin-top: 45px;
   height: 100%;
   opacity: 0.88;
   :hover {
@@ -186,7 +186,7 @@ const GridVacancy = styled.div`
     background-size: cover;
     width: 120%;
     margin-left: -20px;
-    margin-top: 0;
+    margin-top: 40px;
     height: 100%;
     opacity: 0.95;
     transition: margin 0.5s;
@@ -217,22 +217,27 @@ const DesktopLanding = () => {
           <FlexWrapper>
             <Grid>
               <GridDiv>
-                <CreateOutlined />
-                <GridDivSpan>Complete Survey</GridDivSpan>
+                <GridDivSpan>
+                  <CreateOutlined />
+                  Complete Survey
+                </GridDivSpan>
                 <Link to="/survey">
                   <GridSurvey />
                 </Link>
               </GridDiv>
               <GridDiv>
-                <AssessmentOutlined />
-                <GridDivSpan> Check your Results</GridDivSpan>
+                <GridDivSpan>
+                  <AssessmentOutlined /> Check your Results
+                </GridDivSpan>
                 <Link to="/result">
                   <GridResults />
                 </Link>
               </GridDiv>
               <GridDiv>
-                <ListAltOutlined />
-                <GridDivSpan>Look for Vacancies</GridDivSpan>
+                <GridDivSpan>
+                  <ListAltOutlined />
+                  Look for Vacancies
+                </GridDivSpan>
                 <Link to="/vacancies">
                   <GridVacancy />
                 </Link>

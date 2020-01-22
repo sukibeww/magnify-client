@@ -11,6 +11,7 @@ import Delegates from '../components/Employer/Delegates/Delegates'
 import Stripe from '../components/Employer/Stripe/stripe.js'
 import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
 import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
+import FooterComponent from '../components/Footer/Footer'
 
 function AppEmployer(props) {
   const mediaContext = useContext(MediaContext)
@@ -35,6 +36,7 @@ function AppEmployer(props) {
               path="/profile/edit"
               component={EmployerProfileEdit}
             ></Route>
+            <FooterComponent />
           </EmployerContextProvider>
         </Switch>
       ) : null}
