@@ -88,7 +88,7 @@ const EmployerContextProvider = props => {
       }
       redirectAfterLogin()
     }
-  }, [user, redirectToRegistration, history, getAllVacanciesOfCompany])
+  }, [user, redirectToRegistration, history])
 
   return (
     <EmployerContext.Provider

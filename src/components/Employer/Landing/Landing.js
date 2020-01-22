@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CreateOutlined, PersonOutline, MailOutline } from '@material-ui/icons'
+import {
+  CreateOutlined,
+  MailOutline,
+  StarRateRounded
+} from '@material-ui/icons'
 import imgSurvey from './survey.jpeg'
 import imgVacancy from './images.jpeg'
 import imgPublic from './public.jpg'
-import Footer from '../../Footer/Footer'
 import { Link } from 'react-router-dom'
 
 const LandingWrapper = styled.div`
@@ -236,8 +239,8 @@ const DesktopLanding = () => {
               </GridDiv>
               <GridDiv>
                 <GridDivSpan>
-                  <PersonOutline />
-                  Recruit Public
+                  <StarRateRounded />
+                  Become Premium
                 </GridDivSpan>
                 <Link to="/premium">
                   <GridPublic />
