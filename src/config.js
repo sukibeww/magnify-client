@@ -1,4 +1,4 @@
-const URL = 'http://magnifyserver.herokuapp.com'
+const URL = 'http://localhost:3000'
 module.exports = {
   URL
 }
