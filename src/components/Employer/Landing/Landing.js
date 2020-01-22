@@ -246,8 +246,6 @@ const DesktopLanding = () => {
             </Grid>
           </FlexWrapper>
         </SiteDetails>
-
-        <Footer />
       </LandingWrapper>
     </>
   )
