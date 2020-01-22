@@ -6,6 +6,7 @@ import { MediaContext } from '../../../context/mediaContext'
 import { withRouter } from 'react-router-dom'
 import loader from './loader.gif'
 import Modal from './Modal'
+const { URL } = require('../../../config')
 
 const StyledWrapper = styled.div`
   padding: ${props => (props.media ? '5vh 15vw' : '5vw 2vw')};
@@ -72,7 +73,7 @@ const Delegates = props => {
         address: addressRef.value,
         date: dateRef.value
       }
-      const resp = await fetch('http://localhost:3000/email', {
+      const resp = await fetch(URL + '/email', {
         method: 'POST',
         body: JSON.stringify(emailSend),
         credentials: 'include',
