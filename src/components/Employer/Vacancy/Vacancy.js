@@ -1,6 +1,16 @@
 import React, { useContext, useState } from 'react'
 import MaterialTable from 'material-table'
 import { EmployerContext } from '../../../context/employerContext'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import Applicants from './Applicants'
+import VacancyEmployee from './VacancyEmployee'
+import styled from 'styled-components'
+import { MediaContext } from '../../../context/mediaContext'
+
+const StyledWrapper = styled.div`
+  padding: ${props => (props.media ? '10vh 15vw' : '5vw 2vw')};
+  overflow: scroll;
+`
 
 const columns = [
   { title: 'Title', field: 'title' },
@@ -40,6 +50,8 @@ const columns = [
 
 const Vacancy = props => {
   const employerContext = useContext(EmployerContext)
+  const mediaContext = useContext(MediaContext)
+  const { media } = mediaContext
   const {
     updateVacancyById,
     user,
@@ -54,6 +66,7 @@ const Vacancy = props => {
     updatedAt: new Date(),
     columns: columns
   })
+  const [selected, setSelected] = useState()
 
   const onRowDelete = oldData =>
     new Promise((resolve, reject) => {
@@ -105,7 +118,7 @@ const Vacancy = props => {
     })
 
   return (
-    <div className="container">
+    <StyledWrapper media={media}>
       <MaterialTable
         title="Vacancy"
         columns={vacancies.columns}
@@ -113,6 +126,18 @@ const Vacancy = props => {
         options={{
           pageSize: 10
         }}
+        actions={[
+          {
+            icon: KeyboardArrowDownIcon,
+            tooltip: 'Select Vacancy',
+            onClick: async (event, rowData) => {
+              console.log(rowData)
+              await setSelected(() => {
+                return { ...rowData }
+              })
+            }
+          }
+        ]}
         editable={{
           isEditable: rowData => true,
           isDeletable: rowData => true,
@@ -121,7 +146,9 @@ const Vacancy = props => {
           onRowDelete: onRowDelete
         }}
       />
-    </div>
+      {selected && <Applicants applicants={selected.applicants} />}
+      {selected && <VacancyEmployee employee={selected.employees} />}
+    </StyledWrapper>
   )
 }
 

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import styled from 'styled-components'
-import GeneralButton from '../../Button/GeneralButton'
 import { EmployerContext } from '../../../context/employerContext'
 import { MediaContext } from '../../../context/mediaContext'
 import { withRouter } from 'react-router-dom'
@@ -30,6 +29,14 @@ const Delegates = props => {
     dateRef = ref
   }
   const columns = [
+    {
+      title: 'Avatar',
+      field: 'avatar',
+      render: rowData => (
+        <img style={{ height: 36, borderRadius: '50%' }} src={rowData.photos} />
+      ),
+      filtering: false
+    },
     { title: 'Name', field: 'displayName', filtering: false },
     { title: 'Email', field: 'email', filtering: false },
     { title: 'Rating', field: 'rating', filtering: false },

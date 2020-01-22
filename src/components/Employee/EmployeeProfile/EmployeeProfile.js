@@ -16,17 +16,25 @@ const ProfileWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: ${props => (props.media ? '10vh 25vw' : '5vh 5vw')};
-  border: solid 3px #283593;
-  border-radius: 10px;
-  padding: 5vh 5vw;
-  min-height: 70vh;
+  padding: 5vh 0;
+`
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  width: ${props => (props.media ? '40vw' : '80vw')};
+  padding: 30px;
+  min-height: 50vh;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #ffffff;
 `
 
 const ProfilePicture = styled.img`
   border-radius: 100%;
-  width: ${props => (props.media ? '30vh' : '20vh')};
-  height: ${props => (props.media ? '30vh' : '20vh')};
+  width: ${props => (props.media ? '25vh' : '25vh')};
+  height: ${props => (props.media ? '25vh' : '25vh')};
   color: #283593;
   border: solid 10px #28359380;
 `
@@ -81,7 +89,7 @@ const AbsoluteWrapper = styled.div`
 
 const useStyles = makeStyles(theme => ({
   chip: {
-    margin: "0.5vw 0.5vw"
+    margin: "1vw 1vw"
   }
 })) 
 
@@ -94,35 +102,37 @@ const EmployeeProfile = () => {
     return (
       <>
         <ProfileWrapper media={media ? media.toString() : null}>
-          <AbsoluteWrapper>
-            <Link to="/profile/edit">
-              <EditButton/>
-            </Link>
-          </AbsoluteWrapper>
-          <ProfilePicture
-            data-testid="profile-picture"
-            src={user.photos}
-            alt="profile-pic"
-            media={media ? media.toString() : null}
-          />
-          <DisplayName data-testid="profile-name">{user.displayName}</DisplayName>
-          <Email data-testid="profile-email">{user.email}</Email>
-          <Subheader>Industry Category</Subheader>
-            <Categories media={media} data-testid="profile-industries">
-              {user.category.map((category, index) =>{
-              return(
-                <Chip
-                  key={`category-${index}`}
-                  className={classes.chip}
-                  avatar={<Avatar>{category.charAt(0)}</Avatar>}
-                  label={category}
-                  clickable
-                  color="primary"
-                />
-              )
-            })}
-            </Categories>
-          <Bio data-testid="profile-bio">{user.bio}</Bio>
+          <ProfileContainer media={media ? media.toString() : null}>
+            <AbsoluteWrapper>
+              <Link to="/profile/edit">
+                <EditButton/>
+              </Link>
+            </AbsoluteWrapper>
+            <ProfilePicture
+              data-testid="profile-picture"
+              src={user.photos}
+              alt="profile-pic"
+              media={media ? media.toString() : null}
+            />
+            <DisplayName data-testid="profile-name">{user.displayName}</DisplayName>
+            <Email data-testid="profile-email">{user.email}</Email>
+            <Subheader>Industry Category</Subheader>
+              <Categories media={media} data-testid="profile-industries">
+                {user.category.map((category, index) =>{
+                return(
+                  <Chip
+                    key={`category-${index}`}
+                    className={classes.chip}
+                    avatar={<Avatar>{category.charAt(0)}</Avatar>}
+                    label={category}
+                    clickable
+                    color="primary"
+                  />
+                )
+              })}
+              </Categories>
+            <Bio data-testid="profile-bio">{user.bio}</Bio>
+          </ProfileContainer>
         </ProfileWrapper>
       </>
     )
