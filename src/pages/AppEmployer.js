@@ -9,6 +9,7 @@ import EmployerRegistration from '../components/Employer/Registration/EmployerRe
 import Vacancy from '../components/Employer/Vacancy/Vacancy'
 import Delegates from '../components/Employer/Delegates/Delegates'
 import Stripe from '../components/Employer/Stripe/stripe.js'
+import Notifications from '../components/Notifications/Notifications'
 import { makeStyles } from '@material-ui/core'
 import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
 import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
@@ -50,6 +51,7 @@ function AppEmployer(props) {
                 path="/profile/edit"
                 component={EmployerProfileEdit}
               ></Route>
+              <Route path="/notifications" component={Notifications}></Route>
               <FooterComponent />
             </div>
           </EmployerContextProvider>

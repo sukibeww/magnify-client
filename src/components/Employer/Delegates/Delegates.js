@@ -1,12 +1,12 @@
-import React , { useState, useContext, useEffect } from 'react';
-import MaterialTable from 'material-table';
+import React, { useState, useContext, useEffect } from 'react'
+import MaterialTable from 'material-table'
 import styled from 'styled-components'
-import GeneralButton from '../../Button/GeneralButton';
-import { EmployerContext } from '../../../context/employerContext';
-import { MediaContext } from '../../../context/mediaContext';
+import GeneralButton from '../../Button/GeneralButton'
+import { EmployerContext } from '../../../context/employerContext'
+import { MediaContext } from '../../../context/mediaContext'
 
 const StyledWrapper = styled.div`
-  padding: ${(props) => props.media ? "5vh 15vw" : "5vw 2vw"};
+  padding: ${props => (props.media ? '5vh 15vw' : '5vw 2vw')};
   overflow: scroll;
 `
 
@@ -16,7 +16,7 @@ const Delegates = () => {
   const { media } = mediaContext
   const { user, getAllDelegates } = employerContext
   const [selected, setSelected] = useState([])
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
   const columns = [
     {
       title: 'Avatar',
@@ -25,31 +25,32 @@ const Delegates = () => {
         <img
           style={{ height: 36, borderRadius: '50%' }}
           src={rowData.photos}
+          alt="avatar"
         />
       ),
       filtering: false
     },
-    { title: 'Name', field: 'displayName' ,filtering: false},
-    { title: 'Email', field: 'email',filtering: false },
-    { title: 'Rating', field: 'rating' ,filtering: false},
-    { title: 'Industry', field: 'category'},
+    { title: 'Name', field: 'displayName', filtering: false },
+    { title: 'Email', field: 'email', filtering: false },
+    { title: 'Rating', field: 'rating', filtering: false },
+    { title: 'Industry', field: 'category' }
   ]
   useEffect(() => {
-    let optimisedDelegates;
-    const fetchDelegates = async(optimisedDelegates) => {
+    let optimisedDelegates
+    const fetchDelegates = async optimisedDelegates => {
       const delegates = await getAllDelegates()
-      optimisedDelegates = delegates.map((delegate) => {
+      optimisedDelegates = delegates.map(delegate => {
         delegate.category = delegate.category.join()
         delegate.rating = delegate.score.rating
         return delegate
       })
-      return(optimisedDelegates)
+      return optimisedDelegates
     }
-    fetchDelegates(optimisedDelegates).then((data) => {
+    fetchDelegates(optimisedDelegates).then(data => {
       setData(data)
     })
   }, [])
-  
+
   return (
     <>
       <StyledWrapper data-testid="delegates-table" media={media}>
@@ -62,12 +63,12 @@ const Delegates = () => {
             filtering: true,
             pageSize: 10
           }}
-          onSelectionChange={(rows) => setSelected(rows)}
+          onSelectionChange={rows => setSelected(rows)}
         />
         <GeneralButton label="Invite" testid="delegates-invite" />
       </StyledWrapper>
     </>
-  );
+  )
 }
 
 export default Delegates
