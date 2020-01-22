@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { MediaContext } from '../../../context/mediaContext'
 import { CreateOutlined, PersonOutline, MailOutline } from '@material-ui/icons'
-import './Landing.css'
+import imgSurvey from './survey.jpeg'
+import imgVacancy from './images.jpeg'
+import imgPublic from './public.jpg'
+import Footer from '../../Footer/Footer'
 import { Link } from 'react-router-dom'
 
 const LandingWrapper = styled.div`
@@ -10,115 +12,240 @@ const LandingWrapper = styled.div`
   max-width: 100vw;
   font-size: 1rem;
 `
+const Banner = styled.div`
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  background-image: linear-gradient(to bottom right, #2657eb, #de6161);
+  color: white;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  border-top: 0;
+  display: -ms-flexbox;
+  min-height: 35em;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  font-size: calc(0.6rem + 0.2vw);
+  font-size: -webkit-calc(0.7rem + 0.1vw);
+  font-size: -moz-calc(0.7rem + 0.1vw);
+`
+const BannerInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -moz-transition: opacity 1s ease, -moz-transform 1s ease;
+  -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+  -ms-transition: opacity 1s ease, -ms-transform 1s ease;
+  transition: opacity 1s ease, transform 1s ease;
+  opacity: 1;
+  position: relative;
+  z-index: 3;
+  font-size: 1em;
+`
+const BannerH1 = styled.h1`
+  font-size: 3em;
+`
+const BannerP = styled.p`
+  font-size: 1.5em;
+`
+const SiteDetails = styled.div`
+  position: relative;
+  font-size: cal(1em + 0.2vw);
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  height: auto;
+  padding-top: 50px;
+`
+const SiteDetailsP = styled.p`
+  display: flex;
+  width: 70%;
+  text-align: center;
+  justify-content: center;
+  margin: 20px auto;
+  font-size: 1.1em;
+`
+const FlexWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  max-width: 92%;
+  margin: 0 auto;
+`
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 5vw;
+  min-width: 100%;
+`
+const GridDiv = styled.div`
+  position: relative;
+  background-image: linear-gradient(to bottom right, #686df4, #c177f5);
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5em;
+  color: white;
+  font-weight: 700;
+  min-width: 30%;
+  height: 250px;
+  opacity: 0.9;
+  overflow: hidden;
+  box-sizing: border-box;
+  :hover {
+    background-image: linear-gradient(to bottom right, #5c61f4, #b461ee);
+    opacity: 1;
+  }
+`
+const GridDivSpan = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 5%;
+  left: 12%;
+  z-index: 5;
+`
+const GridVacancie = styled.div`
+  background-image: url(${imgVacancy});
+  position: relative;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+  width: 120%;
+  margin-left: -10px;
+  margin-top: 45px;
+  height: 100%;
+  opacity: 0.88;
+  :hover {
+    position: relative;
+    background-image: url(${imgVacancy});
+    background-size: cover;
+    width: 120%;
+    margin-left: -20px;
+    margin-top: 40px;
+    height: 100%;
+    opacity: 0.95;
+    transition: margin 0.5s;
+  }
+`
+const GridSurvey = styled.div`
+  background-image: url(${imgSurvey});
+  position: relative;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+  width: 120%;
+  margin-left: -10px;
+  margin-top: 45px;
+  height: 100%;
+  opacity: 0.88;
+  :hover {
+    position: relative;
+    background-image: url(${imgSurvey});
+    background-size: cover;
+    width: 120%;
+    margin-left: -20px;
+    margin-top: 40px;
+    height: 100%;
+    opacity: 0.95;
+    transition: margin 0.5s;
+  }
+`
+const GridPublic = styled.div`
+  background-image: url(${imgPublic});
+  position: relative;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+  width: 120%;
+  margin-left: -10px;
+  margin-top: 45px;
+  height: 100%;
+  opacity: 0.88;
+  :hover {
+    position: relative;
+    background-image: url(${imgPublic});
+    background-size: cover;
+    width: 120%;
+    margin-left: -20px;
+    margin-top: 40px;
+    height: 100%;
+    opacity: 0.95;
+    transition: margin 0.5s;
+  }
+`
 
 const DesktopLanding = () => {
-  // const mediaContext = useContext(MediaContext)
-  // const { media } = mediaContext
   return (
     <>
       <LandingWrapper data-testid="landing-wrapper">
-        <section id="banner">
-          <div className="inner">
-            <h1>Magnify</h1>
-            <p>
-              The app that rates job candidates and show the salary they want
-            </p>
-          </div>
-        </section>
-        <section id="site-details">
+        <Banner>
+          <BannerInner>
+            <BannerH1>Magnify</BannerH1>
+            <BannerP>
+              The app that rates job candidates via a psychological profile and
+              avoids the hiring process hassles all employers are faced with.
+            </BannerP>
+          </BannerInner>
+        </Banner>
+        <SiteDetails>
           <h1>Magnify Logic</h1>
-          <p>
-            let your employee took the survey and we turn it to score that
-            indicate ...
-          </p>
-          <div className="flex-wrapper">
-            <div className="grid">
-              <div>
-                <Link className="none" to="/vacancy">
+          <SiteDetailsP>
+            Magnify works by requesting a potential candidate to complete our
+            innovative survey, to assess their psychological profile and
+            personality traits. Using our algorithm, we calculate the candidates
+            detailed results and return a base percentage. This base percentage
+            signifies the overall idealness of a top employee.
+          </SiteDetailsP>
+          <FlexWrapper>
+            <Grid>
+              <GridDiv>
+                <GridDivSpan>
                   <CreateOutlined />
-                  <span>Create Vacancie</span>
-                  <div id="vacan" className="image"></div>
+                  Create Vacancy
+                </GridDivSpan>
+                <Link to="/vacancy">
+                  <GridVacancie />
                 </Link>
-              </div>
-
-              <div>
-                <Link className="none" to="/delegates">
+              </GridDiv>
+              <GridDiv>
+                <GridDivSpan>
+                  {' '}
                   <MailOutline />
-                  <span>Invitation</span>
-                  <div id="survey" className="image"></div>
+                  Invite Employee to do the Survey
+                </GridDivSpan>
+                <Link to="/delegates">
+                  <GridSurvey />
                 </Link>
-              </div>
-
-              <div>
-                <Link className="none" to="/premium">
+              </GridDiv>
+              <GridDiv>
+                <GridDivSpan>
                   <PersonOutline />
-                  <span>Premium</span>
-                  <div id="public" className="image"></div>
+                  Recruit Public
+                </GridDivSpan>
+                <Link to="/premium">
+                  <GridPublic />
                 </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <footer id="footer">
-          <div className="inner">
-            <div className="content">
-              <section>
-                <h3>Maginify</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                  in temporibus nulla error quidem distinctio enim, esse cumque
-                  corrupti modi mollitia praesentium reprehenderit quaerat quis
-                  debitis nam quo nihil. Doloribus.
-                </p>
-                <p> Address : 1/1 aa Melbourne 3000</p>
-              </section>
-              <section>
-                <h4>Navigate</h4>
-                <ul className="alt">
-                  <li>
-                    <Link to="/vacancy">Vacancies</Link>
-                  </li>
-                  <li>
-                    <Link to="/delegates">Invite</Link>
-                  </li>
-                  <li>
-                    <Link to="/premium">Premium</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Email us</Link>
-                  </li>
-                </ul>
-              </section>
-              <section>
-                <h4>Social</h4>
-                <ul className="plain">
-                  <li>
-                    <Link to="/">
-                      <i className="icon fa-twitter">&nbsp;</i>Twitter
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <i className="icon fa-facebook">&nbsp;</i>Facebook
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <i className="icon fa-instagram">&nbsp;</i>Instagram
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <i className="icon fa-github">&nbsp;</i>Github
-                    </Link>
-                  </li>
-                </ul>
-              </section>
-            </div>
-            <div className="end">--- Magnify Copyright --</div>
-          </div>
-        </footer>
+              </GridDiv>
+            </Grid>
+          </FlexWrapper>
+        </SiteDetails>
       </LandingWrapper>
     </>
   )

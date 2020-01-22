@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core'
 import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
 import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
 import Success from '../components/Employer/Delegates/Success'
+import FooterComponent from '../components/Footer/Footer'
+
 const useStyles = makeStyles({
   container: {
     minHeight: '95vh',
@@ -36,6 +38,7 @@ function AppEmployer(props) {
             setGlobalUser={props.setGlobalUser}
           >
             {media ? <DesktopNavbar /> : <DrawerNavbar user={props.user} />}
+
             <div className={classes.container}>
               <Route path="/landing" component={Landing}></Route>
               <Route path="/register" component={EmployerRegistration}></Route>
@@ -49,6 +52,7 @@ function AppEmployer(props) {
                 component={EmployerProfileEdit}
               ></Route>
               <Route path="/email/success" component={Success}></Route>
+              <FooterComponent />
             </div>
           </EmployerContextProvider>
         </Switch>
