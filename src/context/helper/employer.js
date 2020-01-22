@@ -118,16 +118,3 @@ export const isRegistered = user => {
   }
   return true
 }
-
-module.exports = {
-  linkedin_login,
-  linkedin_logout,
-  getProfile,
-  isRegistered,
-  updateEmployer,
-  getDelegates,
-  createVacancy,
-  getVacanciesOfCompany,
-  deleteVacancy,
-  updateVacancy
-}
