@@ -29,6 +29,23 @@ export const getProfile = async () => {
   }
 }
 
+export const getAllVacancies = async () => {
+  try {
+    const vacancies = await fetch(URL + '/vacancies', {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true
+      }
+    }).then(resp => resp.json())
+    if (vacancies) {
+      return vacancies
+    }
+  } catch (error) {
+    return error
+  }
+}
+
 export const isRegistered = user => {
   if (user.category.length === 0) {
     return false
