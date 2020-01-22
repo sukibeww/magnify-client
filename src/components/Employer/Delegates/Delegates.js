@@ -18,6 +18,17 @@ const Delegates = () => {
   const [selected, setSelected] = useState([])
   const [data, setData] = useState([]);
   const columns = [
+    {
+      title: 'Avatar',
+      field: 'avatar',
+      render: rowData => (
+        <img
+          style={{ height: 36, borderRadius: '50%' }}
+          src={rowData.photos}
+        />
+      ),
+      filtering: false
+    },
     { title: 'Name', field: 'displayName' ,filtering: false},
     { title: 'Email', field: 'email',filtering: false },
     { title: 'Rating', field: 'rating' ,filtering: false},
