@@ -1,4 +1,4 @@
-import URL from '../../../config'
+const { URL } = require('../../config')
 
 const linkedin_logout = async () => {
   await fetch(URL + '/logout', {
