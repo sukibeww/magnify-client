@@ -6,7 +6,8 @@ import {
   fetchSubmitSurvey,
   isRegistered,
   updateEmployee,
-  getAllVacancies
+  getAllVacancies,
+  updateVacancy
 } from './helper/employee'
 
 export const EmployeeContext = createContext()
@@ -47,17 +48,9 @@ const EmployeeContextProvider = props => {
   }
 
   const updateVacancy = async updatedVacancy => {
+    console.log("hit")
     console.log(updatedVacancy)
-    const resp = fetch(URL + `/vacancies/${updatedVacancy._id}`, {
-      method: 'PUT',
-      body: JSON.stringify(updatedVacancy),
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true
-      }
-    })
-    return resp
+    updateEmployee({ updatedVacancy: updatedVacancy })
   }
 
   useEffect(() => {

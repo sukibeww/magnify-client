@@ -25,10 +25,8 @@ const VacanciesList = () => {
       if(!vacancy.applicants.includes(user)){
         vacancy.applicants.push(user)
         updateVacancy(vacancy)
-        console.log("Applied")
       }
       else{
-        console.log("Already Applied")
       }
     })
   }
@@ -37,7 +35,6 @@ const VacanciesList = () => {
       async function fetchVacancies() {
         let vacancies = await getAllVacancies()
         setData(vacancies)
-        console.log(vacancies)
       }
       fetchVacancies()
     }, [getAllVacancies])

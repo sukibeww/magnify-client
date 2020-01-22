@@ -91,3 +91,17 @@ export const updateEmployee = async editedEmployee => {
   })
   return resp
 }
+
+export const updateVacancy = async updatedVacancy => {
+  // console.log(updatedVacancy)
+  const resp = fetch(URL + `/vacancies/${updatedVacancy._id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updatedVacancy),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
