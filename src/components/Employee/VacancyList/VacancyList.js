@@ -18,17 +18,13 @@ const VacanciesList = () => {
   const [selected, setSelected] = useState([])
   const [data, setData] = useState();
   const { media } = mediaContext
-  const { user, getAllVacancies, updateVacancy } = employeeContext
+  const { user, getAllVacancies, updateVacancyById } = employeeContext
 
   const applyToSelected = () => {
-    selected.forEach((vacancy)=>{
+    selected.forEach(async (vacancy)=>{
       if(!vacancy.applicants.includes(user)){
         vacancy.applicants.push(user)
-        updateVacancy(vacancy)
-        console.log("Applied")
-      }
-      else{
-        console.log("Already Applied")
+        await updateVacancyById(vacancy)
       }
     })
   }
@@ -37,7 +33,6 @@ const VacanciesList = () => {
       async function fetchVacancies() {
         let vacancies = await getAllVacancies()
         setData(vacancies)
-        console.log(vacancies)
       }
       fetchVacancies()
     }, [getAllVacancies])
