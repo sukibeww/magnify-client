@@ -33,7 +33,11 @@ const Delegates = props => {
       title: 'Avatar',
       field: 'avatar',
       render: rowData => (
-        <img style={{ height: 36, borderRadius: '50%' }} src={rowData.photos} />
+        <img
+          style={{ height: 36, borderRadius: '50%' }}
+          src={rowData.photos}
+          alt="avatar"
+        />
       ),
       filtering: false
     },
