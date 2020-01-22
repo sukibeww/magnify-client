@@ -1,4 +1,4 @@
-import URL from '../../../config'
+const { URL } = require('../../config')
 
 const linkedin_login = () => {
   window.open(URL + '/auth/linkedin/login/employer', '_self')

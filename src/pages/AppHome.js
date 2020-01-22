@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import AppEmployee from './AppEmployee.js'
 import AppEmployer from './AppEmployer.js'
 import LoginPage from '../components/Login/LoginPage'
-import URL from '../../../config'
+const { URL } = require('../config')
 
 function Home() {
   const [user, setUser] = useState(false)
