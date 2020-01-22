@@ -17,7 +17,6 @@ const LoginButton = props => {
       backgroundColor: '#DDE6F4',
       maxWidth: '90%',
       marginTop: '35px',
-      boxShadow: '5px 5px 8px rgb(163, 177, 198), -5px -5px 8px #FFFFFF',
       borderRadius: '30px'
     },
     text: {
