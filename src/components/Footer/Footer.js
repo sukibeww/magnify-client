@@ -112,7 +112,6 @@ const FooterComponent = () => {
               <FooterH4>Navigate</FooterH4>
               <ul>
                 <li>
-                  <Link to="/vacancies" className={classes.footerLink}>
                   <Link to="/vacancy" className={classes.footerLink}>
                     Vacancies
                   </Link>
