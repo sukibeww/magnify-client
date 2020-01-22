@@ -11,19 +11,28 @@ const ProfileWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: ${props => (props.media ? '10vh 25vw' : '5vh 5vw')};
-  border: solid 3px #283593;
-  border-radius: 10px;
-  padding: 5vh 5vw;
-  min-height: 70vh;
+  padding: 5vh 0;
+`
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  width: ${props => (props.media ? '40vw' : '80vw')};
+  padding: 30px;
+  min-height: 50vh;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #ffffff;
 `
 const ProfilePicture = styled.img`
   border-radius: 100%;
-  width: ${props => (props.media ? '30vh' : '20vh')};
-  height: ${props => (props.media ? '30vh' : '20vh')};
+  width: ${props => (props.media ? '25vh' : '25vh')};
+  height: ${props => (props.media ? '25vh' : '25vh')};
   color: #283593;
   border: solid 10px #28359380;
 `
+
 const AbsoluteWrapper = styled.div`
   justify-self: flex-start;
   align-self: flex-end;
@@ -84,42 +93,43 @@ const EmployerProfile = () => {
     return (
       <>
         <ProfileWrapper media={media ? media.toString() : null}>
-          <AbsoluteWrapper>
-            <Link to="/profile/edit">
-              <EditButton />
-            </Link>
-          </AbsoluteWrapper>
-          <ProfilePicture
-            src="https://img.icons8.com/dusk/64/000000/city.png"
-            alt="Company"
-          />
-          <RepWrapper>
+          <ProfileContainer>
+            <AbsoluteWrapper>
+              <Link to="/profile/edit">
+                <EditButton />
+              </Link>
+            </AbsoluteWrapper>
+            <ProfilePicture
+              src={user.photos}
+              alt="avatar"
+            />
+            <RepWrapper>
+              <Flexing>
+                <LittleHeader>Company rep:</LittleHeader>
+                <Info>{user.displayName}</Info>
+              </Flexing>
+              <Flexing>
+                <LittleHeader>Email:</LittleHeader>
+                <Info> {user.email}</Info>
+              </Flexing>
+            </RepWrapper>
             <Flexing>
-              <LittleHeader>Company rep:</LittleHeader>
-              <Info>{user.displayName}</Info>
+              <LittleHeader>Company Name:</LittleHeader>
+              <Info>{user.companyName}</Info>
             </Flexing>
             <Flexing>
-              <LittleHeader>Email:</LittleHeader>
-              <Info> {user.email}</Info>
+              <LittleHeader>Company Address:</LittleHeader>
+              <Info>{user.address}</Info>
             </Flexing>
-          </RepWrapper>
-
-          <Flexing>
-            <LittleHeader>Company Name:</LittleHeader>
-            <Info>{user.companyName}</Info>
-          </Flexing>
-          <Flexing>
-            <LittleHeader>Company Address:</LittleHeader>
-            <Info>{user.address}</Info>
-          </Flexing>
-          <Flexing>
-            <LittleHeader>Company Description:</LittleHeader>
-            <Info>{user.companyDescription}</Info>
-          </Flexing>
-          <Flexing>
-            <LittleHeader>Credit Card Info</LittleHeader>
-            <Info>{user.creditCardInfo}</Info>
-          </Flexing>
+            <Flexing>
+              <LittleHeader>Company Description:</LittleHeader>
+              <Info>{user.companyDescription}</Info>
+            </Flexing>
+            <Flexing>
+              <LittleHeader>Credit Card Info</LittleHeader>
+              <Info>{user.creditCardInfo}</Info>
+            </Flexing>
+          </ProfileContainer>
         </ProfileWrapper>
       </>
     )

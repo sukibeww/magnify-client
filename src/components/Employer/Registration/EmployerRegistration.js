@@ -1,50 +1,46 @@
 import React, { useContext , useState } from 'react'
 import { MediaContext }  from '../../../context/mediaContext'
 import styled from 'styled-components'
-import SaveButton from '../../Button/SaveButton'
 import { EmployerContext } from '../../../context/employerContext'
 import { useHistory } from "react-router-dom"
 import Textfield from '../../TextBoxes/Textfield'
+import BioTextbox from '../../TextBoxes/BioTextbox'
+import GeneralButton from '../../Button/GeneralButton'
 
 const RegisterationBackground = styled.div`
-  height: 100vh;
+  height: 90vh;
   width: inherit;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: ${(props)=> props.media ? "0 20vw" : "0 5vw"};
-  background-color: #EAEFF7;
+  align-items: center;
 `
 
 const RegistrationFormWrapper = styled.div`
-  border: solid #283593;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 5vh auto;
   border-radius: 10px;
   height: auto;
-  width: 70%;
   min-width: 320px;
   max-width: max-content;
-  min-height: 50vh;
-  padding: 5vh 3vw;
+  padding: 3vw;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #FFFFFF;
 `
 
 const RegisterHeader = styled.h1`
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 3em;
-  margin: 3vh 0;
+  font-size: 2.5em;
+  margin: 2vh 0;
 `
-
 const EmployerRegistration = (props) => {
   const mediaContext = useContext(MediaContext)
   const employerContext = useContext(EmployerContext)
   const [companyName, setCompanyName] = useState('')
   const [address, setAddress] = useState('')
+  const [description, setDescription] = useState('')
   const { media } = mediaContext;
   const { user, handleUpdate } = employerContext
   let history = useHistory()
@@ -53,6 +49,7 @@ const EmployerRegistration = (props) => {
     if(companyName.length && address.length){
       editedUser.companyName = companyName
       editedUser.address = address
+      editedUser.description = description
       handleUpdate(editedUser)
       history.push('/profile')
     }
@@ -61,10 +58,11 @@ const EmployerRegistration = (props) => {
     <>
       <RegisterationBackground>
         <RegistrationFormWrapper media={media ? media.toString() : null}>
-          <RegisterHeader>Almost there...</RegisterHeader>
+          <RegisterHeader>Create your account</RegisterHeader>
           <Textfield label="Company Name" handleChange={setCompanyName}/>
           <Textfield label="Address" handleChange={setAddress}/>
-          <SaveButton handleClick={handleClick}/>
+          <BioTextbox handleChange={setDescription} label="Company description"/>
+          <GeneralButton label="Create Account" handleClick={handleClick}/>
         </RegistrationFormWrapper>
       </RegisterationBackground>
     </>

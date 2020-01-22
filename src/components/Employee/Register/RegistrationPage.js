@@ -6,6 +6,8 @@ import SaveButton from '../../Button/SaveButton'
 import BioTextbox from '../../TextBoxes/BioTextbox'
 import { EmployeeContext } from '../../../context/employeeContext'
 import { useHistory } from "react-router-dom";
+import SalarySelect from './SalarySelect'
+import GeneralButton from '../../Button/GeneralButton'
 
 const RegisterationBackground = styled.div`
   height: 100vh;
@@ -13,22 +15,19 @@ const RegisterationBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: ${(props)=> props.media ? "0 20vw" : "0 5vw"};
-  background-color: #EAEFF7;
 `
 
 const RegistrationFormWrapper = styled.div`
-  background-color: #DDE6F4;
-  min-width:  ${(props)=> props.media ? "40vw" : "min-content"};
+  max-width:  ${(props)=> props.media ? "40vw" : "min-content"};
   padding: 0 5vw;
   max-height: max-content;
-  border-radius: 30px;
   margin-top: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
+  background-color: #FFFFFF;
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #FFFFFF;
   padding-bottom: 5vh;
 `
@@ -36,14 +35,15 @@ const RegistrationFormWrapper = styled.div`
 const RegisterHeader = styled.h1`
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 3.5em;
-  margin: 3vh 0;
+  font-size: 2.5em;
+  margin: 2vh 0;
 `
 
 const RegistrationPage = (props) => {
   const mediaContext = useContext(MediaContext)
   const employeeContext = useContext(EmployeeContext)
   const [category, setCategory] = useState([])
+  const [salary, setSalary] = useState('')
   const [biography, setBiography] = useState('')
   const { media } = mediaContext;
   const { user, handleUpdate } = employeeContext
@@ -53,6 +53,7 @@ const RegistrationPage = (props) => {
     if(category.length > 0){
       editedUser.category = category
       editedUser.bio = biography
+      editedUser.salary = salary
       handleUpdate(editedUser)
       history.push('/profile')
     }
@@ -61,10 +62,11 @@ const RegistrationPage = (props) => {
     <>
       <RegisterationBackground data-testid="register-form">
         <RegistrationFormWrapper  media={media ? media.toString() : null}>
-          <RegisterHeader>Register</RegisterHeader>
+          <RegisterHeader>Create your account</RegisterHeader>
+          <SalarySelect handleChange={setSalary}/>
           <CategorySelect handleChange={setCategory}/>
-          <BioTextbox handleChange={setBiography}/>
-          <SaveButton handleClick={handleClick}/>
+          <BioTextbox handleChange={setBiography} label="Enter your bio"/>
+          <GeneralButton label="Create Account" handleClick={handleClick}/>
         </RegistrationFormWrapper>
       </RegisterationBackground>
     </>

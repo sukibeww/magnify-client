@@ -4,8 +4,7 @@ import { TextField } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(1),
-    boxShadow: '5px 5px 8px rgb(163, 177, 198), -5px -5px 8px #FFFFFF',
+    margin: theme.spacing(2),
     border: 'none'
   }
 }))
@@ -21,7 +20,7 @@ const BioTextbox = props => {
         data-testid="profile-biotextbox"
         className={classes.formControl}
         id="outlined-multiline-static"
-        label="Enter your Bio"
+        label={props.label}
         defaultValue={props.current}
         fullWidth={true}
         multiline
