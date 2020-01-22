@@ -1,5 +1,7 @@
+import URL from '../../../config'
+
 const linkedin_logout = async () => {
-  await fetch('http://localhost:3000/logout', {
+  await fetch(URL + '/logout', {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +13,7 @@ const linkedin_logout = async () => {
 
 const getProfile = async () => {
   try {
-    const user = await fetch('http://localhost:3000/login', {
+    const user = await fetch(URL + '/login', {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +37,7 @@ const isRegistered = user => {
 }
 
 const saveSurvey = async survey => {
-  const resp = await fetch('http://localhost:3000/employee/survey', {
+  const resp = await fetch(URL + '/employee/survey', {
     method: 'POST',
     body: JSON.stringify(survey),
     credentials: 'include',
@@ -48,7 +50,7 @@ const saveSurvey = async survey => {
 }
 
 const fetchSubmitSurvey = async survey => {
-  const resp = await fetch('http://localhost:3000/employee/result', {
+  const resp = await fetch(URL + '/employee/result', {
     method: 'POST',
     body: JSON.stringify(survey),
     credentials: 'include',
@@ -61,7 +63,7 @@ const fetchSubmitSurvey = async survey => {
 }
 
 const updateEmployee = async editedEmployee => {
-  const resp = fetch('http://localhost:3000/employee/update', {
+  const resp = fetch(URL + '/employee/update', {
     method: 'PUT',
     body: JSON.stringify(editedEmployee),
     credentials: 'include',

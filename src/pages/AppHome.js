@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import AppEmployee from './AppEmployee.js'
 import AppEmployer from './AppEmployer.js'
 import LoginPage from '../components/Login/LoginPage'
+import URL from '../../../config'
 
 function Home() {
   const [user, setUser] = useState(false)
 
   const getProfile = async () => {
     try {
-      const user = await fetch('http://localhost:3000/login', {
+      const user = await fetch(URL + '/login', {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
