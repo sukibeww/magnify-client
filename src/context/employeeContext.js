@@ -5,7 +5,8 @@ import {
   saveSurvey,
   fetchSubmitSurvey,
   isRegistered,
-  updateEmployee
+  updateEmployee,
+  getAllVacancies
 } from './helper/employee'
 
 export const EmployeeContext = createContext()
@@ -45,6 +46,20 @@ const EmployeeContextProvider = props => {
     })
   }
 
+  const updateVacancy = async updatedVacancy => {
+    console.log(updatedVacancy)
+    const resp = fetch(URL + `/vacancies/${updatedVacancy._id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedVacancy),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true
+      }
+    })
+    return resp
+  }
+
   useEffect(() => {
     if (user) {
       const redirectAfterLogin = () => {
@@ -71,7 +86,9 @@ const EmployeeContextProvider = props => {
         saveSurvey,
         submitSurvey,
         handleUpdate,
-        updateCurrent
+        updateCurrent,
+        getAllVacancies,
+        updateVacancy
       }}
     >
       {props.children}
