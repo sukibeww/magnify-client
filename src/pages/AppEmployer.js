@@ -13,6 +13,7 @@ import Notifications from '../components/Notifications/Notifications'
 import { makeStyles } from '@material-ui/core'
 import EmployerProfile from '../components/Employer/Profile/EmployerProfile'
 import EmployerProfileEdit from '../components/Employer/Profile/EmployerProfileEdit'
+import FooterComponent from '../components/Footer/Footer'
 
 const useStyles = makeStyles({
   container: {
@@ -37,6 +38,7 @@ function AppEmployer(props) {
             setGlobalUser={props.setGlobalUser}
           >
             {media ? <DesktopNavbar /> : <DrawerNavbar user={props.user} />}
+
             <div className={classes.container}>
               <Route path="/landing" component={Landing}></Route>
               <Route path="/register" component={EmployerRegistration}></Route>
@@ -50,6 +52,7 @@ function AppEmployer(props) {
                 component={EmployerProfileEdit}
               ></Route>
               <Route path="/notifications" component={Notifications}></Route>
+              <FooterComponent />
             </div>
           </EmployerContextProvider>
         </Switch>
