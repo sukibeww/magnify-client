@@ -74,12 +74,3 @@ export const updateEmployee = async editedEmployee => {
   })
   return resp
 }
-
-module.exports = {
-  linkedin_logout,
-  getProfile,
-  saveSurvey,
-  fetchSubmitSurvey,
-  isRegistered,
-  updateEmployee
-}
