@@ -1,6 +1,6 @@
 const { URL } = require('../../config')
 
-const linkedin_logout = async () => {
+export const linkedin_logout = async () => {
   await fetch(URL + '/logout', {
     credentials: 'include',
     headers: {
@@ -11,7 +11,7 @@ const linkedin_logout = async () => {
   return true
 }
 
-const getProfile = async () => {
+export const getProfile = async () => {
   try {
     const user = await fetch(URL + '/login', {
       credentials: 'include',
@@ -29,14 +29,14 @@ const getProfile = async () => {
   }
 }
 
-const isRegistered = user => {
+export const isRegistered = user => {
   if (user.category.length === 0) {
     return false
   }
   return true
 }
 
-const saveSurvey = async survey => {
+export const saveSurvey = async survey => {
   const resp = await fetch(URL + '/employee/survey', {
     method: 'POST',
     body: JSON.stringify(survey),
@@ -49,7 +49,7 @@ const saveSurvey = async survey => {
   return resp
 }
 
-const fetchSubmitSurvey = async survey => {
+export const fetchSubmitSurvey = async survey => {
   const resp = await fetch(URL + '/employee/result', {
     method: 'POST',
     body: JSON.stringify(survey),
@@ -62,7 +62,7 @@ const fetchSubmitSurvey = async survey => {
   return resp
 }
 
-const updateEmployee = async editedEmployee => {
+export const updateEmployee = async editedEmployee => {
   const resp = fetch(URL + '/employee/update', {
     method: 'PUT',
     body: JSON.stringify(editedEmployee),
