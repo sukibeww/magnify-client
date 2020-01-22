@@ -8,22 +8,32 @@ import CategorySelect from '../CategorySelect/CategorySelect'
 import BioTextbox from '../../TextBoxes/BioTextbox'
 import SaveButton from '../../Button/SaveButton'
 import CloseIcon from '@material-ui/icons/Close';
+import GeneralButton from '../../Button/GeneralButton';
 
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: ${(props) => props.media ? "10vh 25vw" : "5vh 5vw"};
-  border: solid 3px #283593;
-  border-radius: 10px;
-  padding: 5vh 5vw;
+  padding: 5vh 0;
+`
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  width: ${props => (props.media ? '40vw' : '80vw')};
+  padding: 30px;
+  min-height: 50vh;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #ffffff;
 `
 
 const ProfilePicture = styled.img`
   border-radius: 100%;
-  width: ${(props) => props.media ? "30vh" : "20vh"};
-  height: ${(props) => props.media ? "30vh" : "20vh"};
+  width: ${props => (props.media ? '25vh' : '25vh')};
+  height: ${props => (props.media ? '25vh' : '25vh')};
   color: #283593;
   border: solid 10px #28359380;
 `
@@ -76,17 +86,19 @@ const EmployeeProfileEdit = () => {
   return (
     <>
       <ProfileWrapper media={media ? media.toString() : null}>
-        <AbsoluteWrapper>
-          <Link to="/profile">
-            <CloseIcon/>
-          </Link>
-        </AbsoluteWrapper>
-        <ProfilePicture data-testid="profile-picture" src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
-        <DisplayName data-testid="profile-name">{user.displayName}</DisplayName>
-        <Email data-testid="profile-email">{user.email}</Email>
-        <CategorySelect current={user.category} handleChange={setCategory}></CategorySelect>
-        <BioTextbox media={media ? media.toString() : null} current={user.bio} handleChange={setBiography}></BioTextbox>
-        <SaveButton handleClick={handleClick}/>
+        <ProfileContainer media={media ? media.toString() : null}>
+          <AbsoluteWrapper>
+            <Link to="/profile">
+              <CloseIcon/>
+            </Link>
+          </AbsoluteWrapper>
+          <ProfilePicture data-testid="profile-picture" src={user.photos} alt="profile-pic" media={media ? media.toString() : null}/>
+          <DisplayName data-testid="profile-name">{user.displayName}</DisplayName>
+          <Email data-testid="profile-email">{user.email}</Email>
+          <CategorySelect current={user.category} handleChange={setCategory}></CategorySelect>
+          <BioTextbox media={media ? media.toString() : null} current={user.bio} handleChange={setBiography}></BioTextbox>
+          <GeneralButton label="Save" handleClick={handleClick}/>
+        </ProfileContainer>
       </ProfileWrapper>
     </>
   )

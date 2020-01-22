@@ -43,13 +43,14 @@ const LittleHeader = styled.h2`
 `
 const Info = styled.h3`
   font-family: 'Roboto', sans-serif;
-  text-align center;
+  text-align: center;
   font-size: 0.9em;
   margin: 0;
   font-weight: 300;
   color: #000000;
   opacity: 0.5;
 `
+
 const Flexing = styled.h3`
   display: flex;
   flex-direction: column;

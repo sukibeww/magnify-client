@@ -13,13 +13,14 @@ const LoginBackground = styled.div`
   justify-content: center;
   align-items: flex-start;
   padding: ${props => (props.media ? '0 20vw' : '0 5vw')};
-  background-color: #eaeff7;
+  background-color: "#ffffff";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%236d6deb' fill-opacity='0.07'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 `
 
 const LoginHeader = styled.h1`
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 4em;
+  font-size: 2em;
   margin: 3vh 0;
 `
 
@@ -30,10 +31,8 @@ const LoginSubHeader = styled.h2`
 `
 
 const LoginFormWrapper = styled.div`
-  background-color: #dde6f4;
   width: 100%;
   height: 70%;
-  border-radius: 30px;
   margin-top: 10vh;
   display: flex;
   flex-direction: row;
@@ -54,6 +53,7 @@ const LoginForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #FFFFFF;
 `
 
 function LoginPage(props) {
@@ -67,9 +67,8 @@ function LoginPage(props) {
           <LoginFormWrapper>
             {media ? <LoginSection></LoginSection> : null}
             <LoginForm media={media ? media.toString() : null}>
-              <LoginHeader>Login</LoginHeader>
+              <LoginHeader>Welcome to Magnify</LoginHeader>
               <LoginSubHeader>Hello, User</LoginSubHeader>
-              <LoginSubHeader>Welcome to Magnify</LoginSubHeader>
               <LoginButton testid="login-employee" userType={'Employee'}></LoginButton>
               <LoginButton testid="login-employer" userType={'Employer'}></LoginButton>
             </LoginForm>

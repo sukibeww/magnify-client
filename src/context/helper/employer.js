@@ -42,6 +42,32 @@ const updateEmployer = async editedEmployer => {
   return resp
 }
 
+const createVacancy = async newVacancy => {
+  const resp = fetch('http://localhost:3000/vacancies', {
+    method: 'POST',
+    body: JSON.stringify(newVacancy),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
+
+const deleteVacancy = async vacancyId => {
+  const resp = fetch(`http://localhost:3000/vacancies/${vacancyId}`, {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
+
+
 const getDelegates = async() => {
   try {
     const employees = await fetch(`http://localhost:3000/employee/delegates`, {
@@ -57,6 +83,36 @@ const getDelegates = async() => {
   }
 }
 
+const getVacanciesOfCompany = async (companyId) => {
+  try {
+    const vacancies = await fetch(`http://localhost:3000/vacancies/${companyId}`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true
+      }
+    }).then(resp => resp.json())
+    return vacancies
+  } catch (error) {
+    return false
+  }
+}
+
+
+const updateVacancy = async updatedVacancy => {
+  console.log(updatedVacancy)
+  const resp = fetch(`http://localhost:3000/vacancies/${updatedVacancy._id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updatedVacancy),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    }
+  })
+  return resp
+}
+
 const isRegistered = user => {
   if (!user.companyName) {
     return false
@@ -70,5 +126,9 @@ module.exports = {
   getProfile,
   isRegistered,
   updateEmployer,
-  getDelegates
+  getDelegates,
+  createVacancy,
+  getVacanciesOfCompany,
+  deleteVacancy,
+  updateVacancy
 }
