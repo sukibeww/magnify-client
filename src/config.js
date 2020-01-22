@@ -1,4 +1,1 @@
-const URL = 'http://localhost:3000'
-module.exports = {
-  URL
-}
+export const URL = 'http://localhost:3000'

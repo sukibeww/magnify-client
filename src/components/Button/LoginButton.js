@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-
+const { URL } = require('../../config')
 const LoginButton = props => {
   const [fill, setFill] = useState('#40abde')
   const linkedin_login = () => {
     window.open(
-      'http://localhost:3000/auth/linkedin/login/' +
-        props.userType.toLowerCase(),
+      URL + '/auth/linkedin/login/' + props.userType.toLowerCase(),
       '_self'
     )
   }
@@ -23,7 +22,7 @@ const LoginButton = props => {
       margin: '0 5px',
       color: fill
     }
-  })) 
+  }))
   const classes = useStyles()
   return (
     <Button

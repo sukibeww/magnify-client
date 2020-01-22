@@ -1,10 +1,10 @@
-import URL from '../../../config'
+const { URL } = require('../../config')
 
-const linkedin_login = () => {
+export const linkedin_login = () => {
   window.open(URL + '/auth/linkedin/login/employer', '_self')
 }
 
-const linkedin_logout = async () => {
+export const linkedin_logout = async () => {
   await fetch(URL + '/logout', {
     credentials: 'include',
     headers: {
@@ -15,7 +15,7 @@ const linkedin_logout = async () => {
   return true
 }
 
-const getProfile = async () => {
+export const getProfile = async () => {
   try {
     const user = await fetch(URL + '/login', {
       credentials: 'include',
@@ -30,7 +30,7 @@ const getProfile = async () => {
   }
 }
 
-const updateEmployer = async editedEmployer => {
+export const updateEmployer = async editedEmployer => {
   const resp = fetch(URL + '/employer/update', {
     method: 'PUT',
     body: JSON.stringify(editedEmployer),
@@ -43,7 +43,7 @@ const updateEmployer = async editedEmployer => {
   return resp
 }
 
-const createVacancy = async newVacancy => {
+export const createVacancy = async newVacancy => {
   const resp = fetch(URL + '/vacancies', {
     method: 'POST',
     body: JSON.stringify(newVacancy),
@@ -56,7 +56,7 @@ const createVacancy = async newVacancy => {
   return resp
 }
 
-const deleteVacancy = async vacancyId => {
+export const deleteVacancy = async vacancyId => {
   const resp = fetch(URL + `/vacancies/${vacancyId}`, {
     method: 'DELETE',
     credentials: 'include',
@@ -68,7 +68,7 @@ const deleteVacancy = async vacancyId => {
   return resp
 }
 
-const getDelegates = async () => {
+export const getDelegates = async () => {
   try {
     const employees = await fetch(URL + `/employee/delegates`, {
       credentials: 'include',
@@ -83,7 +83,7 @@ const getDelegates = async () => {
   }
 }
 
-const getVacanciesOfCompany = async companyId => {
+export const getVacanciesOfCompany = async companyId => {
   try {
     const vacancies = await fetch(URL + `/vacancies/${companyId}`, {
       credentials: 'include',
@@ -98,7 +98,7 @@ const getVacanciesOfCompany = async companyId => {
   }
 }
 
-const updateVacancy = async updatedVacancy => {
+export const updateVacancy = async updatedVacancy => {
   console.log(updatedVacancy)
   const resp = fetch(URL + `/vacancies/${updatedVacancy._id}`, {
     method: 'PUT',
@@ -112,22 +112,9 @@ const updateVacancy = async updatedVacancy => {
   return resp
 }
 
-const isRegistered = user => {
+export const isRegistered = user => {
   if (!user.companyName) {
     return false
   }
   return true
-}
-
-module.exports = {
-  linkedin_login,
-  linkedin_logout,
-  getProfile,
-  isRegistered,
-  updateEmployer,
-  getDelegates,
-  createVacancy,
-  getVacanciesOfCompany,
-  deleteVacancy,
-  updateVacancy
 }
