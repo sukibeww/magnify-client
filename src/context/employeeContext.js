@@ -47,10 +47,9 @@ const EmployeeContextProvider = props => {
     })
   }
 
-  const updateVacancy = async updatedVacancy => {
-    console.log("hit")
-    console.log(updatedVacancy)
-    updateEmployee({ updatedVacancy: updatedVacancy })
+  const updateVacancyById = async updatedVacancy => {
+    const response = await updateVacancy(updatedVacancy)
+    return response
   }
 
   useEffect(() => {
@@ -81,7 +80,7 @@ const EmployeeContextProvider = props => {
         handleUpdate,
         updateCurrent,
         getAllVacancies,
-        updateVacancy
+        updateVacancyById
       }}
     >
       {props.children}
