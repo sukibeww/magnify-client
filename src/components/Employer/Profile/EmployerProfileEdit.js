@@ -11,18 +11,27 @@ import Textfield from '../../TextBoxes/Textfield'
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: ${props => (props.media ? '10vh 25vw' : '5vh 5vw')};
-  border: solid 3px #283593;
-  border-radius: 10px;
-  padding: 5vh 5vw;
-  margin: 3vh;
+  padding: 5vh 0;
 `
-const CompanyProfilePicture = styled.img`
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  width: ${props => (props.media ? '40vw' : '80vw')};
+  padding: 30px;
+  min-height: 50vh;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 1), -9px -9px 16px #ffffff;
+`
+
+const ProfilePicture = styled.img`
   border-radius: 100%;
-  width: ${props => (props.media ? '30vh' : '20vh')};
-  height: ${props => (props.media ? '30vh' : '20vh')};
+  width: ${props => (props.media ? '25vh' : '25vh')};
+  height: ${props => (props.media ? '25vh' : '25vh')};
   color: #283593;
   border: solid 10px #28359380;
 `
@@ -110,50 +119,49 @@ const EmployerProfileEdit = () => {
   return (
     <>
       <ProfileWrapper media={media ? media.toString() : null}>
-        <AbsoluteWrapper>
-          <Link to="/profile">
-            <CloseIcon />
-          </Link>
-        </AbsoluteWrapper>
-
-        <CompanyProfilePicture
-          src="https://img.icons8.com/dusk/64/000000/city.png"
-          alt="Company"
-        />
-
-        <RepWrapper>
-          <Flexing>
-            <LittleHeader>Company rep:</LittleHeader>
-            <Info>{user.displayName}</Info>
-          </Flexing>
-          <Flexing>
-            <LittleHeader>Email:</LittleHeader>
-            <Info> {user.email}</Info>
-          </Flexing>
-        </RepWrapper>
-
-        <TextfieldWrapper>
-          <Textfield
-            label="Company Name"
-            handleChange={setCompanyName}
-            defaultValue={user.companyName}
-            size="small"
+        <ProfileContainer>
+          <AbsoluteWrapper>
+            <Link to="/profile">
+              <CloseIcon />
+            </Link>
+          </AbsoluteWrapper>
+          <ProfilePicture
+            media={media ? media.toString() : null}
+            src={user.photos}
+            alt="avatar"
           />
-          <Textfield
-            label="Company Address"
-            handleChange={setCompanyAddress}
-            defaultValue={user.address}
-            size="small"
-          />
-          <Textfield
-            label="Company Description"
-            handleChange={setDescription}
-            defaultValue={user.companyDescription}
-            size="small"
-          />
-        </TextfieldWrapper>
-
-        <SaveButton label={'Save'} handleClick={handleClick} />
+          <RepWrapper>
+            <Flexing>
+              <LittleHeader>Company rep:</LittleHeader>
+              <Info>{user.displayName}</Info>
+            </Flexing>
+            <Flexing>
+              <LittleHeader>Email:</LittleHeader>
+              <Info> {user.email}</Info>
+            </Flexing>
+          </RepWrapper>
+          <TextfieldWrapper>
+            <Textfield
+              label="Company Name"
+              handleChange={setCompanyName}
+              defaultValue={user.companyName}
+              size="small"
+            />
+            <Textfield
+              label="Company Address"
+              handleChange={setCompanyAddress}
+              defaultValue={user.address}
+              size="small"
+            />
+            <Textfield
+              label="Company Description"
+              handleChange={setDescription}
+              defaultValue={user.companyDescription}
+              size="small"
+            />
+          </TextfieldWrapper>
+          <SaveButton label={'Save'} handleClick={handleClick} />
+        </ProfileContainer>
       </ProfileWrapper>
     </>
   )

@@ -64,12 +64,8 @@ const DesktopNavbar = () => {
               </Typography>
             </Link>
             <div className={classes.navWrapper}>
-              <Badge
-                variant="dot"
-                color="secondary"
-                className={classes.navButton}
-              >
                 <Link
+                  className={classes.navButton}
                   data-testid="navigation-survey"
                   to="/survey"
                   style={{
@@ -81,13 +77,8 @@ const DesktopNavbar = () => {
                 >
                   <Button color="inherit">Survey</Button>
                 </Link>
-              </Badge>
-              <Badge
-                variant="dot"
-                color="secondary"
-                className={classes.navButton}
-              >
                 <Link
+                  className={classes.navButton}
                   data-testid="navigation-result"
                   to="/result"
                   style={{
@@ -99,13 +90,8 @@ const DesktopNavbar = () => {
                 >
                   <Button color="inherit">Result</Button>
                 </Link>
-              </Badge>
-              <Badge
-                variant="dot"
-                color="secondary"
-                className={classes.navButton}
-              >
                 <Link
+                  className={classes.navButton}
                   data-testid="navigation-vacancies"
                   to="/vacancies"
                   style={{
@@ -117,15 +103,6 @@ const DesktopNavbar = () => {
                 >
                   <Button color="inherit">Vacancy</Button>
                 </Link>
-              </Badge>
-              <IconButton
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge variant="dot" color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
               <Link to="/notifications" style={{ color: 'white' }}>
                 <IconButton
                   aria-label="account of current user"
@@ -133,7 +110,7 @@ const DesktopNavbar = () => {
                   aria-haspopup="true"
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <NotificationsIcon />
                 </IconButton>
               </Link>
               <Link to="/profile" style={{ color: 'white' }}>
@@ -176,13 +153,9 @@ const DesktopNavbar = () => {
               </Typography>
             </Link>
             <div className={classes.navWrapper}>
-              <Badge
-                variant="dot"
-                color="secondary"
-                className={classes.navButton}
-              >
                 <Link
                   data-testid="navigation-companyvacancies"
+                  className={classes.navButton}
                   to="/vacancy"
                   style={{
                     textDecoration: 'none',
@@ -193,15 +166,10 @@ const DesktopNavbar = () => {
                 >
                   <Button color="inherit">Vacancy</Button>
                 </Link>
-              </Badge>
-              <Badge
-                variant="dot"
-                color="secondary"
-                className={classes.navButton}
-              >
                 <Link
                   data-testid="navigation-delegates"
                   to="/delegates"
+                  className={classes.navButton}
                   style={{
                     textDecoration: 'none',
                     color: 'white',
@@ -211,14 +179,9 @@ const DesktopNavbar = () => {
                 >
                   <Button color="inherit">Delegates</Button>
                 </Link>
-              </Badge>
-              <Badge
-                variant="dot"
-                color="secondary"
-                className={classes.navButton}
-              >
                 <Link
                   data-testid="navigation-premium"
+                  className={classes.navButton}
                   to="/premium"
                   style={{
                     textDecoration: 'none',
@@ -230,7 +193,6 @@ const DesktopNavbar = () => {
                   <StarsIcon />
                   <Button color="inherit">Become Premium</Button>
                 </Link>
-              </Badge>
               <Link to="/notifications" style={{ color: 'white' }}>
                 <IconButton
                   aria-label="show 17 new notifications"
