@@ -14,11 +14,14 @@ import {
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import Notifications from '@material-ui/icons/Notifications'
+
 import ExitToApp from '@material-ui/icons/ExitToApp'
 import Assignment from '@material-ui/icons/Assignment'
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
 import GroupAddIcon from '@material-ui/icons/GroupAdd'
+import GroupIcon from '@material-ui/icons/Group'
 import { Link } from 'react-router-dom'
 import { EmployeeContext } from '../../context/employeeContext'
 import { EmployerContext } from '../../context/employerContext'
@@ -131,6 +134,21 @@ const DrawerNavbar = props => {
         <Divider />
         <List>
           <Link
+            to="/notifications"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem
+              button
+              key="Account Settings"
+              data-testid="test-account-settings"
+            >
+              <ListItemIcon>
+                <Notifications />
+              </ListItemIcon>
+              <ListItemText primary="Notifications" />
+            </ListItem>
+          </Link>
+          <Link
             to="/profile"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
@@ -211,6 +229,21 @@ const DrawerNavbar = props => {
         </List>
         <Divider />
         <List>
+          <Link
+            to="/notifications"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            <ListItem
+              button
+              key="Account Settings"
+              data-testid="test-account-settings"
+            >
+              <ListItemIcon>
+                <Notifications />
+              </ListItemIcon>
+              <ListItemText primary="Notifications" />
+            </ListItem>
+          </Link>
           <Link
             to="/profile"
             style={{ color: 'inherit', textDecoration: 'none' }}

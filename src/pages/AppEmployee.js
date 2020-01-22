@@ -12,6 +12,7 @@ import RegistrationPage from '../components/Employee/Register/RegistrationPage'
 import EmployeeProfileEdit from '../components/Employee/EmployeeProfile/EmployeeProfileEdit'
 import VacanciesList from '../components/Employee/VacancyList/VacancyList'
 import FooterComponent from '../components/Footer/Footer'
+import Notifications from '../components/Notifications/Notifications'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -53,6 +54,7 @@ function AppEmployee(props) {
                 component={EmployeeProfileEdit}
               ></Route>
               <Route exact path="/vacancies" component={VacanciesList}></Route>
+              <Route path="/notifications" component={Notifications}></Route>
               <FooterComponent />
             </div>
           </EmployeeContextProvider>

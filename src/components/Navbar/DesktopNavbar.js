@@ -126,6 +126,16 @@ const DesktopNavbar = () => {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
+              <Link to="/notifications" style={{ color: 'white' }}>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Link>
               <Link to="/profile" style={{ color: 'white' }}>
                 <IconButton
                   aria-label="account of current user"
@@ -221,14 +231,17 @@ const DesktopNavbar = () => {
                   <Button color="inherit">Become Premium</Button>
                 </Link>
               </Badge>
-              <IconButton
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge variant="dot" color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              <Link to="/notifications" style={{ color: 'white' }}>
+                <IconButton
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge variant="dot" color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+
               <Link to="/profile" style={{ color: 'white' }}>
                 <IconButton
                   aria-label="account of current user"

@@ -108,11 +108,6 @@ const Delegates = props => {
               setSelected(rows)
             }}
           />
-          {/* <GeneralButton
-            label="Invite"
-            testid="delegates-invite"
-            handleClick={inviteEmail}
-          /> */}
           <Modal
             handleClick={inviteEmail}
             setAddress={setAddress}
